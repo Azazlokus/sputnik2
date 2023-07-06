@@ -15,9 +15,18 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - web
+      - db
     env_file:
       - .env
     volumes:
       - ./server/app:/var/www
 
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
 
