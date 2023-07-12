@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid('user_id')->constrained('users')->references('id')->onDelete('cascade');
-            $table->string('notification_type');
+            $table->string('type');
             $table->text('content');
             $table->boolean('viewed');
             $table->timestamps();
