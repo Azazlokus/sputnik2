@@ -13,9 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(RolesSeeder::class);
-        $this->call(UsersSeeder::class);
-        $this->call(UsersRolesPivotTableSeeder::class);
+        $this->call(UsersAndRolesSeeder::class);
         $this->call(RelaxPlaceSeeder::class);
         $this->call(RelaxPlaceImagesSeeder::class);
         $this->call(RelaxPlaceCategoriesSeeder::class);
