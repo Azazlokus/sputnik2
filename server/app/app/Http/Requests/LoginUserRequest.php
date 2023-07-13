@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,7 +27,7 @@ class LoginUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|min:6',
         ];
     }
@@ -49,7 +49,7 @@ class LoginUserRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(Validator $validator)
+    /*protected function failedValidation(Validator $validator)
     {
         $errors = (new ValidationException($validator))->errors();
         Log::error("Ошибка при входе пользователя.");
@@ -59,5 +59,5 @@ class LoginUserRequest extends FormRequest
                 'success' => false,
                 'errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
-    }
+    }*/
 }

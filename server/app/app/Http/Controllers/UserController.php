@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\LoginUserRequest;
+use App\Http\Resources\LoginResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,22 +24,17 @@ class UserController extends Controller
 
         return new UserResource($user);
     }
-    public function login(Request $request)
+    public function login(LoginUserRequest $request)
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            //$token = $user->createToken('MyToken')->plainTextToken;
+        if ($token = Auth::attempt($credentials)) {
 
-            return response()->json([
-                'token' => Auth::attempt($credentials),
-                'token_type' => 'Bearer',
-                'expires_in' => config('auth.token_expires_in'),
-            ]);
+
+            return new LoginResource($token);
         }
 
-        abort(401, 'Unauthorized');
+        return response()->json(['error' => 'Ошибка входа'], 401);
     }
     public function logout(){
         Auth::guard('api')->logout();
@@ -47,10 +44,10 @@ class UserController extends Controller
         $user = Auth::guard('api')->user();
 
         if ($user) {
-            // Если пользователь аутентифицирован, возвращаем информацию о нем
+
             return response()->json(['user' => $user]);
         } else {
-            // Если пользователь не аутентифицирован, возвращаем сообщение об ошибке
+
             return response()->json(['error' => 'Пользователь не аутентифицирован'], 401);
         }
     }
