@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\UserCreatedEvent;
+use App\Models\UserNotification;
 use App\Models\Role;
 use App\Models\User;
 use App\Notifications\UserCreatedNotification;
@@ -16,14 +17,20 @@ class UserCreatedListener
      */
     public function handle(UserCreatedEvent $event)
     {
-        $adminRoleId = Role::where('name', 'Администратор')->value('id');
+        $adminRoleId = Role::where('role', 'Администратор')->value('id');
 
         $admins = User::whereHas('roles', function ($query) use ($adminRoleId) {
             $query->where('role_id', $adminRoleId);
         })->get();
 
         foreach ($admins as $admin) {
-            $admin->notify(new UserCreatedNotification($event->user));
+            UserNotification::create([
+                'user_id' => $admin->getKey(),
+                'type' => 'push',
+                'content' => 'Hello, Davakin...',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
         }
     }
 

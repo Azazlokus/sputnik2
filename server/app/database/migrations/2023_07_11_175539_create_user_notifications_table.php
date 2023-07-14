@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained('users')->references('id')->onDelete('cascade');
             $table->string('type');
             $table->text('content');
-            $table->boolean('viewed');
+            $table->boolean('viewed')->default(false);
             $table->timestamps();
         });
     }
