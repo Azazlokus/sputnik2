@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +21,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/logout', [UserController::class, 'logout']);
     Route::post('/user', [UserController::class, 'getCurrentUser']);
-    Route::get('/hello', function () {
-       return response()->json(['hello' =>'all']);
-    });
 
 })->middleware('api');
+
+Route::get('/notifications', [NotificationController::class, 'getAll'])->middleware('api');
