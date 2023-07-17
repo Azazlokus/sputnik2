@@ -17,7 +17,6 @@ class UserCreatedEvent
 
     public function __construct(protected User $user)
     {
-        $this->user = $user;
     }
 
     public function getUser($user)

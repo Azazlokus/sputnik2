@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Components\UserCreatedNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-
 class SendNotificationListener
 {
     /**
@@ -17,7 +16,7 @@ class SendNotificationListener
      */
     public function handle(UserCreatedEvent $event)
     {
-        $adminRoleId = Role::query()->where('role', 'Администратор')->value('id');
+        $adminRoleId = Role::query()->where('role', \App\Constants\Role::ADMIN)->value('id');
 
         $admins = User::query()->whereHas('roles', function ($query) use ($adminRoleId) {
             $query->where('role_id', $adminRoleId);

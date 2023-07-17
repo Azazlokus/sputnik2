@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Handler;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Resources\LoginResource;
+use App\Http\Resources\LogoutResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Mockery\Exception;
 
 class UserController extends Controller
 {
@@ -31,24 +34,23 @@ class UserController extends Controller
         if ($token = Auth::attempt($credentials)) {
             return new LoginResource($token);
         }
-
-        return response()->json(['error' => 'Ошибка входа'], 401);
+        throw new Exception();
     }
 
     public function logout()
     {
+        $user = Auth::guard('api')->user();
         Auth::guard('api')->logout();
-        return response()->json(['message' => 'Выход выполнен успешно']);
+        return new LogoutResource($user);
     }
 
     public function index()
     {
         $user = Auth::guard('api')->user();
         if ($user) {
-            return response()->json(['user' => $user]);
-        } else {
-            return response()->json(['error' => 'Пользователь не аутентифицирован'], 401);
+            return new UserResource($user);
         }
+        throw new Exception();
     }
 
 

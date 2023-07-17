@@ -20,23 +20,17 @@ class UserPhotoSeeder extends Seeder
                 [
                     'user_id' => '00000000-0000-0000-0000-000000000000',
                     'image_name' => 'Ava',
-                    'path_to_photo' => 'D://photosFromEgypt',
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'path_to_photo' => './../../public/storage/hashiro.jpg'
                 ],
                 [
                     'user_id' => '00000000-0000-0000-0000-000000000000',
                     'image_name' => 'Ava2',
-                    'path_to_photo' => 'D://photosFromThailand',
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'path_to_photo' => './../../public/storage/breketmax.jpg'
                 ],
                 [
                     'user_id' => '11111111-1111-1111-1111-111111111111',
                     'image_name' => 'Ava2',
-                    'path_to_photo' => 'D://photosFromThailand',
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'path_to_photo' => './../../public/storage/hashiro.jpg'
                 ],
 
             ]

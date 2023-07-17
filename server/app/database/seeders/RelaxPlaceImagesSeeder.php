@@ -18,23 +18,17 @@ class RelaxPlaceImagesSeeder extends Seeder
                 [
                     'relax_place_id' => '1',
                     'image_name' => 'Xvost.png',
-                    'path_to_image' => 'D://images',
-                    'created_at' => now(),
-                    'updated_at' => now()
+                    'path_to_image' => 'D://images'
                 ],
                 [
                     'relax_place_id' => '1',
                     'image_name' => 'Lastochkin.png',
-                    'path_to_image' => 'D://images',
-                    'created_at' => now(),
-                    'updated_at' => now()
+                    'path_to_image' => 'D://images'
                 ],
                 [
                     'relax_place_id' => '2',
                     'image_name' => 'Freedom.png',
-                    'path_to_image' => 'D://images',
-                    'created_at' => now(),
-                    'updated_at' => now()
+                    'path_to_image' => 'D://images'
                 ],
             ]
         );

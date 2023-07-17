@@ -18,17 +18,13 @@ class UserNotificationsSeeder extends Seeder
                 'user_id' => '11111111-1111-1111-1111-111111111111',
                 'type' => 'email',
                 'content' => 'bla bla bla',
-                'viewed' => false,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'viewed' => false
             ],
             [
                 'user_id' => '00000000-0000-0000-0000-000000000000',
                 'type' => 'email',
                 'content' => 'bla bla bla',
-                'viewed' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'viewed' => true
             ]
         ]);
     }

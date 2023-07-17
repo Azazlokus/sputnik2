@@ -11,11 +11,10 @@ class NotificationController
     public function index()
     {
         $notifications = UserNotification::query()->get();
-        $count = $notifications->count();
-        return /*new NotificationResource($notifications);*/
-            response()->json(['success' => 'true',
-            'count' => $count,
-            'notifications' => $notifications
-        ]);
+        return [
+            "success" => true,
+            "count" => $notifications->count(),
+            "notifications" => NotificationResource::collection($notifications)
+        ];
     }
 }

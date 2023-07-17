@@ -40,16 +40,4 @@ class CreateUserRequest extends FormRequest
             '*.min' => 'Field :attribute must be at least 6 characters long',
         ];
     }
-
-    protected function failedValidation(Validator $validator)
-    {
-        $errors = (new ValidationException($validator))->errors();
-        Log::error("Ошибка при создании пользователя");
-        Log::error(json_encode($errors, JSON_UNESCAPED_UNICODE));
-        throw new HttpResponseException(
-            response()->json([
-                'success' => false,
-                'errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
-        );
-    }
 }
