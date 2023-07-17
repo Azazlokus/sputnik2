@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->constrained('users')->references('id')->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->string('image_name');
             $table->string('path_to_photo');
             $table->timestamps();

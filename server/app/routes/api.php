@@ -20,8 +20,9 @@ Route::group(['prefix' => 'users'], function () {
     Route::post('/', [UserController::class, 'create']);
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/logout', [UserController::class, 'logout']);
-    Route::post('/user', [UserController::class, 'getCurrentUser']);
-
+    Route::post('/index', [UserController::class, 'index']);
 })->middleware('api');
 
-Route::get('/notifications', [NotificationController::class, 'getAll'])->middleware('api');
+Route::group(['prefix' => 'notification'], function () {
+    Route::get('/', [NotificationController::class, 'index'])->middleware('api');
+});

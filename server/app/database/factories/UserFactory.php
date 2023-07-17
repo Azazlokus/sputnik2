@@ -17,18 +17,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $faker = \Faker\Factory::create();
         return [
             'id' => Str::uuid()->toString(),
-            'username' => $faker->userName,
-            'email' => $faker->unique()->safeEmail,
+            'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => bcrypt('password123'),
-            'firstName' => $faker->firstName,
-            'lastName' => $faker->lastName,
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'remember_token' => Str::random(10)
         ];
     }
 

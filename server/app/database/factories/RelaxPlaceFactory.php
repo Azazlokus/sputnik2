@@ -16,16 +16,14 @@ class RelaxPlaceFactory extends Factory
      */
     public function definition(): array
     {
-        $faker = \Faker\Factory::create();
         return [
-            'title' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-            'description' => $faker->paragraph,
-            'latitude' => $faker->latitude,
-            'longitude' => $faker->longitude,
-            'average_rating' => $faker->randomFloat(2, 0, 5),
-            'country' => $faker->country,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'title' => $this->faker->sentence($nbWords = 3, $variableNbWords = true),
+            'description' => $this->faker->paragraph,
+            'latitude' => $this->faker->latitude,
+            'longitude' => $this->faker->longitude,
+            'average_rating' => $this->faker->randomFloat(2, 0, 5),
+            'country' => $this->faker->country,
+            'category' => 1,
         ];
     }
 }

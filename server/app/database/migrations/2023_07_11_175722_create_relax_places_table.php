@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->decimal('latitude');
-            $table->decimal('longitude');
+            $table->float('latitude');
+            $table->float('longitude');
             $table->float('average_rating');
             $table->string('country');
+            $table->foreignId('category')->constrained('relax_place_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -22,9 +22,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
-    protected $primaryKey = 'id';
     protected $keyType = 'string';
-    public $incrementing = false;
     protected $dispatchesEvents = [
         'created' => UserCreatedEvent::class,
     ];

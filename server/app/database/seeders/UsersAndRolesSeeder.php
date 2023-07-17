@@ -22,27 +22,17 @@ class UsersAndRolesSeeder extends Seeder
 
         $admin = User::create([
             'id' => '00000000-0000-0000-0000-000000000000',
-            'username' => 'Azazlokus',
             'email' => 'Azazlokus@mail.ru',
             'email_verified_at' => now(),
             'password' => bcrypt('azazlokus'),
-            'firstName' => 'Azamat',
-            'lastName' => 'Kusarbaev',
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'remember_token' => Str::random(10)
         ]);
         $user = User::create([
             'id' => '11111111-1111-1111-1111-111111111111',
-            'username' => 'Breketmax',
             'email' => 'Makan@anime.ru',
             'email_verified_at' => now(),
             'password' => bcrypt('2002KemerovscayaSova2002'),
-            'firstName' => 'Maxim',
-            'lastName' => 'Scheglov',
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'remember_token' => Str::random(10)
         ]);
         $admin->roles()->attach($adminRole->id);
         $user->roles()->attach($userRole->id);

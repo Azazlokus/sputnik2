@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->constrained('users')->references('id')->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->string('type');
             $table->text('content');
             $table->boolean('viewed')->default(false);

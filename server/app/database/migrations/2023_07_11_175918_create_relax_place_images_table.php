@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('relax_place_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('relax_place_id')->constrained('relax_places')->onDelete('cascade');
+            $table->foreignId('relax_place_id')->constrained('relax_places')->onDelete('cascade')->onUpdate('cascade');
             $table->string('image_name')->unique();
             $table->string('path_to_image');
             $table->timestamps();

@@ -27,7 +27,7 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:users',
+            'email' => 'required|string|max:254|email|unique:users',
             'password' => 'required|min:6|confirmed',
         ];
     }
@@ -35,17 +35,9 @@ class CreateUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            '*.required' => 'Необходимо заполнить  обязательное поле :attribute',
-            '*.email' => 'Поле :attribute должно быть адресом электронной почты',
-            '*.min' => 'Поле :attribute должно быть длиной не менее 6 символов',
-        ];
-    }
-
-    public function attributes(): array
-    {
-        return [
-            'email' => 'email',
-            'password' => 'Пароль',
+            '*.required' => 'It is necessary to fill in the required field :attribute',
+            '*.email' => 'Field :attribute must be an email address',
+            '*.min' => 'Field :attribute must be at least 6 characters long',
         ];
     }
 

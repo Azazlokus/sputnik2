@@ -15,16 +15,12 @@ class RelaxPlaceCategoriesSeeder extends Seeder
     {
         DB::table('relax_place_categories')->insert([
             [
-                'relax_place_id' => '1',
-                'name' => 'City near  a sea',
-                'created_at' => now(),
-                'updated_at' => now()
+                'id' => '1',
+                'name' => 'City near  a sea'
             ],
             [
-                'relax_place_id' => '2',
-                'name' => 'Nice city',
-                'created_at' => now(),
-                'updated_at' => now()
+                'id' => '2',
+                'name' => 'Nice city'
             ]
         ]);
     }

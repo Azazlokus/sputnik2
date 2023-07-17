@@ -1,25 +1,21 @@
 <?php
+
 namespace App\Http\Controllers;
 
-
-use App\Http\Repositories\NotificationRepository;
+use App\Http\Resources\NotificationResource;
 use App\Models\UserNotification;
 use Illuminate\Notifications\Notification;
 
 class NotificationController
 {
-    private NotificationRepository $_notificationRepository;
-    function __construct(NotificationRepository $notificationRepository)
+    public function index()
     {
-        $this->_notificationRepository = $notificationRepository;
-    }
-    public function getAll(){
-
-        $notifications = $this->_notificationRepository->findAll();
+        $notifications = UserNotification::query()->get();
         $count = $notifications->count();
-        return response()->json(['success'=> 'true',
+        return /*new NotificationResource($notifications);*/
+            response()->json(['success' => 'true',
             'count' => $count,
-            'notifications'=> $notifications
-            ]);
+            'notifications' => $notifications
+        ]);
     }
 }

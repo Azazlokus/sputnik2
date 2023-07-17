@@ -22,8 +22,7 @@ class RelaxPlaceSeeder extends Seeder
                 'longitude' => 22.23,
                 'average_rating' => 5,
                 'country' => 'Russia',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'category' => '1',
             ],
             [
                 'title' => 'Лас-Вегас',
@@ -32,8 +31,8 @@ class RelaxPlaceSeeder extends Seeder
                 'longitude' => 283.25,
                 'average_rating' => 4,
                 'country' => 'USA',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'category' => '2',
+
             ]
         ]);
         RelaxPlace::factory()

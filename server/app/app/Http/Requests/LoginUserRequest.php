@@ -27,7 +27,7 @@ class LoginUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required|string|max:254|email',
             'password' => 'required|min:6',
         ];
     }
@@ -35,29 +35,10 @@ class LoginUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            '*.required' => 'Необходимо заполнить  обязательное поле :attribute',
-            '*.email' => 'Поле :attribute должно быть адресом электронной почты',
-            '*.min' => 'Поле :attribute должно быть длиной не менее 6 символов',
+            '*.required' => 'It is necessary to fill in the required field :attribute',
+            '*.email' => 'Field :attribute must be an email address',
+            '*.min' => 'Field :attribute must be at least 6 characters long',
         ];
     }
 
-    public function attributes(): array
-    {
-        return [
-            'email' => 'email',
-            'password' => 'Пароль',
-        ];
-    }
-
-    /*protected function failedValidation(Validator $validator)
-    {
-        $errors = (new ValidationException($validator))->errors();
-        Log::error("Ошибка при входе пользователя.");
-        Log::error(json_encode($errors, JSON_UNESCAPED_UNICODE));
-        throw new HttpResponseException(
-            response()->json([
-                'success' => false,
-                'errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
-        );
-    }*/
 }
