@@ -35,7 +35,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
     ];
-    protected static function boot()
+/*    /*protected static function boot()
     {
         parent::boot();
 

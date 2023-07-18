@@ -9,25 +9,33 @@ use App\Http\Resources\LogoutResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Mockery\Exception;
 
 class UserController extends Controller
 {
     public function create(CreateUserRequest $request)
     {
-        $user = new User();
+        /*$user = new User();
         $user->fill($request->only(['email', 'password']));
-        $user->save();
-
+        $user->save();*/
+        $user = User::create([
+            'id' => Str::uuid()->toString(),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
         return new UserResource($user);
     }
 
     public function login(LoginUserRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if ($token = Auth::attempt($credentials)) {
+        $credentials['password'] = Hash::make($credentials['password']);
+        if ($token = auth()->attempt($credentials)) {
             return new LoginResource($token);
         }
+        return response()->json([Auth::attempt($credentials)]);
         throw new Exception();
     }
 

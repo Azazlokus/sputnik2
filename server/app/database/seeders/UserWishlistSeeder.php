@@ -17,28 +17,6 @@ class UserWishlistSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('user_wishlists')->insert([
-            [
-                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                'visit_time' => Carbon::now()->addDays(rand(1, 30))
-            ],
-            [
-                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                'visit_time' => Carbon::now()->addDays(rand(1, 30))
-            ],
-            [
-                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                'visit_time' => Carbon::now()->addDays(rand(1, 30))
-            ],
-            [
-                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                'visit_time' => Carbon::now()->addDays(rand(1, 30))
-            ],
-        ]);
         UserWishlist::factory()
             ->count(10)
             ->create();

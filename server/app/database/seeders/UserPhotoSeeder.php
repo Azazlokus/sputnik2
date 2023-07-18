@@ -17,15 +17,7 @@ class UserPhotoSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('user_photos')->insert([
-                [
-                    'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                    'image_name' => 'Ava',
-                    'path_to_photo' => './../../public/storage/hashiro.jpg'
-                ],
 
-            ]
-        );
         UserPhoto::factory()
             ->count(10)
             ->create();

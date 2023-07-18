@@ -15,19 +15,6 @@ class RelaxPlaceImagesSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('relax_place_images')->insert([
-                [
-                    'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                    'image_name' => './../../public/storage/breketmax.jpg',
-                    'path_to_image' => 'D://images'
-                ],
-                [
-                    'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                    'image_name' => 'Freedom.png',
-                    'path_to_image' => './../../public/storage/hashiro.jpg'
-                ],
-            ]
-        );
         RelaxPlaceImage::factory()
             ->count(10)
             ->create();

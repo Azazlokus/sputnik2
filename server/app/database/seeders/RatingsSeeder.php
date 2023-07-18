@@ -15,26 +15,6 @@ class RatingsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('ratings')->insert([
-            [
-                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                'rating' => 4,
-                'comment' => 'Good place...'
-            ],
-            [
-                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                'rating' => 4,
-                'comment' => 'Excellent  place!!!'
-            ],
-            [
-                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-                'rating' => 4,
-                'comment' => 'So so...'
-            ],
-        ]);
         Rating::factory()
             ->count(50)
             ->create();
