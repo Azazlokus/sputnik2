@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_wishlists', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->constrained('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('relax_place_id')->constrained('relax_places')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('visit_time')->nullable();
         });

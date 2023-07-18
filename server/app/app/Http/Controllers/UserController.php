@@ -17,25 +17,19 @@ class UserController extends Controller
 {
     public function create(CreateUserRequest $request)
     {
-        /*$user = new User();
+        $user = new User();
         $user->fill($request->only(['email', 'password']));
-        $user->save();*/
-        $user = User::create([
-            'id' => Str::uuid()->toString(),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+        $user->save();
+
         return new UserResource($user);
     }
 
     public function login(LoginUserRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        $credentials['password'] = Hash::make($credentials['password']);
         if ($token = auth()->attempt($credentials)) {
             return new LoginResource($token);
         }
-        return response()->json([Auth::attempt($credentials)]);
         throw new Exception();
     }
 

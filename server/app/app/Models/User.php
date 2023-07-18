@@ -25,6 +25,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $keyType = 'string';
+
     protected $dispatchesEvents = [
         'created' => UserCreatedEvent::class,
     ];
@@ -35,15 +36,9 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
     ];
-/*    /*protected static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($user) {
-            $user->password = Hash::make($user->password);
-            $user->id = Str::uuid()->toString();
-        });
-    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -64,10 +59,12 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
+
     protected static function newFactory(): Factory
     {
         return UserFactory::new();
