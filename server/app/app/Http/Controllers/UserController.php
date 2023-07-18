@@ -2,28 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\Handler;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\LogoutResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Mockery\Exception;
 
 class UserController extends Controller
 {
     public function create(CreateUserRequest $request)
     {
-        $user = User::query()->create([
-            'id' => Str::uuid()->toString(),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+        $user = new User();
+        $user->fill($request->only(['email', 'password']));
+        $user->save();
 
         return new UserResource($user);
     }

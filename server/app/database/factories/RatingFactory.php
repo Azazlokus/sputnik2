@@ -2,13 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\RelaxPlace;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Rating>
  */
-class UserFactory extends Factory
+class RatingFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +19,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => $this->faker->unique()->safeEmail,
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10)
+            'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
+            'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+            'rating' => rand(0, 5),
+            'comment' => $this->faker->paragraph(),
         ];
     }
 

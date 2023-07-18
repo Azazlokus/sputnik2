@@ -7,9 +7,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class LoginResource extends JsonResource
 {
-    public function __construct($token)
+    public function __construct(protected String $token)
     {
-        $this->token = $token;
+
     }
 
     public function toArray($request)

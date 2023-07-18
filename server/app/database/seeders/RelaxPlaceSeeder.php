@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\RelaxPlaceCategory;
 use App\Models\RelaxPlace;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 
 class RelaxPlaceSeeder extends Seeder
 {
@@ -22,7 +24,7 @@ class RelaxPlaceSeeder extends Seeder
                 'longitude' => 22.23,
                 'average_rating' => 5,
                 'country' => 'Russia',
-                'category' => '1',
+                'category' => RelaxPlaceCategory::query()->inRandomOrder()->pluck('id')->first(),
             ],
             [
                 'title' => 'Лас-Вегас',
@@ -31,8 +33,7 @@ class RelaxPlaceSeeder extends Seeder
                 'longitude' => 283.25,
                 'average_rating' => 4,
                 'country' => 'USA',
-                'category' => '2',
-
+                'category' => RelaxPlaceCategory::query()->inRandomOrder()->pluck('id')->first(),
             ]
         ]);
         RelaxPlace::factory()

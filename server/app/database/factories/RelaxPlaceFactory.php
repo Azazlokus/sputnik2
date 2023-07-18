@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\RelaxPlaceCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,7 +24,8 @@ class RelaxPlaceFactory extends Factory
             'longitude' => $this->faker->longitude,
             'average_rating' => $this->faker->randomFloat(2, 0, 5),
             'country' => $this->faker->country,
-            'category' => 1,
+            'category' => RelaxPlaceCategory::query()->inRandomOrder()->pluck('id')->first(),
+
         ];
     }
 }

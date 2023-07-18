@@ -2,6 +2,7 @@
 
 namespace database\seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,15 +16,15 @@ class UserNotificationsSeeder extends Seeder
     {
         DB::table('user_notifications')->insert([
             [
-                'user_id' => '11111111-1111-1111-1111-111111111111',
+                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
                 'type' => 'email',
-                'content' => 'bla bla bla',
+                'content' => 'User has been registered',
                 'viewed' => false
             ],
             [
-                'user_id' => '00000000-0000-0000-0000-000000000000',
+                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
                 'type' => 'email',
-                'content' => 'bla bla bla',
+                'content' => 'User has been registered',
                 'viewed' => true
             ]
         ]);

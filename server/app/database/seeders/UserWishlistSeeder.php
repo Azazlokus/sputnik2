@@ -2,6 +2,10 @@
 
 namespace database\seeders;
 
+use App\Models\RelaxPlace;
+use App\Models\User;
+use App\Models\UserWishlist;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,26 +19,28 @@ class UserWishlistSeeder extends Seeder
     {
         DB::table('user_wishlists')->insert([
             [
-                'user_id' => '00000000-0000-0000-0000-000000000000',
-                'relax_place_id' => '1',
-                'visit_time' => '2023-08-12 17:40:17'
+                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
+                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+                'visit_time' => Carbon::now()->addDays(rand(1, 30))
             ],
             [
-                'user_id' => '00000000-0000-0000-0000-000000000000',
-                'relax_place_id' => '2',
-                'visit_time' => '2023-08-12 17:40:17'
+                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
+                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+                'visit_time' => Carbon::now()->addDays(rand(1, 30))
             ],
             [
-                'user_id' => '00000000-0000-0000-0000-000000000000',
-                'relax_place_id' => '5',
-                'visit_time' => '2023-08-12 17:40:17'
+                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
+                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+                'visit_time' => Carbon::now()->addDays(rand(1, 30))
             ],
             [
-                'user_id' => '11111111-1111-1111-1111-111111111111',
-                'relax_place_id' => '1',
-                'visit_time' => '2023-08-12 17:40:17'
+                'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
+                'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+                'visit_time' => Carbon::now()->addDays(rand(1, 30))
             ],
-
         ]);
+        UserWishlist::factory()
+            ->count(10)
+            ->create();
     }
 }

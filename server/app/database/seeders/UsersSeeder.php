@@ -18,14 +18,12 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'id' => '00000000-0000-0000-0000-000000000000',
             'email' => 'Azazlokus@mail.ru',
             'email_verified_at' => now(),
             'password' => bcrypt('azazlokus'),
             'remember_token' => Str::random(10)
         ]);
         $user = User::create([
-            'id' => '11111111-1111-1111-1111-111111111111',
             'email' => 'Makan@anime.ru',
             'email_verified_at' => now(),
             'password' => bcrypt('2002KemerovscayaSova2002'),

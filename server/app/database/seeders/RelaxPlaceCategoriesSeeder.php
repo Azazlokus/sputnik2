@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\RelaxPlaceCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,13 +15,14 @@ class RelaxPlaceCategoriesSeeder extends Seeder
     {
         DB::table('relax_place_categories')->insert([
             [
-                'id' => '1',
                 'name' => 'City near  a sea'
             ],
             [
-                'id' => '2',
                 'name' => 'Nice city'
             ]
         ]);
+        RelaxPlaceCategory::factory()
+            ->count(10)
+            ->create();
     }
 }

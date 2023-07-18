@@ -3,6 +3,7 @@
 namespace database\seeders;
 
 use App\Models\User;
+use App\Models\UserPhoto;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,23 +19,15 @@ class UserPhotoSeeder extends Seeder
     {
         DB::table('user_photos')->insert([
                 [
-                    'user_id' => '00000000-0000-0000-0000-000000000000',
+                    'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
                     'image_name' => 'Ava',
-                    'path_to_photo' => './../../public/storage/hashiro.jpg'
-                ],
-                [
-                    'user_id' => '00000000-0000-0000-0000-000000000000',
-                    'image_name' => 'Ava2',
-                    'path_to_photo' => './../../public/storage/breketmax.jpg'
-                ],
-                [
-                    'user_id' => '11111111-1111-1111-1111-111111111111',
-                    'image_name' => 'Ava2',
                     'path_to_photo' => './../../public/storage/hashiro.jpg'
                 ],
 
             ]
         );
-
+        UserPhoto::factory()
+            ->count(10)
+            ->create();
     }
 }

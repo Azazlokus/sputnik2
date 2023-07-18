@@ -2,10 +2,11 @@
 
 namespace database\seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\RelaxPlace;
+use App\Models\RelaxPlaceImage;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+
 
 class RelaxPlaceImagesSeeder extends Seeder
 {
@@ -16,21 +17,19 @@ class RelaxPlaceImagesSeeder extends Seeder
     {
         DB::table('relax_place_images')->insert([
                 [
-                    'relax_place_id' => '1',
-                    'image_name' => 'Xvost.png',
+                    'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+                    'image_name' => './../../public/storage/breketmax.jpg',
                     'path_to_image' => 'D://images'
                 ],
                 [
-                    'relax_place_id' => '1',
-                    'image_name' => 'Lastochkin.png',
-                    'path_to_image' => 'D://images'
-                ],
-                [
-                    'relax_place_id' => '2',
+                    'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
                     'image_name' => 'Freedom.png',
-                    'path_to_image' => 'D://images'
+                    'path_to_image' => './../../public/storage/hashiro.jpg'
                 ],
             ]
         );
+        RelaxPlaceImage::factory()
+            ->count(10)
+            ->create();
     }
 }

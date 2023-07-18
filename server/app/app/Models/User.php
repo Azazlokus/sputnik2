@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -32,9 +34,16 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-
     ];
+    protected static function boot()
+    {
+        parent::boot();
 
+        static::creating(function ($user) {
+            $user->password = Hash::make($user->password);
+            $user->id = Str::uuid()->toString();
+        });
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

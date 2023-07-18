@@ -3,6 +3,6 @@
 namespace App\Constants;
 class Role
 {
-    const ADMIN = 'Администратор';
-    const USER = 'Пользователь';
+    const ADMIN = 'Administrator';
+    const USER = 'User';
 }
