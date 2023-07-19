@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Resources\LoginResource;
-use App\Http\Resources\LogoutResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Policies\UserPolicy;
@@ -21,15 +20,8 @@ class UserController extends Controller
     protected $request = UserRequest::class;
     protected $resource = UserResource::class;
     protected $policy = UserPolicy::class;
-
-    public function login(LoginUserRequest $request)
+    public function resolveUser()
     {
-        $credentials = $request->only('email', 'password');
-        if ($token = auth()->attempt($credentials)) {
-            return new LoginResource($token);
-        }
-        throw new Exception();
+        return Auth::guard('api')->user();
     }
-
-
 }
