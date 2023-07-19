@@ -47,6 +47,12 @@ COPY --chown=www:www . /var/www
 # Меняем пользователя на www
 USER www
 
+# Сброс кэша Laravel
+RUN php artisan cache:clear
+RUN php artisan config:clear
+RUN php artisan route:clear
+RUN php artisan view:clear
+
 # В контейнере открываем 9000 порт и запускаем сервер php-fpm
 EXPOSE 9000
 CMD ["php-fpm"]
