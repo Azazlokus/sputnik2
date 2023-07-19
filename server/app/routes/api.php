@@ -25,5 +25,5 @@ Route::group(['prefix' => 'users'], function () {
 })->middleware('api');
 
 Route::group(['prefix' => 'notification'], function () {
-    Route::get('/', [NotificationController::class, 'index'])->middleware('api');
+    Route::get('/', [NotificationController::class, 'index'])->middleware('auth:api');
 });
