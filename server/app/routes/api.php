@@ -19,7 +19,7 @@ use Orion\Facades\Orion;
 */
 
 Orion::resource('/users', UserController::class);
-Orion::resource('/relaxPlaces', RelaxPlaceController::class);
+Orion::resource('/relaxPlaces', RelaxPlaceController::class)->middleware('auth:api');
 Route::group(['prefix' => 'users'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
