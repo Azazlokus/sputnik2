@@ -22,7 +22,7 @@ class UserRequest extends Request
     {
         return [
             'email' => 'required|string|max:255|email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|string|max:255|min:6|confirmed',
         ];
     }
 

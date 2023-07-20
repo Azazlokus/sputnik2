@@ -33,7 +33,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function sendNotificationsToAdmins()
     {
-        $adminRoleId = Role::query()->where('role', \App\Constants\Role::ADMIN)->value('id');
+        $adminRoleId = Role::query()->where('role', \App\Constants\RoleConstants::ADMIN)->value('id');
 
         $admins = User::query()->whereHas('roles', function ($query) use ($adminRoleId) {
             $query->where('role_id', $adminRoleId);

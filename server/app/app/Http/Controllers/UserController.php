@@ -20,8 +20,5 @@ class UserController extends Controller
     protected $request = UserRequest::class;
     protected $resource = UserResource::class;
     protected $policy = UserPolicy::class;
-    public function resolveUser()
-    {
-        return Auth::guard('api')->user();
-    }
+
 }

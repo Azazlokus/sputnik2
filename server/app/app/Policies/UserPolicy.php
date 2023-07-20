@@ -24,7 +24,7 @@ class UserPolicy
     }
 
     public function create(
-        User $user
+        ?User $user
     ): Response {
         return $this->allow();
     }

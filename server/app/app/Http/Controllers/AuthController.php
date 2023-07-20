@@ -17,7 +17,7 @@ class AuthController extends Controller
         if ($token = auth()->attempt($credentials)) {
             return new LoginResource($token);
         }
-        throw new Exception();
+        throw new Exception('Login error',401);
     }
     public function logout()
     {

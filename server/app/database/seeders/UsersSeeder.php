@@ -30,8 +30,8 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('2002KemerovscayaSova2002'),
                 'remember_token' => Str::random(10),
             ]);
-            $adminRole = Role::query()->where('role', \App\Constants\Role::ADMIN)->first();
-            $userRole = Role::query()->where('role', \App\Constants\Role::USER)->first();
+            $adminRole = Role::query()->where('role', \App\Constants\RoleConstants::ADMIN)->first();
+            $userRole = Role::query()->where('role', \App\Constants\RoleConstants::USER)->first();
             $admin->roles()->attach($adminRole->id);
             $user->roles()->attach($userRole->id);
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Constants;
-class Role
+class RoleConstants
 {
     const ADMIN = 'Administrator';
     const USER = 'User';

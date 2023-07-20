@@ -15,8 +15,8 @@ class RolesSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-                ['role' => \App\Constants\Role::ADMIN],
-                ['role' => \App\Constants\Role::USER]
+                ['role' => \App\Constants\RoleConstants::ADMIN],
+                ['role' => \App\Constants\RoleConstants::USER]
             ]
         );
     }

@@ -8,7 +8,7 @@ use  Orion\Http\Controllers\Controller;
 
 class RelaxPlaceController extends Controller
 {
-    use DisableAuthorization;
+    //use DisableAuthorization;
     protected $model = RelaxPlace::class;
 
 }

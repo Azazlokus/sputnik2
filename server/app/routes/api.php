@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RelaxPlaceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
 
@@ -19,8 +20,9 @@ use Orion\Facades\Orion;
 */
 
 Orion::resource('/users', UserController::class);
-Orion::resource('/relaxPlaces', RelaxPlaceController::class)->middleware('auth:api');
-Route::group(['prefix' => 'users'], function () {
+Orion::resource('/relax-places', RelaxPlaceController::class)->middleware('auth:api');
+Orion::resource('/wishlist', WishlistController::class);
+Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
 })->middleware('api');
