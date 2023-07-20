@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 use Orion\Concerns\DisableAuthorization;
 use  Orion\Http\Controllers\Controller;
+use Orion\Http\Controllers\RelationController;
 
 class UserController extends Controller
 {

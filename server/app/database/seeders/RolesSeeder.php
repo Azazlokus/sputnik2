@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use Couchbase\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Constants\RoleConstants;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +14,9 @@ class RolesSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-                ['role' => \App\Constants\RoleConstants::ADMIN],
-                ['role' => \App\Constants\RoleConstants::USER]
+                ['role' => RoleConstants::ADMIN],
+                ['role' => RoleConstants::USER],
+                ['role' => RoleConstants::USER_BLOCKED],
             ]
         );
     }

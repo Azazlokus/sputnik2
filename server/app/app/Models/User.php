@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Constants\RoleConstants;
 use App\Events\UserCreatedEvent;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -30,6 +31,12 @@ class User extends Authenticatable implements JWTSubject
     {
         self::created(fn(self $model) => $model->sendNotificationsToAdmins());
         parent::boot();
+        static::created(function ($user) {
+            $defaultRole = Role::query()->where('role', RoleConstants::USER)->first();
+            if ($defaultRole) {
+                $user->roles()->attach($defaultRole);
+            }
+        });
     }
     public function sendNotificationsToAdmins()
     {
@@ -98,4 +105,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function hasRole($roleName)
+    {
+        return $this->roles->contains('role', $roleName);
+    }
+
 }

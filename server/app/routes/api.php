@@ -20,13 +20,13 @@ use Orion\Facades\Orion;
 */
 
 Orion::resource('/users', UserController::class);
-Orion::resource('/relax-places', RelaxPlaceController::class)->middleware('auth:api');
+Orion::resource('/relax-places', RelaxPlaceController::class);
 Orion::resource('/wishlist', WishlistController::class);
+Orion::resource('/notifications', NotificationController::class);
+
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/roles', [AuthController::class, 'roles']);
 })->middleware('api');
 
-Route::group(['prefix' => 'notification'], function () {
-    Route::get('/', [NotificationController::class, 'index'])->middleware('auth:api');
-});

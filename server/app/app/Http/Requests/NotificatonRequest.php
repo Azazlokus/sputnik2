@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests;
 
-
 use Orion\Http\Requests\Request;
 
-class UserRequest extends Request
+class NotificatonRequest extends Request
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,9 +14,10 @@ class UserRequest extends Request
     public function storeRules(): array
     {
         return [
-            'email' => 'required|string|max:255|email',
-            'password' => 'required|string|max:255|min:6|confirmed',
+            'user_id' => 'required|integer',
+            'type' => 'required|string|max:255',
+            'content' => 'string',
+            'viewed' => 'boolean',
         ];
     }
-
 }
