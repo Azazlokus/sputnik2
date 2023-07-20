@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\RelaxPlaceController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Orion\Facades\Orion;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Orion::resource('/users', UserController::class);
+Orion::resource('/relaxPlaces', RelaxPlaceController::class)->middleware('auth:api');
 Route::group(['prefix' => 'users'], function () {
-    Route::post('/', [UserController::class, 'create']);
-    Route::post('/login', [UserController::class, 'login']);
-    Route::post('/logout', [UserController::class, 'logout']);
-    Route::post('/index', [UserController::class, 'index']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 })->middleware('api');
 
 Route::group(['prefix' => 'notification'], function () {

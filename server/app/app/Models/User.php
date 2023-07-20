@@ -24,11 +24,30 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
-    protected $keyType = 'string';
 
-    protected $dispatchesEvents = [
-        'created' => UserCreatedEvent::class,
-    ];
+
+    public static function boot(): void
+    {
+        self::created(fn(self $model) => $model->sendNotificationsToAdmins());
+        parent::boot();
+    }
+    public function sendNotificationsToAdmins()
+    {
+        $adminRoleId = Role::query()->where('role', \App\Constants\Role::ADMIN)->value('id');
+
+        $admins = User::query()->whereHas('roles', function ($query) use ($adminRoleId) {
+            $query->where('role_id', $adminRoleId);
+        })->get();
+
+        foreach ($admins as $admin) {
+            UserNotification::query()->create([
+                'user_id' => $admin->getKey(),
+                'type' => 'push',
+                'content' => 'User '. $this->username . 'has been registered'
+            ]);
+        }
+    }
+
 
     protected $fillable = [
         'id',
