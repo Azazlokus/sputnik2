@@ -34,10 +34,10 @@ Orion::resource('/relax-place-images', RelaxPlaceImageController::class);
 Orion::resource('/user-photos', UserPhotoController::class);
 
 Route::group(['prefix' => '/users'], function () {
-    Route::get('wishlist', [UserController::class, 'wishlist']);
     Route::post('/{user}/block', [AdminController::class, 'blockUser'])->middleware('admin');
     Route::post('/{user}/unblock', [AdminController::class, 'unblockUser'])->middleware('admin');;
 })->middleware('api');
+
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);

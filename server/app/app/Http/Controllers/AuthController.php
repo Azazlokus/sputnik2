@@ -29,5 +29,14 @@ class AuthController extends Controller
         Auth::guard('api')->logout();
         return new LogoutResource($user);
     }
+    public function wishlist(User $user)
+    {
 
+        // Assuming you have a 'wishlists' relationship defined on the User model
+        // This will fetch all the wishlist items associated with the user
+        $wishlistItems = $user->wishlists;
+
+        // Return the wishlist view with the wishlist items
+        return response()->json(['wishlist' => $user]);
+    }
 }
