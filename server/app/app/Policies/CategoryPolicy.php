@@ -3,12 +3,13 @@
 namespace App\Policies;
 
 use App\Constants\RoleConstants;
+use App\Models\RelaxPlaceCategory;
 use App\Models\User;
 use App\Models\UserWishlist;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class NotificationPolicy
+class CategoryPolicy
 {
     use HandlesAuthorization;
 
@@ -29,9 +30,9 @@ class NotificationPolicy
     }
 
 
-    public function view(User $user, UserWishlist $userWishlist)
+    public function view(User $user, RelaxPlaceCategory $placeCategory)
     {
-        return $this->allow();
+        return $this->deny();
     }
 
     public function create(User $user): Response
@@ -39,20 +40,20 @@ class NotificationPolicy
         return $this->deny();
     }
 
-    public function update(User $user, UserWishlist $userWishlist): Response {
+    public function update(User $user, RelaxPlaceCategory $placeCategory): Response {
         return $this->deny();
     }
 
-    public function delete(User $user, UserWishlist $userWishlist): Response
+    public function delete(User $user, RelaxPlaceCategory $placeCategory): Response
     {
         return $this->deny();
     }
-    public function restore(User $user, UserWishlist $userWishlist): Response
+    public function restore(User $user, RelaxPlaceCategory $placeCategory): Response
     {
         return $this->deny();
     }
 
-    public function forceDelete(User $user, UserWishlist $userWishlist): Response {
+    public function forceDelete(User $user, RelaxPlaceCategory $placeCategory): Response {
         return $this->deny();
     }
 }

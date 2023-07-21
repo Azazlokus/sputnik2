@@ -1092,11 +1092,50 @@
 					"item": [
 						{
 							"name": "getAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "SomeName",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/notification",
+									"raw": "http://127.0.0.1:8000/api/notifications",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1107,7 +1146,7 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"notification"
+										"notifications"
 									]
 								}
 							},
@@ -1535,6 +1574,174 @@
 										"api",
 										"ratings",
 										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "categories",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/categories",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getById",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "SomeName",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/categories",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/categories/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories",
+										"1"
 									]
 								}
 							},
