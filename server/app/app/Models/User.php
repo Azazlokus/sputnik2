@@ -7,9 +7,11 @@ use App\Constants\RoleConstants;
 use App\Events\UserCreatedEvent;
 use App\Policies\WishlistPolicy;
 use Database\Factories\UserFactory;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,12 +24,12 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-
+    protected $fillable = [
+        'id',
+        'name',
+        'email',
+        'password',
+    ];
     public static function boot(): void
     {
         self::created(fn(self $model) => $model->sendNotificationsToAdmins());
@@ -37,6 +39,11 @@ class User extends Authenticatable implements JWTSubject
             if ($defaultRole) {
                 $user->roles()->attach($defaultRole);
             }
+        static::retrieved(function ($wishlist){
+            if(!$this->wishlists->contains('id', $wishlist->id)){
+                throw new Exception("Ish't my");
+            }
+        });
         });
     }
     public function sendNotificationsToAdmins()
@@ -55,31 +62,12 @@ class User extends Authenticatable implements JWTSubject
             ]);
         }
     }
-    protected $fillable = [
-        'id',
-        'name',
-        'email',
-        'password',
-    ];
-
-
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
 
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
@@ -89,9 +77,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Role::class);
     }
-    public function wishlists():BelongsToMany
+    public function wishlists():HasMany
     {
-        return $this->belongsToMany(WishlistPolicy::class);
+        return $this->hasMany(UserWishlist::class);
     }
 
     protected static function newFactory(): Factory
@@ -115,7 +103,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function hasWishlist($wishList)
     {
-        return $this->wishlists()->contains('id', $wishList->id);
+        return $this->wishlists->contains('id', $wishList->id);
     }
 
 }

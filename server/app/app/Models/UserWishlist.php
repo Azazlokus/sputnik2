@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Constants\RoleConstants;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,9 +26,10 @@ class UserWishlist extends Model
 
         static::creating(function ($wishlist) {
           $user = auth()->user();
-            if ($user) {
-                $wishlist->user_id = $user->id;
+            if ($user->wishlists()->where('relax_place_id', $wishlist->relax_place_id)->exists()) {
+                throw new Exception('This place is already in the user\'s wishlist.', 409);
             }
+                $wishlist->user_id = $user->id;
         });
     }
 

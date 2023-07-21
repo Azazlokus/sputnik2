@@ -36,12 +36,14 @@ class WishlistPolicy
 
     public function view(User $user, UserWishlist $userWishlist)
     {
-        return $this->allow();
+
+            return $this->allow();
+
     }
 
     public function create(User $user): Response
     {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function update(User $user, UserWishlist $userWishlist): Response {
@@ -50,7 +52,11 @@ class WishlistPolicy
 
     public function delete(User $user, UserWishlist $userWishlist): Response
     {
-        return $this->deny();
+        if ($user->hasWishlist($userWishlist)){
+            return $this->allow();
+        } else{
+            return $this->deny();
+        }
     }
     public function restore(User $user, UserWishlist $userWishlist): Response
     {
