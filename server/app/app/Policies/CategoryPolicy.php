@@ -25,13 +25,13 @@ class CategoryPolicy
     }
     public function viewAny(User $user)
     {
-        return $this->deny();
+        return $this->allow();
     }
 
 
     public function view(User $user, RelaxPlaceCategory $placeCategory)
     {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function create(User $user): Response
