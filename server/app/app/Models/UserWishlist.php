@@ -26,10 +26,12 @@ class UserWishlist extends Model
 
         static::creating(function ($wishlist) {
           $user = auth()->user();
-            if ($user->wishlists()->where('relax_place_id', $wishlist->relax_place_id)->exists()) {
+            if ($user && $user->wishlists()->where('relax_place_id', $wishlist->relax_place_id)->exists()) {
                 throw new Exception('This place is already in the user\'s wishlist.', 409);
             }
+            if ($user) {
                 $wishlist->user_id = $user->id;
+            }
         });
     }
 

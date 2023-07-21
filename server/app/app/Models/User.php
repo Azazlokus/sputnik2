@@ -39,11 +39,6 @@ class User extends Authenticatable implements JWTSubject
             if ($defaultRole) {
                 $user->roles()->attach($defaultRole);
             }
-        static::retrieved(function ($wishlist){
-            if(!$this->wishlists->contains('id', $wishlist->id)){
-                throw new Exception("Ish't my");
-            }
-        });
         });
     }
     public function sendNotificationsToAdmins()
@@ -80,6 +75,10 @@ class User extends Authenticatable implements JWTSubject
     public function wishlists():HasMany
     {
         return $this->hasMany(UserWishlist::class);
+    }
+    public function ratings():HasMany
+    {
+        return $this->hasMany(Rating::class);
     }
 
     protected static function newFactory(): Factory

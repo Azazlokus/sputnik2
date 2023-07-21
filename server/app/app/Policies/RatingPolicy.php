@@ -27,7 +27,7 @@ class RatingPolicy
     }
     public function viewAny(User $user)
     {
-        return $this->deny();
+        return $this->allow();
     }
 
 
@@ -38,23 +38,23 @@ class RatingPolicy
 
     public function create(User $user): Response
     {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function update(User $user, Rating $rating): Response {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function delete(User $user, Rating $rating): Response
     {
-        return $this->deny();
+        return $this->allow();
     }
     public function restore(User $user, Rating $rating): Response
     {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function forceDelete(User $user, Rating $rating): Response {
-        return $this->deny();
+        return $this->allow();
     }
 }
