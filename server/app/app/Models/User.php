@@ -5,10 +5,12 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Constants\RoleConstants;
 use App\Events\UserCreatedEvent;
+use App\Policies\WishlistPolicy;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +27,6 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
-
 
     public static function boot(): void
     {
@@ -54,8 +55,6 @@ class User extends Authenticatable implements JWTSubject
             ]);
         }
     }
-
-
     protected $fillable = [
         'id',
         'name',
@@ -90,6 +89,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Role::class);
     }
+    public function wishlists():BelongsToMany
+    {
+        return $this->belongsToMany(WishlistPolicy::class);
+    }
 
     protected static function newFactory(): Factory
     {
@@ -109,6 +112,10 @@ class User extends Authenticatable implements JWTSubject
     public function hasRole($roleName)
     {
         return $this->roles->contains('role', $roleName);
+    }
+    public function hasWishlist($wishList)
+    {
+        return $this->wishlists()->contains('id', $wishList->id);
     }
 
 }

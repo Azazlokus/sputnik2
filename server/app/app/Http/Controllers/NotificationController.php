@@ -3,22 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NotificatonRequest;
-use App\Http\Requests\UserRequest;
 use App\Http\Resources\NotificationResource;
-use App\Http\Resources\UserResource;
-use App\Models\User;
 use App\Models\UserNotification;
-use Illuminate\Notifications\Notification;
-use Orion\Concerns\DisableAuthorization;
-use Orion\Http\Controllers\RelationController;
+use App\Policies\NotificationPolicy;
+use Orion\Http\Controllers\Controller;
 
 class NotificationController extends Controller
 {
-    use DisableAuthorization;
-
-    protected $model = Notification::class;
+    protected $model = UserNotification::class;
     protected $request = NotificatonRequest::class;
     protected $resource = NotificationResource::class;
-
-    protected $relation = 'users';
+    protected $policy = NotificationPolicy::class;
 }

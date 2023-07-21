@@ -21,7 +21,7 @@ use Orion\Facades\Orion;
 
 Orion::resource('/users', UserController::class);
 Orion::resource('/relax-places', RelaxPlaceController::class);
-Orion::resource('/wishlist', WishlistController::class);
+Orion::resource('/wishlists', WishlistController::class);
 Orion::resource('/notifications', NotificationController::class);
 
 Route::group(['prefix' => 'auth'], function () {

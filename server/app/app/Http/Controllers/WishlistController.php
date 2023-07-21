@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Orion\Concerns\DisableAuthorization;
-use  Orion\Http\Controllers\Controller;
+use App\Http\Requests\WishlistRequest;
+use App\Http\Resources\WishlistResource;
+use App\Models\UserWishlist;
+use App\Policies\WishlistPolicy;
+use Orion\Http\Controllers\Controller;
 
 class WishlistController extends Controller
 {
-    use DisableAuthorization;
-    protected $model = WishlistController::class;
+    protected $resource = WishlistResource::class;
+    protected $request = WishlistRequest::class;
+    protected $model = UserWishlist::class;
+    protected $policy = WishlistPolicy::class;
 }

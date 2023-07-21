@@ -12,5 +12,10 @@ class UserWishlist extends Model
     protected $fillable = [
         'user_id',
         'relax_place_id',
+        'visit_time'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

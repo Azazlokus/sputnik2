@@ -255,13 +255,13 @@
 			]
 		},
 		{
-			"name": "oreon",
+			"name": "week3-Oreon",
 			"item": [
 				{
 					"name": "auth",
 					"item": [
 						{
-							"name": "Login",
+							"name": "loginAsAdmin",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -270,18 +270,18 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "user@mail.ru",
+											"value": "admin@mail.ru",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "password",
+											"value": "admintakoyadmin",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/users/login",
+									"raw": "http://127.0.0.1:8000/api/auth/login",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -292,7 +292,7 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"users",
+										"auth",
 										"login"
 									],
 									"query": [
@@ -312,7 +312,7 @@
 							"response": []
 						},
 						{
-							"name": "Logout",
+							"name": "logout",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -342,7 +342,7 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/users/logout",
+									"raw": "http://127.0.0.1:8000/api/auth/logout",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -353,10 +353,57 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"users",
+										"auth",
 										"logout"
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "loginAsUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "user@mail.ru",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "usersuchuser",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUserRoles",
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						}
@@ -366,7 +413,7 @@
 					"name": "users",
 					"item": [
 						{
-							"name": "GetUsers",
+							"name": "getAll",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -415,7 +462,7 @@
 							"response": []
 						},
 						{
-							"name": "DeleteUser",
+							"name": "deleteById",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -464,7 +511,7 @@
 							"response": []
 						},
 						{
-							"name": "CreateUser",
+							"name": "create",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -533,7 +580,7 @@
 							"response": []
 						},
 						{
-							"name": "GetUserById",
+							"name": "getById",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -587,8 +634,33 @@
 					"name": "relaxPlaces",
 					"item": [
 						{
-							"name": "CreateRelaxPlace",
+							"name": "create",
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -596,7 +668,7 @@
 									"formdata": [
 										{
 											"key": "title",
-											"value": "sfs",
+											"value": "Piramid",
 											"type": "text"
 										},
 										{
@@ -632,7 +704,7 @@
 									]
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/relaxPlaces",
+									"raw": "http://127.0.0.1:8000/api/relax-places",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -643,14 +715,14 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"relaxPlaces"
+										"relax-places"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "GetAllRelaxPlace",
+							"name": "getAll",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -680,7 +752,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/relaxPlaces",
+									"raw": "http://127.0.0.1:8000/api/relax-places",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -691,19 +763,19 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"relaxPlaces"
+										"relax-places"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "DeleteRelaxPlace",
+							"name": "deleteById",
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/relaxPlaces/17",
+									"raw": "http://127.0.0.1:8000/api/relax-places/16",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -714,20 +786,45 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"relaxPlaces",
-										"17"
+										"relax-places",
+										"16"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "GetRelaxPlaceByID",
+							"name": "getById",
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/relaxPlaces/1",
+									"raw": "http://127.0.0.1:8000/api/relax-places/1",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -738,7 +835,7 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"relaxPlaces",
+										"relax-places",
 										"1"
 									]
 								}
@@ -746,12 +843,37 @@
 							"response": []
 						},
 						{
-							"name": "UpdateRelaxPlace",
+							"name": "update",
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/relaxPlaces/1?title=sfssdsddsd",
+									"raw": "http://127.0.0.1:8000/api/relax-places/1?title=sfssdsddsd",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -762,7 +884,7 @@
 									"port": "8000",
 									"path": [
 										"api",
-										"relaxPlaces",
+										"relax-places",
 										"1"
 									],
 									"query": [
@@ -776,30 +898,398 @@
 							"response": []
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "http://127.0.0.1:8000/notifications",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8000/notifications",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"notifications"
+				},
+				{
+					"name": "wishlist",
+					"item": [
+						{
+							"name": "getByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/wishlists/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"wishlists",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/wishlists/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"wishlists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "relax_place_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "visit_time",
+											"value": "2023-08-11 18:07:41",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/wishlists/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"wishlists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteById",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/wishlists/12",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"wishlists",
+										"12"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "notifications",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/notification",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getById",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/notifications/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"notifications",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteById",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/notifications/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"notifications",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "push",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "Notification from Postman",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/notifications",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"notifications"
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
