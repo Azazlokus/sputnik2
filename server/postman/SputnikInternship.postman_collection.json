@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "f30628f1-d513-46ab-aeaf-7b2d68ff03d7",
-		"name": "SputnikSecondExample",
+		"name": "SputnikInternship",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22850569"
 	},
@@ -1744,6 +1744,295 @@
 										"1"
 									]
 								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "relaxPlaceImages",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "getById",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "deleteById",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/relax-place-images/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"relax-place-images",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateById",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image_name",
+											"value": "UserPhoto",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/relax-place-images/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"relax-place-images",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "relax_place_id",
+											"value": "6",
+											"type": "text"
+										},
+										{
+											"key": "image_name",
+											"value": "PostmanPhoto32",
+											"type": "text"
+										},
+										{
+											"key": "path_to_image",
+											"value": "C:\\\\Users\\\\User\\\\AppData\\\\Local\\\\Temp\\\\fakE794.tmp",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/relax-place-images",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"relax-place-images"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "userPhoto",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image_name",
+											"value": "PostmanAva",
+											"type": "text"
+										},
+										{
+											"key": "path_to_photo",
+											"value": "C:\\\\Users\\\\User\\\\AppData\\\\Local\\\\Temp\\\\fakE794.tmp",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/user-photos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user-photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "deleteById",
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						}

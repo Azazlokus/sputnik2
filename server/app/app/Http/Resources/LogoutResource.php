@@ -11,7 +11,6 @@ class LogoutResource extends JsonResource
     {
         return [
             'message' => 'Exit successfully completed',
-
         ];
     }
 }
