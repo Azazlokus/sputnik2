@@ -27,6 +27,5 @@ Orion::resource('/notifications', NotificationController::class);
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/roles', [AuthController::class, 'roles']);
 })->middleware('api');
 

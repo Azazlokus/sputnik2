@@ -30,16 +30,4 @@ class AuthController extends Controller
         return new LogoutResource($user);
     }
 
-    public function roles()
-    {
-        $userId = auth()->user()->getAuthIdentifier();
-        $roles = DB::table('role_user')
-            ->join('roles', 'role_user.role_id', '=', 'roles.id')
-            ->where('role_user.user_id', '=', $userId)
-            ->select('roles.role')
-            ->get();
-
-        return response()->json(['roles'=> $roles,
-        'isAdmin' => User::query()->find($userId)->isAdmin()]);
-    }
 }
