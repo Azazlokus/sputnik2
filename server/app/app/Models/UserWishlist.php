@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\RoleConstants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,4 +19,16 @@ class UserWishlist extends Model
     {
         return $this->belongsTo(User::class);
     }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($wishlist) {
+          $user = auth()->user();
+            if ($user) {
+                $wishlist->user_id = $user->id;
+            }
+        });
+    }
+
 }

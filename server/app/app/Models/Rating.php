@@ -19,4 +19,15 @@ class Rating extends Model
     {
         return RatingFactory::new();
     }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($rating) {
+            $user = auth()->user();
+            if ($user) {
+                $rating->user_id = $user->id;
+            }
+        });
+    }
 }
