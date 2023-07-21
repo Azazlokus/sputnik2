@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RelaxPlaceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
@@ -23,6 +24,7 @@ Orion::resource('/users', UserController::class);
 Orion::resource('/relax-places', RelaxPlaceController::class);
 Orion::resource('/wishlists', WishlistController::class);
 Orion::resource('/notifications', NotificationController::class);
+Orion::resource('/ratings', RatingController::class);
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
