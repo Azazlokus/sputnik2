@@ -23,8 +23,8 @@ class AdminController extends Controller
 
     public function unblockUser(User $user)
     {
-        $role = Role::query()->where('role', RoleConstants::USER)->first();
-        $user->roles()->attach($role);
+        $role = Role::query()->where('role', RoleConstants::USER_BLOCKED)->first();
+        $user->roles()->detach($role);
         $user->save();
         return new UnblockResource($user);
     }
