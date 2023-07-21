@@ -27,7 +27,7 @@ Orion::resource('/wishlists', WishlistController::class);
 Orion::resource('/notifications', NotificationController::class);
 Orion::resource('/ratings', RatingController::class);
 Orion::resource('/categories', CategoryController::class);
-
+Orion::resource('/relax-place-images', \App\Http\Controllers\RelaxPlaceImageController::class );
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
