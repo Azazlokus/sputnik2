@@ -619,6 +619,14 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "wishlist",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					]
 				},
@@ -2033,6 +2041,61 @@
 							"request": {
 								"method": "GET",
 								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "blockUserById",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/users/4/block",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users",
+										"4",
+										"block"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "unblockUserById",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/users/4/unblock",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users",
+										"4",
+										"unblock"
+									]
+								}
 							},
 							"response": []
 						}
