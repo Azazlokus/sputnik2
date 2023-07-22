@@ -14,7 +14,7 @@ class NotificatonRequest extends Request
     public function storeRules(): array
     {
         return [
-            'user_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
             'type' => 'required|string|max:255',
             'content' => 'string',
             'viewed' => 'boolean',

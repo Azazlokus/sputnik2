@@ -11,7 +11,7 @@ class CategoryRequest extends Request
     public function storeRules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
         ];
     }
 }

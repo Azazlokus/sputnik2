@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
 
 
-
 class UserController extends Controller
 {
     protected $model = User::class;
     protected $request = UserRequest::class;
     protected $resource = UserResource::class;
     protected $policy = UserPolicy::class;
+
 
 
 }

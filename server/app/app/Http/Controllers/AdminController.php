@@ -28,4 +28,9 @@ class AdminController extends Controller
         $user->save();
         return new UnblockResource($user);
     }
+    public function wishlist(User $user)
+    {
+        $wishlists = $user->wishlists;
+        return response()->json(['places'=>$wishlists]);
+    }
 }

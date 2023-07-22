@@ -34,6 +34,7 @@ Orion::resource('/relax-place-images', RelaxPlaceImageController::class);
 Orion::resource('/user-photos', UserPhotoController::class);
 
 Route::group(['prefix' => '/users'], function () {
+    Route::get('/{user}/wishlist', [AdminController::class, 'wishlist'])->middleware('admin');
     Route::post('/{user}/block', [AdminController::class, 'blockUser'])->middleware('admin');
     Route::post('/{user}/unblock', [AdminController::class, 'unblockUser'])->middleware('admin');;
 })->middleware('api');
