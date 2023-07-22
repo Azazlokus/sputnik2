@@ -33,16 +33,9 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $this->deny();
+        return $this->allow();
     }
 
-    /**
-     * Определение, может ли пользователь видеть профиль другого пользователя.
-     *
-     * @param  \App\Models\User  $user  Авторизованный пользователь.
-     * @param  \App\Models\User  $profileUser  Пользователь, профиль которого просматривается.
-     * @return Response
-     */
     public function view(User $user, User $profileUser)
     {
         return $this->deny();

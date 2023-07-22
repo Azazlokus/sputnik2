@@ -24,7 +24,7 @@ class WishlistController extends Controller
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
         $user = User::query()->find(Auth::user()->getAuthIdentifier());
         if($user->hasRole(RoleConstants::USER)) {
-            $query->where('user_id', Auth::user()->getAuthIdentifier());
+            $query->where('user_id', $user->id);
         }
         return $query;
     }
