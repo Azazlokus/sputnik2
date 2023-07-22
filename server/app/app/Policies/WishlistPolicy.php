@@ -47,7 +47,7 @@ class WishlistPolicy
     }
 
     public function update(User $user, UserWishlist $userWishlist): Response {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function delete(User $user, UserWishlist $userWishlist): Response

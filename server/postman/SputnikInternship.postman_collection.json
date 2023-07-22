@@ -1092,6 +1092,14 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					]
 				},
@@ -1367,7 +1375,7 @@
 									]
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/notifications/1",
+									"raw": "http://127.0.0.1:8000/api/notifications/1?content=Postman content",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1380,6 +1388,12 @@
 										"api",
 										"notifications",
 										"1"
+									],
+									"query": [
+										{
+											"key": "content",
+											"value": "Postman content"
+										}
 									]
 								}
 							},
@@ -1530,6 +1544,9 @@
 						},
 						{
 							"name": "updateById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -1556,7 +1573,7 @@
 										}
 									]
 								},
-								"method": "PUT",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -1707,7 +1724,7 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "deleteById",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -1750,6 +1767,76 @@
 										"api",
 										"categories",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateById",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category",
+											"value": "ghf",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/categories/1?name=New category from Postman&id=сч",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories",
+										"1"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "New category from Postman"
+										},
+										{
+											"key": "id",
+											"value": "сч"
+										}
 									]
 								}
 							},
@@ -1857,16 +1944,10 @@
 								"header": [],
 								"body": {
 									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "image_name",
-											"value": "UserPhoto",
-											"type": "text"
-										}
-									]
+									"formdata": []
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/relax-place-images/3",
+									"raw": "http://127.0.0.1:8000/api/relax-place-images/3?image_name=Name from Postman",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -1879,6 +1960,12 @@
 										"api",
 										"relax-place-images",
 										"3"
+									],
+									"query": [
+										{
+											"key": "image_name",
+											"value": "Name from Postman"
+										}
 									]
 								}
 							},
@@ -2039,8 +2126,104 @@
 						{
 							"name": "deleteById",
 							"request": {
-								"method": "GET",
-								"header": []
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/user-photos/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user-photos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateById",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/user-photos/2?image_name=Postman name",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user-photos",
+										"2"
+									],
+									"query": [
+										{
+											"key": "image_name",
+											"value": "Postman name"
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -2052,6 +2235,31 @@
 						{
 							"name": "blockUserById",
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"url": {
@@ -2077,6 +2285,31 @@
 						{
 							"name": "unblockUserById",
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"url": {
@@ -2096,6 +2329,14 @@
 										"unblock"
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "getWishlistByUserId",
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						}

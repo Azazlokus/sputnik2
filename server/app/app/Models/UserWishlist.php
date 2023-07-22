@@ -20,6 +20,11 @@ class UserWishlist extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function relaxPlaces()
+    {
+        return $this->belongsTo(RelaxPlace::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
@@ -34,8 +39,4 @@ class UserWishlist extends Model
             }
         });
     }
-    public function index(){
-        return response()->json(['sd'=>'dfs']);
-    }
-
 }

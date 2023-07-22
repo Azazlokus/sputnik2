@@ -25,12 +25,7 @@ class UserPolicy
 
         return null;
     }
-    /**
-     * Определение, может ли пользователь видеть список всех пользователей.
-     *
-     * @param  \App\Models\User  $user  Авторизованный пользователь.
-     * @return Response
-     */
+
     public function viewAny(User $user)
     {
         return $this->allow();
@@ -43,12 +38,11 @@ class UserPolicy
 
     public function create(?User $user): Response
     {
-        // Разрешаем создание новых пользователей для всех авторизованных пользователей.
         return $this->allow();
     }
 
     public function update(User $user, User $model): Response {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function delete(User $user, User $model): Response

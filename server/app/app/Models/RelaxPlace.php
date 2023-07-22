@@ -17,4 +17,8 @@ class RelaxPlace extends Model
         'country',
         'category'
     ];
+    public function wishlists()
+    {
+        return $this->belongsTo(RelaxPlace::class);
+    }
 }
