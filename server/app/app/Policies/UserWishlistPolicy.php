@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;
 
-class WishlistPolicy
+class UserWishlistPolicy
 {
     use HandlesAuthorization;
     /* Админ может все, заблокированный ничего, обычный пользователь

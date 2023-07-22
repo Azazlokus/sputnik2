@@ -5,7 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Constants\RoleConstants;
 use App\Events\UserCreatedEvent;
-use App\Policies\WishlistPolicy;
+use App\Policies\UserWishlistPolicy;
 use Database\Factories\UserFactory;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;

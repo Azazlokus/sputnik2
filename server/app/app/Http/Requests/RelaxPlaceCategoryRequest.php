@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Orion\Http\Requests\Request;
 
-class CategoryRequest extends Request
+class RelaxPlaceCategoryRequest extends Request
 {
     public function storeRules(): array
     {

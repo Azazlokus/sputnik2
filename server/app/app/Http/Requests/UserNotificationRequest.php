@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Orion\Http\Requests\Request;
 
-class NotificatonRequest extends Request
+class UserNotificationRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.

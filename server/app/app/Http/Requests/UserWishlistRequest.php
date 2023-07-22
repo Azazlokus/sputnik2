@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Orion\Http\Requests\Request;
 
-class WishlistRequest extends Request
+class UserWishlistRequest extends Request
 {
     public function storeRules(): array
     {

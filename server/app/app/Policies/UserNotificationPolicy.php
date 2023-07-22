@@ -8,7 +8,7 @@ use App\Models\UserWishlist;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class NotificationPolicy
+class UserNotificationPolicy
 {
     use HandlesAuthorization;
 
