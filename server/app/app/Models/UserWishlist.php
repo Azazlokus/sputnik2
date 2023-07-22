@@ -34,5 +34,8 @@ class UserWishlist extends Model
             }
         });
     }
+    public function index(){
+        return response()->json(['sd'=>'dfs']);
+    }
 
 }
