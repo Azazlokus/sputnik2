@@ -16,20 +16,26 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         User::withoutEvents(function () {
-            $admin = User::create([
-                'email' => 'admin@mail.ru',
-                'email_verified_at' => now(),
-                'password' => bcrypt('password'),
-                'remember_token' => Str::random(10),
-            ]);
-            $user = User::create([
-                'email' => 'user@mail.ru',
-                'email_verified_at' => now(),
-                'password' => bcrypt('password'),
-                'remember_token' => Str::random(10),
-            ]);
-            $admin->roles()->attach(Role::query()->where('role', RoleConstants::ADMIN)->first());
-            $user->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+            if (!User::where('email', 'admin@mail.ru')->exists()) {
+                $admin = User::query()->create([
+                    'email' => 'admin@mail.ru',
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('password'),
+                    'remember_token' => Str::random(10),
+                ]);
+                $admin->roles()->attach(Role::query()->where('role', RoleConstants::ADMIN)->first());
+
+            }
+            if (!User::where('email', 'user@mail.ru')->exists()) {
+                $user = User::query()->create([
+                    'email' => 'user@mail.ru',
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('password'),
+                    'remember_token' => Str::random(10),
+                ]);
+                $user->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+
+            }
 
             User::factory()->count(10)->hasAttached(Role::where('role', RoleConstants::USER)->first())->create();
 

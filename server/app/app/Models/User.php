@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Constants\RoleConstants;
-use App\Events\UserCreatedEvent;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,16 +26,16 @@ class User extends Authenticatable implements JWTSubject
 
     public static function boot(): void
     {
-        self::created(fn(self $model) => $model->sendNotificationsToAdmins());
         parent::boot();
-        static::created(function ($user) {
-            $defaultRole = Role::query()->where('role', RoleConstants::USER)->first();
-            if ($defaultRole) {
-                $user->roles()->attach($defaultRole);
-            }
+        static::created(function (self $model) {
+            $model->sendNotificationsToAdmins();
+            $model->attachDefaultRole();
         });
     }
-
+    private function attachDefaultRole()
+    {
+            $this->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+    }
     public function sendNotificationsToAdmins()
     {
         $adminRoleId = Role::query()->where('role', RoleConstants::ADMIN)->value('id');
@@ -50,7 +48,9 @@ class User extends Authenticatable implements JWTSubject
             UserNotification::query()->create([
                 'user_id' => $admin->getKey(),
                 'type' => 'push',
-                'content' => 'User with id: ' . $this->id . 'has been registered'
+                'content' => 'User with id: ' . $this->id . ' has been registered',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }

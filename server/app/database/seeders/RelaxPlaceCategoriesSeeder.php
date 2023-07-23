@@ -13,8 +13,10 @@ class RelaxPlaceCategoriesSeeder extends Seeder
      */
     public function run(): void
     {
-        RelaxPlaceCategory::factory()
-            ->count(10)
-            ->create();
+        RelaxPlaceCategory::withoutEvents(function () {
+            RelaxPlaceCategory::factory()
+                ->count(10)
+                ->create();
+        });
     }
 }

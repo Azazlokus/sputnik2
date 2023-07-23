@@ -15,4 +15,12 @@ class UserWishlistRequest extends Request
             'visit_time' => 'nullable|date_format:Y-m-d'
         ];
     }
+    public function updateRules(): array
+    {
+        return [
+            'user_id' => 'prohibited',
+            'relax_place_id' => 'prohibited',
+            'visit_time' => 'required|date_format:Y-m-d'
+        ];
+    }
 }
