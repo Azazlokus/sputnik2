@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Resources\LoginResource;
@@ -11,15 +11,16 @@ use Mockery\Exception;
 
 class AuthController extends Controller
 {
-    public function login(LoginUserRequest $request)
+    public function login(LoginUserRequest $request): LoginResource
     {
         $credentials = $request->only('email', 'password');
         if ($token = auth()->attempt($credentials)) {
             return new LoginResource($token);
         }
-        throw new Exception();
+        throw new Exception('Login error', 401);
     }
-    public function logout()
+
+    public function logout(): LogoutResource
     {
         $user = Auth::guard('api')->user();
         Auth::guard('api')->logout();

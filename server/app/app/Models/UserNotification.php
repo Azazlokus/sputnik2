@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,5 +13,6 @@ class UserNotification extends Model
         'user_id',
         'type',
         'content',
+        'viewed'
     ];
 }

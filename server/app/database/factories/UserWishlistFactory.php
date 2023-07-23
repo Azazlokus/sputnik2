@@ -20,8 +20,8 @@ class UserWishlistFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-            'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+            'user_id' => User::all()->random()->id,
+            'relax_place_id' => RelaxPlace::all()->random()->id,
             'visit_time' => Carbon::now()->addDays(rand(1, 30))
         ];
     }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('relax_place_id')->constrained('relax_places')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('rating');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

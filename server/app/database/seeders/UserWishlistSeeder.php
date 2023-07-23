@@ -17,8 +17,10 @@ class UserWishlistSeeder extends Seeder
      */
     public function run(): void
     {
-        UserWishlist::factory()
-            ->count(10)
-            ->create();
+        UserWishlist::withoutEvents(function () {
+            UserWishlist::factory()
+                ->count(10)
+                ->create();
+        });
     }
 }

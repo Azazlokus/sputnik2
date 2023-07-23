@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace app\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
+
 
 class LoginUserRequest extends FormRequest
 {
@@ -27,8 +23,8 @@ class LoginUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|max:255|email',
-            'password' => 'required|min:6',
+            'email' => 'required|string|min:1|max:255|email',
+            'password' => 'required|string|min:1|max:255|min:6',
         ];
     }
 

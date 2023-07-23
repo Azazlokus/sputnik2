@@ -19,7 +19,7 @@ class UserPhotoFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
+            'user_id' => User::all()->random()->id,
             'image_name' => $this->faker->name(),
             'path_to_photo' => $this->faker->filePath()
         ];
