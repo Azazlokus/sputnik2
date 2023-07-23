@@ -2526,7 +2526,7 @@
 					"name": "roleUser (admin)",
 					"item": [
 						{
-							"name": "blockUserById",
+							"name": "create(blockUserById)",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -2585,7 +2585,7 @@
 							"response": []
 						},
 						{
-							"name": "unblockUserById",
+							"name": "delete (unblockUserById)",
 							"request": {
 								"auth": {
 									"type": "oauth2",
@@ -2646,45 +2646,44 @@
 							"response": []
 						},
 						{
-							"name": "getWishlistByUserId",
+							"name": "viewAny",
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/3/wishlist",
+									"raw": "{{host}}/api/role-users/",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
-										"users",
-										"3",
-										"wishlist"
+										"role-users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/role-users/3?role_id=2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"role-users",
+										"3"
+									],
+									"query": [
+										{
+											"key": "role_id",
+											"value": "2"
+										}
 									]
 								}
 							},
