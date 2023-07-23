@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace app\Http\Requests;
 
 use Orion\Http\Requests\Request;
 class RoleUserRequest extends Request
 {
-    protected $table = 'role_user';
     public function storeRules(): array
     {
         return [

@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace app\Http\Controllers;
 
 use App\Http\Requests\RoleUserRequest;
 use App\Http\Resources\RoleUserResource;

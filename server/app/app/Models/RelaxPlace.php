@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RelaxPlace extends Model
 {
@@ -19,7 +20,7 @@ class RelaxPlace extends Model
         'category'
     ];
 
-    public function wishlists()
+    public function wishlists(): HasMany
     {
         return $this->hasMany(UserWishlist::class);
     }
@@ -34,7 +35,7 @@ class RelaxPlace extends Model
         });
 
     }
-    public function sendNotifications($usersId)
+    public function sendNotifications($usersId): void
     {
         foreach ($usersId as $userId) {
             UserNotification::query()->create([

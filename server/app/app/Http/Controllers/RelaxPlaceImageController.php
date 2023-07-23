@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use App\Http\Requests\RelaxPlaceImageRequest;
 use App\Http\Resources\RelaxPlaceImageResource;
-
 use App\Models\RelaxPlaceImage;
 use App\Policies\RelaxPlaceImagePolicy;
 use Orion\Http\Controllers\Controller;

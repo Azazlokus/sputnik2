@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace app\Http\Resources;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LoginResource extends JsonResource
 {
-    public function __construct(protected String $token)
-    {
-
-    }
-
     public function toArray($request)
     {
         return [

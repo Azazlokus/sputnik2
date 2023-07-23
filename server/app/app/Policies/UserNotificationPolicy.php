@@ -26,13 +26,13 @@ class UserNotificationPolicy
     }
     public function viewAny(User $user)
     {
-        return $this->deny();
+        return $this->allow();
     }
 
 
     public function view(User $user, UserNotification $userNotification)
     {
-        return $this->allow();
+        return $this->deny();
     }
 
     public function create(User $user): Response

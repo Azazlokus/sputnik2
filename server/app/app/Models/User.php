@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use App\Constants\RoleConstants;
 use Database\Factories\UserFactory;
@@ -32,11 +32,11 @@ class User extends Authenticatable implements JWTSubject
             $model->attachDefaultRole();
         });
     }
-    private function attachDefaultRole()
+    private function attachDefaultRole(): void
     {
             $this->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
     }
-    public function sendNotificationsToAdmins()
+    public function sendNotificationsToAdmins(): void
     {
         $adminRoleId = Role::query()->where('role', RoleConstants::ADMIN)->value('id');
 
@@ -91,7 +91,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
@@ -101,7 +101,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->roles->contains('role', $roleName);
     }
 
-    public function isUser()
+    public function isUser(): bool
     {
         if($this->hasRole(RoleConstants::USER)) {
             return true;
@@ -109,10 +109,21 @@ class User extends Authenticatable implements JWTSubject
             return false;
         }
     }
-
-    public function hasWishlist($wishList)
+    public function isAdmin(): bool
     {
-        return $this->wishlists->contains('id', $wishList->id);
+        if($this->hasRole(RoleConstants::ADMIN)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function isBlocked(): bool
+    {
+        if($this->hasRole(RoleConstants::USER_BLOCKED)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
