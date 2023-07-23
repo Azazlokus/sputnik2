@@ -2,6 +2,7 @@
 
 namespace database\seeders;
 
+use App\Constants\NotificationTypeConstants;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,13 +18,13 @@ class UserNotificationsSeeder extends Seeder
         DB::table('user_notifications')->insert([
             [
                 'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'type' => 'email',
+                'type' => NotificationTypeConstants::MAIL,
                 'content' => 'User has been registered',
                 'viewed' => false
             ],
             [
                 'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-                'type' => 'email',
+                'type' => NotificationTypeConstants::PUSH,
                 'content' => 'User has been registered',
                 'viewed' => true
             ]

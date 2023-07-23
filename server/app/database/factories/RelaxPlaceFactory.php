@@ -18,13 +18,13 @@ class RelaxPlaceFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence($nbWords = 3, $variableNbWords = true),
+            'title' => $this->faker->unique()->sentence($nbWords = 3, $variableNbWords = true),
             'description' => $this->faker->paragraph,
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
             'average_rating' => $this->faker->randomFloat(2, 0, 5),
             'country' => $this->faker->country,
-            'category' => RelaxPlaceCategory::query()->inRandomOrder()->pluck('id')->first(),
+            'category' => RelaxPlaceCategory::all()->random()->id,
 
         ];
     }

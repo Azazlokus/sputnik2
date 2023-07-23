@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class relaxPlacePolicy
+class RelaxPlacePolicy
 {
     use HandlesAuthorization;
     /* Админ может все, заблокированный ничего, обычный пользователь

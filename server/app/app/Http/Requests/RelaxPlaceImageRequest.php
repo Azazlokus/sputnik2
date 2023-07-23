@@ -12,8 +12,8 @@ class RelaxPlaceImageRequest extends Request
     {
         return [
             'relax_place_id' => 'required|exists:relax_places,id',
-            'image_name' => 'required|string',
-            'path_to_image' => 'required|string',
+            'image_name' => 'required|string|min:1|max:255',
+            'path_to_image' => 'required|string|min:1|max:255',
         ];
     }
 }

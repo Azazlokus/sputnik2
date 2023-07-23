@@ -5,18 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Constants\RoleConstants;
 use App\Events\UserCreatedEvent;
-use App\Policies\UserWishlistPolicy;
 use Database\Factories\UserFactory;
-use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -30,6 +25,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
     ];
+
     public static function boot(): void
     {
         self::created(fn(self $model) => $model->sendNotificationsToAdmins());
@@ -41,9 +37,10 @@ class User extends Authenticatable implements JWTSubject
             }
         });
     }
+
     public function sendNotificationsToAdmins()
     {
-        $adminRoleId = Role::query()->where('role', \App\Constants\RoleConstants::ADMIN)->value('id');
+        $adminRoleId = Role::query()->where('role', RoleConstants::ADMIN)->value('id');
 
         $admins = User::query()->whereHas('roles', function ($query) use ($adminRoleId) {
             $query->where('role_id', $adminRoleId);
@@ -53,10 +50,11 @@ class User extends Authenticatable implements JWTSubject
             UserNotification::query()->create([
                 'user_id' => $admin->getKey(),
                 'type' => 'push',
-                'content' => 'User '. $this->username . 'has been registered'
+                'content' => 'User with id: ' . $this->id . 'has been registered'
             ]);
         }
     }
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -72,11 +70,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Role::class);
     }
-    public function wishlists():HasMany
+
+    public function wishlists(): HasMany
     {
         return $this->hasMany(UserWishlist::class);
     }
-    public function ratings():HasMany
+
+    public function ratings(): HasMany
     {
         return $this->hasMany(Rating::class);
     }
@@ -100,6 +100,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->roles->contains('role', $roleName);
     }
+
+    public function isUser()
+    {
+        if($this->hasRole(RoleConstants::USER)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function hasWishlist($wishList)
     {
         return $this->wishlists->contains('id', $wishList->id);

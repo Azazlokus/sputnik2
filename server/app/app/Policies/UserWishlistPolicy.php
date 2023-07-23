@@ -36,9 +36,7 @@ class UserWishlistPolicy
 
     public function view(User $user, UserWishlist $userWishlist)
     {
-
-            return $this->allow();
-
+            return $this->deny();
     }
 
     public function create(User $user): Response
@@ -46,7 +44,8 @@ class UserWishlistPolicy
         return $this->allow();
     }
 
-    public function update(User $user, UserWishlist $userWishlist): Response {
+    public function update(User $user, UserWishlist $userWishlist): Response
+    {
         return $this->allow();
     }
 
@@ -63,7 +62,8 @@ class UserWishlistPolicy
         return $this->deny();
     }
 
-    public function forceDelete(User $user, UserWishlist $userWishlist): Response {
+    public function forceDelete(User $user, UserWishlist $userWishlist): Response
+    {
         return $this->deny();
     }
 }

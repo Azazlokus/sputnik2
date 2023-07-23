@@ -12,7 +12,7 @@ class UserWishlistRequest extends Request
     {
         return [
             'relax_place_id' => 'required|integer|exists:relax_places,id',
-            'visit_time' => 'nullable|date_format:Y-m-d H:i:s'
+            'visit_time' => 'nullable|date_format:Y-m-d'
         ];
     }
 }

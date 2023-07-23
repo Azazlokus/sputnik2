@@ -41,11 +41,6 @@ class AdminController extends Controller
         }
         throw new Exception("User already has been unblocked", 402);
     }
-    public function wishlist(User $user)
-    {
-        $wishlists = $user->wishlists;
-        return response()->json(['places'=>$wishlists]);
-    }
     public function sendBlockNotifications($userId)
     {
         UserNotification::query()->create([

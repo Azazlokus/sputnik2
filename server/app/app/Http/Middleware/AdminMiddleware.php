@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Constants\RoleConstants;
 use Closure;
+use Exception;
 
 class AdminMiddleware
 {
@@ -15,7 +16,7 @@ class AdminMiddleware
         if ($request->user() && $request->user()->hasRole(RoleConstants::ADMIN)) {
             return $next($request);
         }
-        throw new \Exception('Unauthorized action.', 403);
+        throw new Exception('Unauthorized action.', 403);
 
     }
 }

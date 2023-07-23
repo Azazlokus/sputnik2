@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Constants\RoleConstants;
 use App\Models\User;
+use App\Models\UserNotification;
 use App\Models\UserWishlist;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -29,7 +30,7 @@ class UserNotificationPolicy
     }
 
 
-    public function view(User $user, UserWishlist $userWishlist)
+    public function view(User $user, UserNotification $userNotification)
     {
         return $this->allow();
     }
@@ -39,20 +40,20 @@ class UserNotificationPolicy
         return $this->deny();
     }
 
-    public function update(User $user, UserWishlist $userWishlist): Response {
+    public function update(User $user, UserNotification $userNotification): Response {
         return $this->deny();
     }
 
-    public function delete(User $user, UserWishlist $userWishlist): Response
+    public function delete(User $user, UserNotification $userNotification): Response
     {
         return $this->deny();
     }
-    public function restore(User $user, UserWishlist $userWishlist): Response
+    public function restore(User $user, UserNotification $userNotification): Response
     {
         return $this->deny();
     }
 
-    public function forceDelete(User $user, UserWishlist $userWishlist): Response {
+    public function forceDelete(User $user, UserNotification $userNotification): Response {
         return $this->deny();
     }
 }
