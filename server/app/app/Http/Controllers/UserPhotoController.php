@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\RoleConstants;
 use App\Http\Requests\UserPhotoRequest;
 use App\Http\Resources\UserPhotoResource;
 use App\Models\User;

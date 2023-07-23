@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RelaxPlaceCategoryController;
+use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\UserNotificationController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RelaxPlaceController;
@@ -32,12 +32,7 @@ Orion::resource('/ratings', RatingController::class);
 Orion::resource('/categories', RelaxPlaceCategoryController::class);
 Orion::resource('/relax-place-images', RelaxPlaceImageController::class);
 Orion::resource('/user-photos', UserPhotoController::class);
-
-Route::group(['prefix' => '/users'], function () {
-    Route::get('/{user}/wishlist', [AdminController::class, 'wishlist'])->middleware('admin');
-    Route::post('/{user}/block', [AdminController::class, 'blockUser'])->middleware('admin');
-    Route::post('/{user}/unblock', [AdminController::class, 'unblockUser'])->middleware('admin');;
-})->middleware('api');
+Orion::resource('/role-users', RoleUserController::class);
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
