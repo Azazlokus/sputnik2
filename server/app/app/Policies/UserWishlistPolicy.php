@@ -51,11 +51,7 @@ class UserWishlistPolicy
 
     public function delete(User $user, UserWishlist $userWishlist): Response
     {
-        if ($user->hasWishlist($userWishlist)){
-            return $this->allow();
-        } else{
             return $this->deny();
-        }
     }
     public function restore(User $user, UserWishlist $userWishlist): Response
     {
