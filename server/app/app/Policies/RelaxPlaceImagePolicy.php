@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\Constants\RoleConstants;
-use App\Models\Rating;
 use App\Models\RelaxPlaceImage;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -12,27 +10,24 @@ use Illuminate\Auth\Access\Response;
 class RelaxPlaceImagePolicy
 {
     use HandlesAuthorization;
-    /**
-     * Perform pre-authorization checks.
-     */
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->hasRole(RoleConstants::ADMIN)) {
+        if ($user->isAdmin()) {
             return true;
         }
-        if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
+        if ($user->isBlocked()) {
             return false;
         }
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response
     {
         return $this->deny();
     }
 
 
-    public function view(User $user, RelaxPlaceImage $relaxPlaceImage)
+    public function view(User $user, RelaxPlaceImage $relaxPlaceImage): Response
     {
         return $this->allow();
     }
