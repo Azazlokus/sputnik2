@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class UserWishlist extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
     protected $fillable = [
         'user_id',
@@ -25,19 +26,22 @@ class UserWishlist extends Model
     {
         return $this->belongsTo(RelaxPlace::class);
     }
-
     protected static function boot()
     {
         parent::boot();
 
-        static::creating(function ($wishlist) {
-          $user = auth()->user();
-            if ($user && $user->wishlists()->where('relax_place_id', $wishlist->relax_place_id)->exists()) {
-                throw new Exception('This place is already in the user\'s wishlist.', 409);
-            }
-            if ($user) {
-                $wishlist->user_id = $user->id;
-            }
+        static::creating(function (self $wishlist) {
+            $this->checkUserRelaxPlaceAlreadyExist($wishlist);
         });
+    }
+    private function checkUserRelaxPlaceAlreadyExist($wishlist): void
+    {
+        $user = auth()->user();
+        if ($user && $user->wishlists()->where('relax_place_id', $wishlist->relax_place_id)->exists()) {
+            throw new Exception('This place is already in the user\'s wishlist.', 409);
+        }
+        if ($user) {
+            $wishlist->user_id = $user->id;
+        }
     }
 }

@@ -29,7 +29,7 @@ class RelaxPlace extends Model
     {
         parent::boot();
 
-        static::deleting(function ($relaxPlace) {
+        static::deleting(function (self $relaxPlace) {
             $usersId = $relaxPlace->wishlists->pluck('user_id');
             $relaxPlace->sendNotifications($usersId);
         });
