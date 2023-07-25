@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\NotificationTypeConstants;
 use App\Constants\RoleConstants;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -47,7 +48,7 @@ class User extends Authenticatable implements JWTSubject
         foreach ($admins as $admin) {
             UserNotification::query()->create([
                 'user_id' => $admin->getKey(),
-                'type' => 'push',
+                'type' => NotificationTypeConstants::PUSH,
                 'content' => 'User with id: ' . $this->id . ' has been registered',
                 'created_at' => now(),
                 'updated_at' => now(),

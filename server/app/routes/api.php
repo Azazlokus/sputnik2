@@ -29,7 +29,7 @@ Orion::resource('/relax-places', RelaxPlaceController::class);
 Orion::resource('/wishlists', UserWishlistController::class);
 Orion::resource('/notifications', UserNotificationController::class);
 Orion::resource('/ratings', RatingController::class);
-Orion::resource('/categories', RelaxPlaceCategoryController::class);
+Orion::resource('/relax-place-categories', RelaxPlaceCategoryController::class);
 Orion::resource('/relax-place-images', RelaxPlaceImageController::class);
 Orion::resource('/user-photos', UserPhotoController::class);
 Orion::resource('/role-users', RoleUserController::class);
