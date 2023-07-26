@@ -9,6 +9,7 @@ use App\Http\Controllers\RelaxPlaceController;
 use App\Http\Controllers\RelaxPlaceImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPhotoController;
+use App\Http\Controllers\UserRecommendationController;
 use App\Http\Controllers\UserWishlistController;
 use Illuminate\Support\Facades\Route;
 use Orion\Facades\Orion;
@@ -33,6 +34,7 @@ Orion::resource('/relax-place-categories', RelaxPlaceCategoryController::class);
 Orion::resource('/relax-place-images', RelaxPlaceImageController::class);
 Orion::resource('/user-photos', UserPhotoController::class);
 Orion::resource('/role-users', RoleUserController::class);
+Orion::resource('/user-recommendations', UserRecommendationController::class);
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
