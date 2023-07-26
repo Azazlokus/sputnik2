@@ -33,10 +33,12 @@ class User extends Authenticatable implements JWTSubject
             $model->attachDefaultRole();
         });
     }
+
     private function attachDefaultRole()
     {
-            $this->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+        $this->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
     }
+
     public function sendNotificationsToAdmins()
     {
         $adminRoleId = Role::query()->where('role', RoleConstants::ADMIN)->value('id');
@@ -97,21 +99,24 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function hasRole($roleName)
+    public function hasRole($roleName) : bool
     {
         return $this->roles->contains('role', $roleName);
     }
 
-    public function isUser()
+    public function isUser(): bool
     {
-        if($this->hasRole(RoleConstants::USER)) {
-            return true;
-        }else{
-            return false;
-        }
+        return $this->hasRole(RoleConstants::USER);
     }
-
-    public function hasWishlist($wishList)
+    public function isAdmin(): bool
+    {
+        return $this->hasRole(RoleConstants::ADMIN);
+    }
+    public function isBlocked(): bool
+    {
+        return $this->hasRole(RoleConstants::USER_BLOCKED);
+    }
+    public  function hasWishlist($wishList)
     {
         return $this->wishlists->contains('id', $wishList->id);
     }

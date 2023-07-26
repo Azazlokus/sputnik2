@@ -15,10 +15,10 @@ class UserWishlistPolicy
 
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->hasRole(RoleConstants::ADMIN)) {
+        if ($user->isAdmin()) {
             return true;
         }
-        if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
+        if ($user->isBlocked()) {
             return false;
         }
 
@@ -32,7 +32,7 @@ class UserWishlistPolicy
 
     public function view(User $user, UserWishlist $userWishlist)
     {
-            return $this->deny();
+            return $this->allow();
     }
 
     public function create(User $user): Response
@@ -47,7 +47,7 @@ class UserWishlistPolicy
 
     public function delete(User $user, UserWishlist $userWishlist): Response
     {
-            return $this->deny();
+            return $this->allow();
     }
     public function restore(User $user, UserWishlist $userWishlist): Response
     {

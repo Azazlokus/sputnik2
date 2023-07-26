@@ -15,10 +15,10 @@ class RelaxPlacePolicy
  может просматривать все места, и по id*/
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->hasRole(RoleConstants::ADMIN)) {
+        if ($user->isAdmin()) {
             return true;
         }
-        if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
+        if ($user->isBlocked()) {
             return false;
         }
         return null;

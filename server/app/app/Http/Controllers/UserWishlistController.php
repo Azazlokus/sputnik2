@@ -18,9 +18,9 @@ class UserWishlistController extends Controller
     protected $request = UserWishlistRequest::class;
     protected $model = UserWishlist::class;
     protected $policy = UserWishlistPolicy::class;
-    protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
+    protected function buildFetchQuery( $request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $query = parent::buildFetchQuery($request, $requestedRelations);
         $user = User::query()->find(Auth::user()->getAuthIdentifier());
         if($user->isUser()) {
             $query->where('user_id', $user->id);

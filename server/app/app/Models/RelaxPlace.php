@@ -28,14 +28,14 @@ class RelaxPlace extends Model
     {
         parent::boot();
 
-        static::deleting(function ($relaxPlace) {
-            $usersId = $relaxPlace->wishlists->pluck('user_id');
-            $relaxPlace->sendNotifications($usersId);
+        static::deleting(function (self $relaxPlace) {
+            $relaxPlace->sendNotifications($relaxPlace);
         });
 
     }
-    public function sendNotifications($usersId)
+    public function sendNotifications($relaxPlace): void
     {
+        $usersId = $relaxPlace->wishlists->pluck('user_id');
         foreach ($usersId as $userId) {
             UserNotification::query()->create([
                 'user_id' => $userId,

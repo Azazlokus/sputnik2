@@ -10,16 +10,12 @@ use Illuminate\Auth\Access\Response;
 class UserPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Perform pre-authorization checks.
-     */
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->hasRole(RoleConstants::ADMIN)) {
+        if ($user->isAdmin()) {
             return true;
         }
-        if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
+        if ($user->isBlocked()) {
             return false;
         }
 
@@ -33,7 +29,7 @@ class UserPolicy
 
     public function view(User $user, User $profileUser)
     {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function create(?User $user): Response

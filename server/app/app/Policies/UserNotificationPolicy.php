@@ -15,10 +15,10 @@ class UserNotificationPolicy
 
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->hasRole(RoleConstants::ADMIN)) {
+        if ($user->isAdmin()) {
             return true;
         }
-        if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
+        if ($user->isBlocked()) {
             return false;
         }
 
@@ -26,7 +26,7 @@ class UserNotificationPolicy
     }
     public function viewAny(User $user)
     {
-        return $this->deny();
+        return $this->allow();
     }
 
 
