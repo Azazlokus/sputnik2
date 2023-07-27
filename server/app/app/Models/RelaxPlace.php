@@ -28,19 +28,19 @@ class RelaxPlace extends Model
     {
         parent::boot();
 
-        static::deleting(function (self $relaxPlace) {
-            $relaxPlace->sendNotifications($relaxPlace);
+        static::deleting(function (self $model) {
+            $model->sendNotifications();
         });
 
     }
-    public function sendNotifications($relaxPlace): void
+    public function sendNotifications(): void
     {
-        $usersId = $relaxPlace->wishlists->pluck('user_id');
+        $usersId = $this->wishlists->pluck('user_id');
         foreach ($usersId as $userId) {
             UserNotification::query()->create([
                 'user_id' => $userId,
                 'type' => 'push',
-                'content' => 'User '. $userId . 'your place from wishlist has been deleted'
+                'content' => 'User with id: '. $userId . ' your place from wishlist has been deleted'
             ]);
         }
     }

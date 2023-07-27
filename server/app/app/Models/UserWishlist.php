@@ -31,46 +31,38 @@ class UserWishlist extends Model
     protected static function boot(): void
     {
         parent::boot();
-        static::creating(function (self $wishlist) {
-            $wishlist->checkIfWishlistAlreadyExist($wishlist);
+        static::creating(function (self $model) {
+            $model->checkIfWishlistAlreadyExist();
         });
-        static::created(function (self $wishlist) {
-            $wishlist->addRecommendationByCountry($wishlist);
+        static::created(function (self $model) {
+            $model->addRecommendationByCountry();
         });
 
     }
 
-    private function checkIfWishlistAlreadyExist($wishlist)
+    private function checkIfWishlistAlreadyExist()
     {
         $user = auth()->user();
-        if ($user && $user->wishlists()->where('relax_place_id', $wishlist->relax_place_id)->exists()) {
+        if ($user && $user->wishlists()->where('relax_place_id', $this->relax_place_id)->exists()) {
             throw new Exception('This place is already in the user\'s wishlist.', 409);
         }
         if ($user) {
-            $wishlist->user_id = $user->id;
+            $this->user_id = $user->id;
         }
     }
 
-    private function addRecommendationByCountry($wishlist)
+    private function addRecommendationByCountry()
     {
-
-        /*   = self::query()
-              ->relaxPlaces
-              ->where('country', $this->country)
-              ->with('usersFavorite')
-              ->get();*/
-
-        $country = $this->relaxPlaces->pluck('country');
-        $recommendations = RelaxPlace::query()->where('country', $country)->pluck('id');
-        if ($recommendations) {
-            foreach ($recommendations as $recommendation) {
-                UserRecommendation::query()->create(
-                    [
-                        'user_id' => auth()->user()->getAuthIdentifier(),
-                        'relax_place_id' => $recommendation
-                    ]
-                );
-            }
+        $target_country = $this->relaxPlaces->pluck('country')->unique();
+        $recommended_relax_place_id = RelaxPlace::query()
+            ->where('country', $target_country)
+            ->pluck('id');
+        foreach ($recommended_relax_place_id as $relax_place_id) {
+            UserRecommendation::query()
+                ->create([
+                    'user_id' => $this->user_id,
+                    'relax_place_id' => $relax_place_id,
+                ]);
         }
     }
 }
