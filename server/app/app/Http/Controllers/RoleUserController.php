@@ -23,22 +23,19 @@ class RoleUserController extends Controller
     protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
-        if($user->isUser()) {
-            $query->where('user_id', $user->id);
-        }
+        $this->ifUserChangeQuery($query);
         return $query;
     }
     protected function buildStoreFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $this->sendBlockNotifications(Auth::user()->getAuthIdentifier());
+        $this->sendBlockNotifications($this->getUserID());
         return $query;
     }
     protected function buildDestroyFetchQuery( $request, array $requestedRelations, bool $softDeletes): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $this->sendUnblockNotifications(Auth::user()->getAuthIdentifier());
+        $this->sendUnblockNotifications($this->getUserID());
         return $query;
     }
     public function sendBlockNotifications($userId): void
@@ -56,5 +53,16 @@ class RoleUserController extends Controller
             'type' => 'push',
             'content' => 'User with id: ' . $userId . ', you have been unblocked.'
         ]);
+    }
+    protected  function ifUserChangeQuery($query): void
+    {
+        $user = User::query()->find($this->getUserID());
+        if($user->isUser()) {
+            $query->where('user_id', $user->id);
+        }
+    }
+    protected function getUserID()
+    {
+        return Auth::user()->getAuthIdentifier();
     }
 }

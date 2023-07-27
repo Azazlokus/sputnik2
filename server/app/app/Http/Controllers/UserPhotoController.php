@@ -17,13 +17,23 @@ class UserPhotoController extends Controller
     protected $request = UserPhotoRequest::class;
     protected $resource = UserPhotoResource::class;
     protected $policy = UserPhotoPolicy::class;
-    protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
+
+    protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
-        if($user->isUser()) {
+        $this->ifUserChangeQuery($query);
+        return $query;
+    }
+
+    protected function ifUserChangeQuery($query): void
+    {
+        $user = User::query()->find($this->getUserID());
+        if ($user->isUser()) {
             $query->where('user_id', $user->id);
         }
-        return $query;
+    }
+    protected function getUserID()
+    {
+        return Auth::user()->getAuthIdentifier();
     }
 }

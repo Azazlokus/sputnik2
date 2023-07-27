@@ -2,263 +2,16 @@
 	"info": {
 		"_postman_id": "f30628f1-d513-46ab-aeaf-7b2d68ff03d7",
 		"name": "SputnikInternship",
+		"description": "StartFragment\n\nПредметная область: Приложение для путешествий и отдыха.\n\nПроект предназначен для взамодействия пользователя с местами отдыха. Он должен иметь возможность просматривать места отдыха, добавлять в список желаемого, оценивать их. Система должна иметь возможность давать рекомендации пользователю на основе мест отдыха, котрые пользователь поместил в свой список желаний.\n\nПриложение реализует следующий функционал:\n\n- Регистрация и аутентификация:\n- Пользователь может зарегистрироваться в системе, указав свою электронную почту и пароль. При регистрации пароль нужно повторить для подтверждения.\n- Пользователь может войти в систему, указав свою электронную почту и пароль.\n- Просмотр списка доступных мест для отдыха:\n- Пользователь может просматривать список всех доступных мест для отдыха.\n- Каждое место для отдыха содержит следующую информацию: название, описание, координаты (широта и долгота), категория (например, парк, пляж, горы), средняя оценка.\n- Пользователь может видеть несколько картинок для каждого места.\n- Управление списком желаемого:\n- Пользователь может добавлять места отдыха в свой список желаемого. Добавить одно место отдыха в список желаемого дважды нельзя.\n- Пользователь может просматривать свой список желаемого, который включает добавленные места для отдыха.\n- Пользователь может указать время, когда он планирует посетить место отдыха. (Один атрибут, который мы можем изменять)\n- Оценка мест для отдыха:\n- Пользователь может оценивать места для отдыха, указывая оценку от 1 до 5, и оставлять комментарий, если место отдыха было в списке желаемого пользователя. (Один пользователь может оценить место отдыха только один раз. Комментарий является необязательным полем)\n- Управление профилем пользователя:\n- Пользователь может редактировать свой профиль.\n- Пользователь может загружать и изменять свою фотографию профиля.\n- В личном кабинете пользователя отображается информация о нем, включая имя, фамилию, имя пользователя, электронную почту и фотографии профиля.\n- Управление местами для отдыха (администратор):\n- Администратор может добавлять новые места для отдыха\n- Администратор может редактировать информацию о существующих местах для отдыха\n- Администратор может удалять места для отдыха из системы.\n- Администратор может добавлять и удалять категории для мест отдыха. При удалении категории, все связанные места отдыха должны быть также удалены.\n- Управление пользователями (администратор):\n- Администратор может блокировать или разблокировать пользователей.\n- Администратор имеет доступ к информации о пользователях, включая их профили и активность.\n- Уведомления:\n- Пользователь может получать уведомления о блокировке или разблокировке.\n- Пользователям, у которых удаленные места отдыха были в избранном, должно прийти уведомление об удалении места.\n- Администратор может получить уведомление о регистрации нового пользователя\n- Рекомендации по новым местам в той же стране:\n- Приложение может предлагать пользователю рекомендации о новых местах для отдыха, находящихся в той же стране, что и места в его списке желаемого.\n    \n\n1. Создать миграции базы данных для каждой сущности\n2. Миграции должны быть разделены логически.\n3. В миграциях должны присутствовать все изменения в структуре БД, наборе таблиц, и т.д. Все изменения и исправления должны вноситься путем написания файлов миграций и их применения на БД (т.е. если была создана таблица с ошибкой, то исправление её должно быть в следующей миграции, примененные миграции не переписываются).\n4. Числовые идентификаторы таблиц должны иметь тип bigint.\n5. Ключевые поля в таблицах должны иметь проверку на уникальность.\n    \n\n1. Заполнить тестовыми данными таблицы базы данных.\n2. Сделать сидеры для ролей, которые фигурируют в требованиях\n3. Добавить через сидеры по одному пользователю для каждой роли\n4. Написать сидеры для категорий со связанными местами отдыха к ним\n5. Убедиться, что тестовые данные содержат разнообразные значения и покрывают различные сценарии использования.\n    \n\nEndFragment",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22850569"
 	},
 	"item": [
 		{
-			"name": "week1-2",
-			"item": [
-				{
-					"name": "CreateUser",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "user@mail.rua",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "text"
-								},
-								{
-									"key": "password_confirmation",
-									"value": "password",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "user@mail.ru",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "text"
-								},
-								{
-									"key": "",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/login",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logout",
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "tokenType",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/logout",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"logout"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetUser",
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "tokenType",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/users/index",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"index"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": null,
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getNotifications",
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "tokenType",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "authUrl",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/api/notification/",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"notification",
-								""
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "week3-Oreon",
 			"item": [
 				{
-					"name": "auth",
+					"name": "PostmanRunner",
 					"item": [
 						{
 							"name": "loginAsAdmin",
@@ -269,38 +22,20 @@
 										"exec": [
 											"var jsonResponse = JSON.parse(responseBody);\r",
 											"var token = jsonResponse.data.token;\r",
-											"pm.environment.set(\"token\", token);"
+											"pm.environment.set(\"token\", token);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -327,29 +62,713 @@
 										"api",
 										"auth",
 										"login"
-									],
-									"query": [
-										{
-											"key": "email",
-											"value": "admin@mail.ru",
-											"disabled": true
-										},
-										{
-											"key": "password",
-											"value": "password",
-											"disabled": true
-										}
 									]
-								}
+								},
+								"description": "Вход под учетной записью администратора со всеми правами."
 							},
 							"response": []
 						},
 						{
-							"name": "logout",
+							"name": "createRelaxPlaceCategory",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var relaxPlaceCategoryId = jsonResponse.data.id;\r",
+											"pm.environment.set(\"relax_place_category_id\", relaxPlaceCategoryId);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "oauth2",
 									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "New category name from Postman",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/relax-place-categories/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"relax-place-categories",
+										""
+									]
+								},
+								"description": "Может только админ"
+							},
+							"response": []
+						},
+						{
+							"name": "createRelaxPlace",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var relaxPlaceId = jsonResponse.data.id;\r",
+											"var relax_place_id_integer = parseInt(relaxPlaceId);\r",
+											"pm.environment.set(\"relax_place_id\", relax_place_id_integer);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "New name from Postman",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Some discription",
+											"type": "text"
+										},
+										{
+											"key": "latitude",
+											"value": "32.45",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "28.49",
+											"type": "text"
+										},
+										{
+											"key": "average_rating",
+											"value": "4.78",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "Japan",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "{{relax_place_category_id}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/relax-places",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"relax-places"
+									]
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "checkNotificationCountBefore",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var dataArray = jsonResponse.data;\r",
+											"var dataCount = dataArray.length;\r",
+											"pm.environment.set(\"notifications_count_before\", dataCount);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/notifications",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"notifications"
+									]
+								},
+								"description": "Для проверки начального количества уведомлений"
+							},
+							"response": []
+						},
+						{
+							"name": "createNewUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var registred_user_id = jsonResponse.data.id;\r",
+											"pm.environment.set(\"user_id\", registred_user_id);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "userPostmanRunner@mail.ru",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/users/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										""
+									]
+								},
+								"description": "Может неавторизованный гость"
+							},
+							"response": []
+						},
+						{
+							"name": "loginAsUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var token = jsonResponse.data.token;\r",
+											"pm.environment.set(\"user_token\", token);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "userPostmanRunner@mail.ru",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "StartFragment\n\nВход пользователя\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "viewAnyNotificationAsAdmin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var dataArray = jsonResponse.data;\r",
+											"var notifications_count_after = dataArray.length;\r",
+											"var notifications_count_before = pm.environment.get(\"notifications_count_before\");\r",
+											"\r",
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											"pm.test(\"The administrator has received a registration notification\", function () {\r",
+											"    pm.expect(notifications_count_after - notifications_count_before).to.equal(1);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/notifications",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"notifications"
+									]
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "viewAnyRelaxPlacesAsUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/relax-places",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"relax-places"
+									]
+								},
+								"description": "StartFragment\n\nМожет пользователь\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "addRelaxPlaceInWishlist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var wishlist_id = jsonResponse.data.id;\r",
+											"pm.environment.set(\"wishlist_id\", wishlist_id);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "relax_place_id",
+											"value": "{{relax_place_id}}",
+											"type": "text"
+										},
+										{
+											"key": "visit_time",
+											"value": "2024-12-12",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/wishlists",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"wishlists"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": "2024-12-12",
+											"disabled": true
+										}
+									]
+								},
+								"description": "StartFragment\n\nМожет пользователь\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "createRatingForRelaxPlaceAsUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var relaxPlaceRatingId = jsonResponse.data.id;\r",
+											"pm.environment.set(\"relax_place_rating_id\", relaxPlaceRatingId);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "relax_place_id",
+											"value": "{{relax_place_id}}",
+											"type": "text"
+										},
+										{
+											"key": "rating",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "comment",
+											"value": "Some comment",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/ratings",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"ratings"
+									]
+								},
+								"description": "Пользователь может оценивать только те места, котрые есть в его списке желаний."
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRelaxPlaceCategory",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/relax-place-categories/{{relax_place_category_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"relax-place-categories",
+										"{{relax_place_category_id}}"
+									]
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "cancleCreateNewUser",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/{{user_id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user_id}}"
+									]
+								},
+								"description": "StartFragment\n\nМожет только админ (откат теста)\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "logoutAsAdmin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/auth/logout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "logoutAsUser",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
 										{
 											"key": "tokenType",
 											"value": "",
@@ -384,7 +803,98 @@
 										"auth",
 										"logout"
 									]
+								},
+								"description": "StartFragment\n\nМожет пользователь"
+							},
+							"response": []
+						}
+					],
+					"description": "StartFragmentStartFragmentСценНаписать автотесты с использованием Postman Runner:EndFragment\n\nНаписать автотесты с использованием Postman Runner:EndFragment\n\nСценарий тестирования приложения по пунктам приложения 3.\n\nНеобходимо протестировать следующий сценарий действий (опущены этапы необходимые только для получения промежуточной информации) :\n\nStartFragment\n\n1. Авторизация администратора;\n2. Добавление новой категории мест отдыха;\n3. Добавление места отдыха в этой категории;\n4. Регистрация нового пользователя;\n5. Авторизация пользователя;\n6. Проверка от лица администратора, что пришло уведомление;\n7. Просмотр мест отдыха;\n8. Добавление места отдыха, созданного админом, в список желаемого;\n9. Оценка добавленного места отдыха;\n10. Удаление категории места отдыха от лица администратора.\n    \n\nДанные для последующих запросов, котрые требуют информацию о ранее созданных сущностях, помещаются в локальное окружение. Токен администратора применяется в запросах коллекции 2, 3, 6, 10. Токен пользователя используется в запросах 5, 7, 8, 9. Неавторизованный пользователь имее возможность зарегистрироваться в пункте 4. Правильность тестов проверяется соответствием статус-кодов.\n\nEndFragment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "loginAsAdmin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = JSON.parse(responseBody);\r",
+											"var token = jsonResponse.data.token;\r",
+											"pm.environment.set(\"token\", token);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "admin@mail.ru",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/auth/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "admin@mail.ru",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"disabled": true
+										}
+									]
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -397,7 +907,11 @@
 										"exec": [
 											"var jsonResponse = JSON.parse(responseBody);\r",
 											"var token = jsonResponse.data.token;\r",
-											"pm.environment.set(\"token\", token);"
+											"pm.environment.set(\"token\", token);\r",
+											"\r",
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -431,28 +945,66 @@
 										"auth",
 										"login"
 									]
+								},
+								"description": "StartFragment\n\nМожет пользователь\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/auth/logout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								},
+								"description": "StartFragment\n\nВыход из системы, только авторизованные\n\nEndFragment"
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Представляет собой усеченую пользователя с email и паролем для входа/выхода из системы.\n\nФункционал аутентификации и авторизации:\n\n1. вход от имени администратора;\n2. вход от имени пользователя;\n3. выход из ситемы.\n    \n\n1 и 2 пункты подразумевают получение токена и занесение его в локальное окружение для подписи всех запросов."
 				},
 				{
 					"name": "users",
 					"item": [
 						{
 							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -465,81 +1017,62 @@
 										"users",
 										""
 									]
-								}
+								},
+								"description": "Может пользователь и администратор"
 							},
 							"response": []
 						},
 						{
 							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/5",
+									"raw": "{{host}}/api/users/2",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"users",
-										"5"
+										"2"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "POST",
 								"header": [],
@@ -548,7 +1081,7 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "userу6@mail.ru",
+											"value": "user11@mail.ru",
 											"type": "text"
 										},
 										{
@@ -573,87 +1106,113 @@
 										"users",
 										""
 									]
-								}
+								},
+								"description": "Создание записи, может неавторизованный гость"
 							},
 							"response": []
 						},
 						{
 							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/4",
+									"raw": "{{host}}/api/users/2",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"users",
-										"4"
+										"2"
 									]
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/2?first_name=Ivan&last_name=Petrov",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"2"
+									],
+									"query": [
+										{
+											"key": "first_name",
+											"value": "Ivan"
+										},
+										{
+											"key": "last_name",
+											"value": "Petrov"
+										}
+									]
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Представляет собой модель пользователя со следующими аттрибутами:\n\n1. ID;\n2. email;\n3. password;\n4. email_verifaied_at;\n5. remember_token;\n6. created_at;\n7. updated_up.\n    \n\nАдминистратор имеет возможность:\n\n1. Просматривать всех пользователей\n    \n\n2\\. Удалять пользователя по id\n\n3\\. Просматривать пользователя по id\n\n4\\. Создавать\n\nПользователь может:\n\n1. Получать свою запись через запрос всех пользователей\n2. Получать свою запись через ее id\n    \n\nНеавторизованный пользователь может:\n\n1. Создать новую учетную запись"
 				},
 				{
 					"name": "relaxPlaces",
 					"item": [
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -686,7 +1245,7 @@
 										},
 										{
 											"key": "category",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										},
 										{
@@ -705,38 +1264,31 @@
 										"api",
 										"relax-places"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -748,153 +1300,138 @@
 										"api",
 										"relax-places"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/relax-places/4",
+									"raw": "{{host}}/api/relax-places/10",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"relax-places",
-										"4"
+										"10"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/relax-places/5",
+									"raw": "{{host}}/api/relax-places/2",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"relax-places",
-										"5"
+										"2"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "PUT",
 								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
 								"url": {
-									"raw": "{{host}}/api/relax-places/8?title=sfssdsddsd&average_rating=4.22",
+									"raw": "{{host}}/api/relax-places/9?title=Updated title from Postman&average_rating=4.22",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"relax-places",
-										"8"
+										"9"
 									],
 									"query": [
 										{
 											"key": "title",
-											"value": "sfssdsddsd"
+											"value": "Updated title from Postman"
 										},
 										{
 											"key": "average_rating",
 											"value": "4.22"
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						}
 					],
+					"description": "Представляет собой модель места отдыха со следующими аттрибутами:\n\n1. ID - bidint;\n2. title - varchar(255);\n3. description - text, nullable;\n4. latitude - double precision;\n5. longitude - double precision;\n6. average_rating - double precision;\n7. category - bigint, FK for RelaxPlaceCategories\n8. created_at - timestamp;\n9. updated_up - timestamp.",
 					"auth": {
 						"type": "oauth2",
 						"oauth2": [
@@ -927,140 +1464,33 @@
 					]
 				},
 				{
-					"name": "wishlist",
+					"name": "wishlists",
 					"item": [
 						{
-							"name": "view",
-							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{host}}/api/wishlists/4",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"api",
-										"wishlists",
-										"4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "viewAny",
-							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "headerPrefix",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{host}}/api/wishlists/",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"api",
-										"wishlists",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "formdata",
 									"formdata": [
-										{
-											"key": "user_id",
-											"value": "1",
-											"type": "text",
-											"disabled": true
-										},
 										{
 											"key": "relax_place_id",
 											"value": "7",
@@ -1083,90 +1513,150 @@
 										"wishlists",
 										""
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
-							"name": "delete",
+							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
+								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/wishlists/6",
+									"raw": "{{host}}/api/wishlists/11",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"wishlists",
-										"6"
+										"11"
 									]
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/wishlists/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"wishlists",
+										""
+									]
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/wishlists/3",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"wishlists",
+										"3"
+									]
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PATCH",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "formdata",
 									"formdata": [
 										{
 											"key": "user_id",
-											"value": "2",
+											"value": "8",
 											"type": "text",
 											"disabled": true
 										},
@@ -1178,25 +1668,26 @@
 										},
 										{
 											"key": "visit_time",
-											"value": "2023-08-11 ",
-											"type": "text"
+											"value": "2023-08-12 ",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/wishlists/6?visit_time=2023-08-11",
+									"raw": "{{host}}/api/wishlists/11?visit_time=2023-08-12",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"wishlists",
-										"6"
+										"11"
 									],
 									"query": [
 										{
 											"key": "visit_time",
-											"value": "2023-08-11"
+											"value": "2023-08-12"
 										},
 										{
 											"key": "user_id",
@@ -1209,11 +1700,13 @@
 											"disabled": true
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор. Пользователь способен обновлять только дату.\n\nEndFragment"
 							},
 							"response": []
 						}
 					],
+					"description": "Представляет собой модель списка желаемого со следующими аттрибутами:\n\n1. ID - bidint;\n2. user_id - bigint, FK for Users;\n3. relax_place_id - bigint, FK for RelaxPlaces;\n4. visit_time - timestamp (YYYY-MM-DD).",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1240,35 +1733,27 @@
 					"item": [
 						{
 							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"body": {
@@ -1291,38 +1776,31 @@
 										"api",
 										"notifications"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -1335,82 +1813,68 @@
 										"notifications",
 										"1"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/notifications/3",
+									"raw": "{{host}}/api/notifications/1",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"notifications",
-										"3"
+										"1"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1448,39 +1912,32 @@
 										"api",
 										"notifications"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
+								"method": "PATCH",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -1493,58 +1950,53 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/notifications/1?content=Postman content",
+									"raw": "{{host}}/api/notifications/2",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"notifications",
-										"1"
+										"2"
 									],
 									"query": [
 										{
 											"key": "content",
-											"value": "Postman content"
+											"value": "Postman content",
+											"disabled": true
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Представляет собой модель списка уведомлений о регистрации новых пользователей для администратора, об удалении мест отдыха, находящихся в избранном для пользователя со следующими аттрибутами:\n\n1. ID - bidint;\n2. user_id - bigint, FK for Users;\n3. type - varchar(255);\n4. content - text, nullable;\n5. viewed - boolean(=false);\n6. created_at - timestamp;\n7. updated_at - timestamp."
 				},
 				{
 					"name": "ratings",
 					"item": [
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1552,19 +2004,18 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "8",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "rating",
-											"value": "4",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "comment",
 											"value": "Some comment from Postman",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										}
 									]
 								},
@@ -1577,38 +2028,31 @@
 										"api",
 										"ratings"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор. Пользователь может оценивать, только если место есть в его списке желаемого.\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -1621,38 +2065,31 @@
 										"ratings",
 										"1"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -1664,86 +2101,69 @@
 										"api",
 										"ratings"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/ratings/33",
+									"raw": "{{host}}/api/ratings/39",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"ratings",
-										"33"
+										"39"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
 						{
 							"name": "updateById",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -1756,7 +2176,7 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/ratings/2",
+									"raw": "{{host}}/api/ratings/2?rating=4&relax_place_id=3",
 									"host": [
 										"{{host}}"
 									],
@@ -1764,54 +2184,58 @@
 										"api",
 										"ratings",
 										"2"
+									],
+									"query": [
+										{
+											"key": "rating",
+											"value": "4"
+										},
+										{
+											"key": "relax_place_id",
+											"value": "3"
+										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Представляет собой модель отзывов с оценками и комментариями для мест отдыха, находящихся в списке желаемого пользователей. Имеет следующие аттрибуты:\n\n1. ID - bidint;\n2. user_id - bigint, FK for Users;\n3. relax_place_id - bigint, FK for RelaxPlaces;\n4. rating -integer;\n5. comment - text;\n6. created_at - timestamp;\n7. updated_at - timestamp."
 				},
 				{
 					"name": "categories",
 					"item": [
 						{
 							"name": "getAll",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/categories",
+									"raw": "{{host}}/api/relax-place-categories",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
-										"categories"
+										"relax-place-categories"
 									]
 								}
 							},
@@ -1819,42 +2243,34 @@
 						},
 						{
 							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/categories/1",
+									"raw": "{{host}}/api/relax-place-categories/1",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
-										"categories",
+										"relax-place-categories",
 										"1"
 									]
 								}
@@ -1863,32 +2279,24 @@
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1902,13 +2310,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/categories",
+									"raw": "{{host}}/api/relax-place-categories",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
-										"categories"
+										"relax-place-categories"
 									]
 								}
 							},
@@ -1916,42 +2324,34 @@
 						},
 						{
 							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/categories/1",
+									"raw": "{{host}}/api/relax-place-categories/1",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
-										"categories",
+										"relax-place-categories",
 										"1"
 									]
 								}
@@ -1960,32 +2360,24 @@
 						},
 						{
 							"name": "updateById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "PUT",
 								"header": [],
 								"body": {
@@ -2000,13 +2392,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/categories/2?name=New category from Postman&id=сч",
+									"raw": "{{host}}/api/relax-place-categories/2?name=New category from Postman&id=сч",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
-										"categories",
+										"relax-place-categories",
 										"2"
 									],
 									"query": [
@@ -2023,39 +2415,32 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Представляет собой модель категорий мест отдыха. Имеет следующие аттрибуты:\n\n1. ID - bidint;\n2. name - varchar(255);\n3. created_at - timestamp;\n4. updated_at - timestamp."
 				},
 				{
 					"name": "relaxPlaceImages",
 					"item": [
 						{
 							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -2073,32 +2458,24 @@
 						},
 						{
 							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -2117,32 +2494,24 @@
 						},
 						{
 							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
@@ -2161,32 +2530,24 @@
 						},
 						{
 							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "PUT",
 								"header": [],
 								"body": {
@@ -2194,14 +2555,14 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{host}}/api/relax-place-images/3?image_name=Name from Postman",
+									"raw": "{{host}}/api/relax-place-images/8?image_name=Name from Postman",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"relax-place-images",
-										"3"
+										"8"
 									],
 									"query": [
 										{
@@ -2215,32 +2576,24 @@
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -2248,7 +2601,7 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "8",
+											"value": "9",
 											"type": "text"
 										},
 										{
@@ -2276,39 +2629,32 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Представляет собой модель фотографий мест отдыха. Имеет следующие аттрибуты:\n\n1. ID - bidint;\n2. relax_place_id - bigint, FK for RelaxPlace;\n3. image_name - varchar(255);\n4. path_to_image - varchar(255);\n5. created_at - timestamp;\n6. updated_at - timestamp."
 				},
 				{
 					"name": "userPhoto",
 					"item": [
 						{
 							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -2326,32 +2672,24 @@
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -2384,32 +2722,24 @@
 						},
 						{
 							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -2428,32 +2758,24 @@
 						},
 						{
 							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
@@ -2472,43 +2794,35 @@
 						},
 						{
 							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "PATCH",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/user-photos/2?image_name=Postman name",
+									"raw": "{{host}}/api/user-photos/6?image_name=Postman name",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"user-photos",
-										"2"
+										"6"
 									],
 									"query": [
 										{
@@ -2520,39 +2834,32 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "Представляет собой модель фотографий пользователя. Имеет следующие аттрибуты:\n\n1. ID - bigint;\n2. user_id - bigint, FK for User;\n3. image_name - varchar(255);\n4. path_to_photo - varchar(255);\n5. created_at - timestamp;\n6. updated_at - timestamp."
 				},
 				{
 					"name": "roleUser (admin)",
 					"item": [
 						{
 							"name": "create(blockUserById)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -2586,32 +2893,24 @@
 						},
 						{
 							"name": "delete (unblockUserById)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "",
-											"type": "string"
-										}
-									]
-								},
 								"method": "DELETE",
 								"header": [],
 								"body": {
@@ -2632,14 +2931,14 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/role-users/2",
+									"raw": "{{host}}/api/role-users/13",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"role-users",
-										"2"
+										"13"
 									]
 								}
 							},
@@ -2647,6 +2946,23 @@
 						},
 						{
 							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -2666,6 +2982,23 @@
 						},
 						{
 							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "PATCH",
 								"header": [],
@@ -2689,9 +3022,210 @@
 							},
 							"response": []
 						}
+					],
+					"description": "Представляет собой модель для управления ролями пользователя. Имеет следующие аттрибуты:\n\n1. ID - bigint;\n2. user_id - bigint, FK for User;\n3. role_id - bigint, FK for Role;\n4. created_at - timestamp;\n5. updated_at - timestamp."
+				},
+				{
+					"name": "userRecommendations",
+					"item": [
+						{
+							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations/3?relax_place_id=2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations",
+										"3"
+									],
+									"query": [
+										{
+											"key": "relax_place_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations?user_id=2&relax_place_id=4",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "2"
+										},
+										{
+											"key": "relax_place_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				}
-			]
+			],
+			"description": "Перенос проекта на Orion, полная реализация функционала."
 		}
 	],
 	"auth": {

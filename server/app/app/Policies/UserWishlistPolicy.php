@@ -30,7 +30,7 @@ class UserWishlistPolicy
 
     public function view(User $user, UserWishlist $userWishlist): Response
     {
-            return $this->deny();
+            return $this->allow();
     }
 
     public function create(User $user): Response
@@ -45,7 +45,7 @@ class UserWishlistPolicy
 
     public function delete(User $user, UserWishlist $userWishlist): Response
     {
-            return $this->deny();
+            return $this->allow();
     }
     public function restore(User $user, UserWishlist $userWishlist): Response
     {
