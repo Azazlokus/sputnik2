@@ -61,7 +61,7 @@ class UserWishlist extends Model
             foreach ($recommended_relax_place_id as $relax_place_id) {
                 if (UserRecommendation::query()
                     ->where('user_id', $userId)
-                    ->where('relax_place_id', $this->relaxPlace()->pluck('id'))
+                    ->where('relax_place_id', $relax_place_id)
                     ->doesntExist()) {
                     UserRecommendation::query()
                         ->create([
