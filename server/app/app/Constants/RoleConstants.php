@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Constants;
-enum RoleConstants
+enum RoleConstants //то же, что и в CountryConstants
 {
     const ADMIN = 'Administrator';
     const USER = 'User';

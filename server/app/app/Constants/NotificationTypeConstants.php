@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Constants;
-enum NotificationTypeConstants
+enum NotificationTypeConstants //то же, что и в CountryConstants
 {
     const PUSH = 'Push';
     const MAIL = 'Mail';

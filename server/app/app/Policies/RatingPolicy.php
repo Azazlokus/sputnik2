@@ -42,7 +42,7 @@ class RatingPolicy
 
     public function delete(User $user, Rating $rating): Response
     {
-        return $this->allow();
+        return $this->allow(); // все пользователи могут удалить любой рейтинг?
     }
     public function restore(User $user, Rating $rating): Response
     {

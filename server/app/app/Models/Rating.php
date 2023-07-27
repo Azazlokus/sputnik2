@@ -31,7 +31,7 @@ class Rating extends Model
     {
         parent::boot();
         static::creating(function (self $model) {
-            $model->cancelIfAlreadyExist();
+            $model->cancelIfAlreadyExist(); // Я будто на свой код гляжу :)
             $model->cancelIfWasntFavorite();
         });
     }
@@ -45,18 +45,19 @@ class Rating extends Model
             UserWishlist::query()->where('user_id', $this->user_id)
                 ->where('relax_place_id', $this->relax_place_id)->doesntExist()
         ) {
-            throw new Exception('Error: this place isn\' favorite', 500);
+            throw new Exception('Error: this place isn\' favorite', 500); // про исключения я уже писал
         }
     }
 
     public function cancelIfAlreadyExist()
     {
-        $user = auth()->user();
+        $user = auth()->user();//ниже происходит что-то страшное
+        // зачем получать ratings из пользователя, если мы и так находимся в сущности Rating
         if ($user && $user->ratings()->where('relax_place_id', $this->relaxPlace()->pluck('id'))->exists()) {
             throw new Exception('This rating is already exist.', 409);
         }
         if ($user) {
-            $this->user_id = $user->id;
+            $this->user_id = $user->id; // зачем это тут, как это соотносится с названием метода?
         }
     }
 

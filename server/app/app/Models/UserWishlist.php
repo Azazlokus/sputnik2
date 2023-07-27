@@ -42,6 +42,7 @@ class UserWishlist extends Model
     private function checkIfWishlistAlreadyExist(): void
     {
         $user = auth()->user();
+        //не очень понятно, зачем здесь проверять user'а, это по идее в политике нужно делать
         if ($user && $user->wishlists()->where('relax_place_id', $this->relaxPlace()->pluck('id'))->exists()) {
             throw new Exception('This place is already in the user\'s wishlist.', 409);
         }
@@ -57,6 +58,7 @@ class UserWishlist extends Model
             ->where('country', $target_country)
             ->pluck('id');
         $userId = auth()->user()->getAuthIdentifier();
+        // Ну очень уж громоздко по вложенности получилось, я бы переделал
         if (!$recommended_relax_place_id->isEmpty()) {
             foreach ($recommended_relax_place_id as $relax_place_id) {
                 if (UserRecommendation::query()

@@ -14,7 +14,7 @@ class UserNotificationsSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(): void //Зачем пустой файл нужен?
     {
 
     }

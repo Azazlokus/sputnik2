@@ -2,12 +2,14 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
+use App\Constants\RoleConstants;//...
 use App\Models\User;
 use App\Models\UserPhoto;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
+ // исходя из этого файла политик, следует, что кто угодно,
+ // может делать почти все что угодно над любыми фотографиями
 class UserPhotoPolicy
 {
     use HandlesAuthorization;

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Orion\Http\Requests\Request;
 class RoleUserRequest extends Request
 {
-    protected $table = 'role_user';
+    protected $table = 'role_user'; // это тут точно нужно?
     public function storeRules(): array
     {
         return [

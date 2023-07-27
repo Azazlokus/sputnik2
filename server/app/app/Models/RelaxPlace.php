@@ -45,7 +45,8 @@ class RelaxPlace extends Model
             UserNotification::query()->create([
                 'user_id' => $userId,
                 'type' => 'push',
-                'content' => 'User with id: '. $userId . ' your place from wishlist has been deleted'
+                'content' => 'User with id: '. $userId . ' your place from wishlist has been deleted' 
+                // зачем делать некрасивую конкатенацию, если можно использовать строку с двойными кавычками
             ]);
         }
     }
