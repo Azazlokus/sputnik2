@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
 class UserRecommendationPolicy
-{    use HandlesAuthorization;
+{    use HandlesAuthorization; //от такого форматирования хочется плакать
     public function before(User $user, string $ability): bool|null
     {
         if ($user->isAdmin()) {

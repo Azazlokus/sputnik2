@@ -16,7 +16,7 @@ class RatingRequest extends Request
     public function updateRules(): array
     {
         return [
-            'relax_place_id' => 'required|exists:relax_places,id',
+            'relax_place_id' => 'required|exists:relax_places,id',//в updateRules наверно лучше убрать required
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|min:1|max:1000',
         ];

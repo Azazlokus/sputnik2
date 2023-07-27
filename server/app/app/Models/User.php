@@ -118,7 +118,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasRole(RoleConstants::USER_BLOCKED);
     }
-    public  function hasWishlist($wishList)
+    public  function hasWishlist($wishList) //возвращаемый тип указать забыл
     {
         return $this->wishlists->contains('id', $wishList->id);
     }

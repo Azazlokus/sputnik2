@@ -21,6 +21,9 @@ class RoleUserController extends Controller
     protected $resource = RoleUserResource::class;
     protected $policy =RoleUserPolicy::class;
 
+    // Зачем размещать столько логики в контроллере
+    // Мы же, по идее, должны были использовать подход толстых моделей
+    // Всю эту логику можно было разместить в модели
     protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);

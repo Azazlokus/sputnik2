@@ -24,7 +24,7 @@ class UserRecommendationController extends Controller
         $this->ifUserChangeQuery($query);
         return $query;
     }
-    protected  function ifUserChangeQuery($query): void
+    protected  function ifUserChangeQuery($query): void // Что вообще значит ifUserChange? Название не очень ясное
     {
         $user = User::query()->find($this->getUserId());
         if($user->isUser()) {

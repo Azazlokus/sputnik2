@@ -29,7 +29,7 @@ class RoleUserPolicy
         return $this->allow();
     }
 
-
+    // посмотреть все можно, а конкретную роль нельзя?
     public function view(User $user, RoleUser $roleUser)
     {
         return $this->deny();

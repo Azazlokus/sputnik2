@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
+use App\Constants\RoleConstants;//...
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -38,7 +38,7 @@ class UserPolicy
     }
 
     public function update(User $user, User $model): Response {
-        return $this->allow();
+        return $this->allow(); // точно должно быть allow?
     }
 
     public function delete(User $user, User $model): Response

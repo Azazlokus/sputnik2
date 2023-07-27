@@ -16,6 +16,9 @@ class UserNotificationRequest extends Request
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
+            //Некрасивый костыль
+            //Можно например сделать так:
+            //'type' => ['required','string','min:1','max:255',Rule::in([NotificationTypeConstants::PUSH , NotificationTypeConstants::MAIL])]
             'type' => 'required|string|min:1|max:255|in:' . NotificationTypeConstants::PUSH . ',' . NotificationTypeConstants::MAIL,
             'content' => 'nullable|string|min:1|max:1000',
             'viewed' => 'prohibited',

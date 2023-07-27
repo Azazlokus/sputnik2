@@ -24,7 +24,7 @@ class UserWishlistController extends Controller
         $this->ifUserCnangeQuery($query);
         return $query;
     }
-    protected  function ifUserCnangeQuery($query){
+    protected  function ifUserCnangeQuery($query){// Cnange :)
         $user = User::query()->find($this->getUserId());
         if($user->isUser()) {
             $query->where('user_id', $user->id);

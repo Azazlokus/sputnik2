@@ -6,7 +6,7 @@ use App\Constants\RoleConstants;
 use Closure;
 use Exception;
 
-class AdminMiddleware
+class AdminMiddleware // Ты его вроде не используешь
 {
     /**
      * @throws \Exception
