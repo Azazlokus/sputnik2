@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $user = User::query()->find($this->getUserID());
         if($user->isUser()) {
-            $query->where('user_id', $user->id);
+            $query->where('id', $user->id);
         }
     }
     protected function getUserID()

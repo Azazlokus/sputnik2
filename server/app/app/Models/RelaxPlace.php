@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class RelaxPlace extends Model
 {
@@ -19,11 +20,14 @@ class RelaxPlace extends Model
         'category'
     ];
 
-    public function wishlists()
+    public function wishlists(): BelongsToMany
     {
-        return $this->hasMany(UserWishlist::class);
+        return $this->belongsToMany(UserWishlist::class);
     }
-
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
     protected static function boot()
     {
         parent::boot();

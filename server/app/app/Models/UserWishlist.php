@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class UserWishlist extends Model
 {
@@ -23,9 +24,9 @@ class UserWishlist extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function relaxPlaces(): BelongsTo
+    public function relaxPlaces(): BelongsToMany
     {
-        return $this->belongsTo(RelaxPlace::class);
+        return $this->belongsToMany(RelaxPlace::class);
     }
 
     protected static function boot(): void
@@ -38,10 +39,10 @@ class UserWishlist extends Model
 
     }
 
-    private function checkIfWishlistAlreadyExist()
+    private function checkIfWishlistAlreadyExist(): void
     {
         $user = auth()->user();
-        if ($user && $user->wishlists->where('relax_place_id', $this->relax_place_id)->exists()) {
+        if ($user && $user->wishlists()->where('relax_place_id', $this->relax_place_id)->exists()) {
             throw new Exception('This place is already in the user\'s wishlist.', 409);
         }
         if ($user) {
@@ -53,7 +54,7 @@ class UserWishlist extends Model
     {
         $target_country = $this->relaxPlaces()->pluck('country');
         $recommended_relax_place_id = RelaxPlace::query()
-            ->where('country', $target_country)
+            ->where('country', 'USA')
             ->pluck('id');
         if (!$recommended_relax_place_id->isEmpty()) {
 
