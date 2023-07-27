@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -22,7 +21,7 @@ class RatingPolicy
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response
     {
         return $this->allow();
     }

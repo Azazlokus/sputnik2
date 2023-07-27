@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace app\Http\Requests;
 
 use App\Constants\NotificationTypeConstants;
 use Orion\Http\Requests\Request;
 
 class UserNotificationRequest extends Request
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function storeRules(): array
     {
         return [

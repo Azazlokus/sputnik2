@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\Constants\RoleConstants;
+
 use App\Models\User;
 use App\Models\UserNotification;
-use App\Models\UserWishlist;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -20,15 +19,15 @@ class UserNotificationPolicy
         }
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response
     {
         return $this->allow();
     }
 
 
-    public function view(User $user, UserNotification $userNotification)
+    public function view(User $user, UserNotification $userNotification): Response
     {
-        return $this->allow();
+        return $this->deny();
     }
 
     public function create(User $user): Response

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -21,7 +20,6 @@ class UserPolicy
 
         return null;
     }
-
     public function viewAny(User $user)
     {
         return $this->allow();

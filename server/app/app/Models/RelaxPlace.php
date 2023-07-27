@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,12 +31,12 @@ class RelaxPlace extends Model
     protected static function boot()
     {
         parent::boot();
-
         static::deleting(function (self $model) {
             $model->sendNotifications();
         });
 
     }
+  
     public function sendNotifications(): void
     {
         $usersId = $this->wishlists->pluck('user_id');

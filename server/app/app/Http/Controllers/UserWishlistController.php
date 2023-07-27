@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
-use App\Constants\RoleConstants;
 use App\Http\Requests\UserWishlistRequest;
 use App\Http\Resources\UserWishlistResource;
 use App\Models\User;

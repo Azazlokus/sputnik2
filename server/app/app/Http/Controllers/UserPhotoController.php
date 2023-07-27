@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use App\Http\Requests\UserPhotoRequest;
 use App\Http\Resources\UserPhotoResource;

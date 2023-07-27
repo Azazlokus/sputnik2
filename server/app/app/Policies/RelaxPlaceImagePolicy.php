@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\Constants\RoleConstants;
-use App\Models\Rating;
 use App\Models\RelaxPlaceImage;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -23,13 +21,13 @@ class RelaxPlaceImagePolicy
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response
     {
         return $this->allow();
     }
 
 
-    public function view(User $user, RelaxPlaceImage $relaxPlaceImage)
+    public function view(User $user, RelaxPlaceImage $relaxPlaceImage): Response
     {
         return $this->allow();
     }
