@@ -17,13 +17,19 @@ class UserWishlistController extends Controller
     protected $request = UserWishlistRequest::class;
     protected $model = UserWishlist::class;
     protected $policy = UserWishlistPolicy::class;
-    protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
+    protected function buildFetchQuery( $request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
+        $query = parent::buildFetchQuery($request, $requestedRelations);
+        $this->ifUserCnangeQuery($query);
+        return $query;
+    }
+    protected  function ifUserCnangeQuery($query){
+        $user = User::query()->find($this->getUserId());
         if($user->isUser()) {
             $query->where('user_id', $user->id);
         }
-        return $query;
+    }
+    protected function getUserId(){
+        return Auth::user()->getAuthIdentifier();
     }
 }

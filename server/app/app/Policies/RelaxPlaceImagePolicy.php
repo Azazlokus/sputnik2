@@ -23,7 +23,7 @@ class RelaxPlaceImagePolicy
     }
     public function viewAny(User $user): Response
     {
-        return $this->deny();
+        return $this->allow();
     }
 
 
