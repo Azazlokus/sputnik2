@@ -33,8 +33,6 @@ class UserWishlist extends Model
         parent::boot();
         static::creating(function (self $model) {
             $model->checkIfWishlistAlreadyExist();
-        });
-        static::created(function (self $model) {
             $model->addRecommendationByCountry();
         });
 
@@ -43,7 +41,7 @@ class UserWishlist extends Model
     private function checkIfWishlistAlreadyExist()
     {
         $user = auth()->user();
-        if ($user && $user->wishlists()->where('relax_place_id', $this->relax_place_id)->exists()) {
+        if ($user && $user->wishlists->where('relax_place_id', $this->relax_place_id)->exists()) {
             throw new Exception('This place is already in the user\'s wishlist.', 409);
         }
         if ($user) {
@@ -53,16 +51,19 @@ class UserWishlist extends Model
 
     private function addRecommendationByCountry()
     {
-        $target_country = $this->relaxPlaces->pluck('country')->unique();
+        $target_country = $this->relaxPlaces()->pluck('country');
         $recommended_relax_place_id = RelaxPlace::query()
             ->where('country', $target_country)
             ->pluck('id');
-        foreach ($recommended_relax_place_id as $relax_place_id) {
-            UserRecommendation::query()
-                ->create([
-                    'user_id' => $this->user_id,
-                    'relax_place_id' => $relax_place_id,
-                ]);
+        if (!$recommended_relax_place_id->isEmpty()) {
+
+            foreach ($recommended_relax_place_id as $relax_place_id) {
+                UserRecommendation::query()
+                    ->create([
+                        'user_id' => $this->user_id,
+                        'relax_place_id' => 2,
+                    ]);
+            }
         }
     }
 }

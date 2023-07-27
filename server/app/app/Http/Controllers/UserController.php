@@ -20,28 +20,30 @@ class UserController extends Controller
     protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
-        if($user->isUser()) {
-            $query->where('id', $user->id);
-        }
+        $this->ifUserChangeQuery($query);
         return $query;
     }
     protected function buildShowFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildShowFetchQuery($request, $requestedRelations);
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
-        if($user->isUser()) {
-            $query->where('id', $user->id);
-        }
+        $this->ifUserChangeQuery($query);
         return $query;
     }
     protected function buildUpdateFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildUpdateFetchQuery($request, $requestedRelations);
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
-        if($user->isUser()) {
-            $query->where('id', $user->id);
-        }
+        $this->ifUserChangeQuery($query);
         return $query;
+    }
+    protected  function ifUserChangeQuery($query): void
+    {
+        $user = User::query()->find($this->getUserID());
+        if($user->isUser()) {
+            $query->where('user_id', $user->id);
+        }
+    }
+    protected function getUserID()
+    {
+        return Auth::user()->getAuthIdentifier();
     }
 }

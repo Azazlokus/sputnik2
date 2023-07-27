@@ -20,10 +20,18 @@ class UserNotificationController extends Controller
     protected function buildFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildFetchQuery($request, $requestedRelations);
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
+        $this->ifUserChangeQuery($query);
+        return $query;
+    }
+    protected  function ifUserChangeQuery($query): void
+    {
+        $user = User::query()->find($this->getUserID());
         if($user->isUser()) {
             $query->where('user_id', $user->id);
         }
-        return $query;
+    }
+    protected function getUserID()
+    {
+        return Auth::user()->getAuthIdentifier();
     }
 }

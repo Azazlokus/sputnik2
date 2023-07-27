@@ -2,27 +2,16 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Orion\Http\Requests\Request;
 
-class UserRecommendationRequest extends FormRequest
+class UserRecommendationRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
-    public function rules(): array
+    public function storeRules(): array
     {
         return [
-            //
+            'user_id' => 'required|integer|exists:users,id',
+            'relax_place_id' => 'required|exists:relax_places,id',
         ];
     }
 }
