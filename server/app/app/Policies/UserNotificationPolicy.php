@@ -18,6 +18,9 @@ class UserNotificationPolicy
         if ($user->isAdmin()) {
             return true;
         }
+        if ($user->isBlocked()) {
+            return false;
+        }
 
         return null;
     }

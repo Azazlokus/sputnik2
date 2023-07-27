@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Rating;
 use App\Models\User;
+use App\Models\UserRecommendation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -14,17 +15,13 @@ class UserRecommendationPolicy
         if ($user->isAdmin()) {
             return true;
         }
-        if ($user->isBlocked()) {
-            return false;
-        }
-
         return null;
     }
     public function viewAny(User $user)
     {
         return $this->allow();
     }
-    public function view(User $user, Rating $rating)
+    public function view(User $user, UserRecommendation $userRecommendation)
     {
         return $this->allow();
     }
@@ -34,20 +31,20 @@ class UserRecommendationPolicy
         return $this->deny();
     }
 
-    public function update(User $user, Rating $rating): Response {
+    public function update(User $user, UserRecommendation $userRecommendation): Response {
         return $this->deny();
     }
 
-    public function delete(User $user, Rating $rating): Response
+    public function delete(User $user, UserRecommendation $userRecommendation): Response
     {
         return $this->deny();
     }
-    public function restore(User $user, Rating $rating): Response
+    public function restore(User $user, UserRecommendation $userRecommendation): Response
     {
         return $this->deny();
     }
 
-    public function forceDelete(User $user, Rating $rating): Response {
+    public function forceDelete(User $user, UserRecommendation $userRecommendation): Response {
         return $this->deny();
     }
 }

@@ -143,7 +143,8 @@
 										"relax-place-categories",
 										""
 									]
-								}
+								},
+								"description": "Может только админ"
 							},
 							"response": []
 						},
@@ -222,7 +223,8 @@
 										"api",
 										"relax-places"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -254,7 +256,8 @@
 										"api",
 										"notifications"
 									]
-								}
+								},
+								"description": "Для проверки начального количества уведомлений"
 							},
 							"response": []
 						},
@@ -323,7 +326,8 @@
 										"users",
 										""
 									]
-								}
+								},
+								"description": "Может неавторизованный гость"
 							},
 							"response": []
 						},
@@ -380,7 +384,8 @@
 										"auth",
 										"login"
 									]
-								}
+								},
+								"description": "StartFragment\n\nВход пользователя\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -422,7 +427,8 @@
 										"api",
 										"notifications"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -486,7 +492,8 @@
 										"api",
 										"relax-places"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -581,7 +588,8 @@
 											"disabled": true
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -669,7 +677,8 @@
 										"api",
 										"ratings"
 									]
-								}
+								},
+								"description": "Пользователь может оценивать только те места, котрые есть в его списке желаний."
 							},
 							"response": []
 						},
@@ -704,7 +713,8 @@
 										"relax-place-categories",
 										"{{relax_place_category_id}}"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -723,7 +733,8 @@
 										"users",
 										"{{user_id}}"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет только админ (откат теста)\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -742,7 +753,8 @@
 										"auth",
 										"logout"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -791,7 +803,8 @@
 										"auth",
 										"logout"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь"
 							},
 							"response": []
 						}
@@ -880,7 +893,8 @@
 											"disabled": true
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет только админ\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -931,7 +945,8 @@
 										"auth",
 										"login"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -963,7 +978,8 @@
 										"auth",
 										"logout"
 									]
-								}
+								},
+								"description": "StartFragment\n\nВыход из системы, только авторизованные\n\nEndFragment"
 							},
 							"response": []
 						}
@@ -1001,7 +1017,8 @@
 										"users",
 										""
 									]
-								}
+								},
+								"description": "Может пользователь и администратор"
 							},
 							"response": []
 						},
@@ -1033,7 +1050,8 @@
 										"users",
 										"2"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1088,7 +1106,8 @@
 										"users",
 										""
 									]
-								}
+								},
+								"description": "Создание записи, может неавторизованный гость"
 							},
 							"response": []
 						},
@@ -1120,7 +1139,8 @@
 										"users",
 										"2"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1140,10 +1160,10 @@
 								}
 							],
 							"request": {
-								"method": "PATCH",
+								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/2?first_name=Ivan&last_name=Ivanov",
+									"raw": "{{host}}/api/users/2?first_name=Ivan&last_name=Petrov",
 									"host": [
 										"{{host}}"
 									],
@@ -1159,10 +1179,11 @@
 										},
 										{
 											"key": "last_name",
-											"value": "Ivanov"
+											"value": "Petrov"
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						}
@@ -1243,7 +1264,8 @@
 										"api",
 										"relax-places"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1278,7 +1300,8 @@
 										"api",
 										"relax-places"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1305,16 +1328,17 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/relax-places/8",
+									"raw": "{{host}}/api/relax-places/10",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"relax-places",
-										"8"
+										"10"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1350,7 +1374,8 @@
 										"relax-places",
 										"2"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1400,7 +1425,8 @@
 											"value": "4.22"
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						}
@@ -1441,6 +1467,58 @@
 					"name": "wishlists",
 					"item": [
 						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "relax_place_id",
+											"value": "7",
+											"type": "text"
+										},
+										{
+											"key": "visit_time",
+											"value": "2023-08-11",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/wishlists/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"wishlists",
+										""
+									]
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
 							"name": "view",
 							"event": [
 								{
@@ -1463,16 +1541,17 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/wishlists/2",
+									"raw": "{{host}}/api/wishlists/11",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"wishlists",
-										"2"
+										"11"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1508,58 +1587,8 @@
 										"wishlists",
 										""
 									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Checking the status of code 201\", function() {\r",
-											"    pm.response.to.have.status(201);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Response time is less than 1 second\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "relax_place_id",
-											"value": "9",
-											"type": "text"
-										},
-										{
-											"key": "visit_time",
-											"value": "2023-08-11",
-											"type": "text"
-										}
-									]
 								},
-								"url": {
-									"raw": "{{host}}/api/wishlists/",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"api",
-										"wishlists",
-										""
-									]
-								}
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1595,7 +1624,8 @@
 										"wishlists",
 										"3"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1670,7 +1700,8 @@
 											"disabled": true
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор. Пользователь способен обновлять только дату.\n\nEndFragment"
 							},
 							"response": []
 						}
@@ -1745,7 +1776,8 @@
 										"api",
 										"notifications"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1781,7 +1813,8 @@
 										"notifications",
 										"1"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1817,7 +1850,8 @@
 										"notifications",
 										"1"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1878,7 +1912,8 @@
 										"api",
 										"notifications"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -1931,7 +1966,8 @@
 											"disabled": true
 										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
 							},
 							"response": []
 						}
@@ -1968,12 +2004,12 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "6",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "rating",
-											"value": "5",
+											"value": "2",
 											"type": "text"
 										},
 										{
@@ -1992,7 +2028,8 @@
 										"api",
 										"ratings"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор. Пользователь может оценивать, только если место есть в его списке желаемого.\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -2028,7 +2065,8 @@
 										"ratings",
 										"1"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -2063,7 +2101,8 @@
 										"api",
 										"ratings"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -2099,7 +2138,8 @@
 										"ratings",
 										"39"
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						},
@@ -2122,11 +2162,8 @@
 									}
 								}
 							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -2139,7 +2176,7 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/ratings/2",
+									"raw": "{{host}}/api/ratings/2?rating=4&relax_place_id=3",
 									"host": [
 										"{{host}}"
 									],
@@ -2147,8 +2184,19 @@
 										"api",
 										"ratings",
 										"2"
+									],
+									"query": [
+										{
+											"key": "rating",
+											"value": "4"
+										},
+										{
+											"key": "relax_place_id",
+											"value": "3"
+										}
 									]
-								}
+								},
+								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
 							},
 							"response": []
 						}
@@ -2883,14 +2931,14 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/role-users/2",
+									"raw": "{{host}}/api/role-users/13",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"role-users",
-										"2"
+										"13"
 									]
 								}
 							},
@@ -2976,6 +3024,205 @@
 						}
 					],
 					"description": "Представляет собой модель для управления ролями пользователя. Имеет следующие аттрибуты:\n\n1. ID - bigint;\n2. user_id - bigint, FK for User;\n3. role_id - bigint, FK for Role;\n4. created_at - timestamp;\n5. updated_at - timestamp."
+				},
+				{
+					"name": "userRecommendations",
+					"item": [
+						{
+							"name": "viewAny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "view",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations/3?relax_place_id=2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations",
+										"3"
+									],
+									"query": [
+										{
+											"key": "relax_place_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Checking the status of code 201\", function() {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1 second\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/user-recommendations?user_id=2&relax_place_id=4",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"user-recommendations"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "2"
+										},
+										{
+											"key": "relax_place_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"description": "Перенос проекта на Orion, полная реализация функционала."

@@ -21,14 +21,17 @@ class UserRecommendationController extends Controller
     protected function buildFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildFetchQuery($request, $requestedRelations);
-        $this->ifUserCnangeQuery($query);
+        $this->ifUserChangeQuery($query);
         return $query;
     }
-    protected  function ifUserCnangeQuery($query): void
+    protected  function ifUserChangeQuery($query): void
     {
-        $user = User::query()->find(Auth::user()->getAuthIdentifier());
+        $user = User::query()->find($this->getUserId());
         if($user->isUser()) {
             $query->where('user_id', $user->id);
         }
+    }
+    protected function getUserId(){
+        return Auth::user()->getAuthIdentifier();
     }
 }

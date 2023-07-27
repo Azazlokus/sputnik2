@@ -24,9 +24,9 @@ class UserWishlist extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function relaxPlaces(): BelongsToMany
+    public function relaxPlace(): BelongsTo
     {
-        return $this->belongsToMany(RelaxPlace::class);
+        return $this->belongsTo(RelaxPlace::class);
     }
 
     protected static function boot(): void
@@ -42,7 +42,7 @@ class UserWishlist extends Model
     private function checkIfWishlistAlreadyExist(): void
     {
         $user = auth()->user();
-        if ($user && $user->wishlists()->where('relax_place_id', $this->relax_place_id)->exists()) {
+        if ($user && $user->wishlists()->where('relax_place_id', $this->relaxPlace()->pluck('id'))->exists()) {
             throw new Exception('This place is already in the user\'s wishlist.', 409);
         }
         if ($user) {
@@ -52,18 +52,23 @@ class UserWishlist extends Model
 
     private function addRecommendationByCountry()
     {
-        $target_country = $this->relaxPlaces()->pluck('country');
+        $target_country = $this->relaxPlace()->pluck('country');
         $recommended_relax_place_id = RelaxPlace::query()
-            ->where('country', 'USA')
+            ->where('country', $target_country)
             ->pluck('id');
+        $userId = auth()->user()->getAuthIdentifier();
         if (!$recommended_relax_place_id->isEmpty()) {
-
             foreach ($recommended_relax_place_id as $relax_place_id) {
-                UserRecommendation::query()
-                    ->create([
-                        'user_id' => $this->user_id,
-                        'relax_place_id' => 2,
-                    ]);
+                if (UserRecommendation::query()
+                    ->where('user_id', $userId)
+                    ->where('relax_place_id', $this->relaxPlace()->pluck('id'))
+                    ->doesntExist()) {
+                    UserRecommendation::query()
+                        ->create([
+                            'user_id' => $this->user_id,
+                            'relax_place_id' => $relax_place_id,
+                        ]);
+                }
             }
         }
     }

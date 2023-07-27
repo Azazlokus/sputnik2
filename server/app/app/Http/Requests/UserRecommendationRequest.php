@@ -11,7 +11,7 @@ class UserRecommendationRequest extends Request
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'relax_place_id' => 'required|exists:relax_places,id',
+            'relax_place_id' => 'required|integer|exists:relax_places,id',
         ];
     }
 }
