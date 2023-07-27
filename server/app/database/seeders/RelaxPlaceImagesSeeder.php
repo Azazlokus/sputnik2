@@ -15,8 +15,10 @@ class RelaxPlaceImagesSeeder extends Seeder
      */
     public function run(): void
     {
-        RelaxPlaceImage::factory()
-            ->count(10)
-            ->create();
+        RelaxPlaceImage::withoutEvents(function () {
+            RelaxPlaceImage::factory()
+                ->count(10)
+                ->create();
+        });
     }
 }

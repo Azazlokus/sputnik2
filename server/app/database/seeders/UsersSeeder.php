@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Constants\RoleConstants;
 use App\Models\Role;
 use App\Models\User;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class UsersSeeder extends Seeder
@@ -18,26 +16,29 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         User::withoutEvents(function () {
-            $admin = User::create([
-                'email' => 'admin@mail.ru',
-                'email_verified_at' => now(),
-                'password' => bcrypt('admin'),
-                'remember_token' => Str::random(10),
-            ]);
-            $user = User::create([
-                'email' => 'user@anime.ru',
-                'email_verified_at' => now(),
-                'password' => bcrypt('2002KemerovscayaSova2002'),
-                'remember_token' => Str::random(10),
-            ]);
-            $adminRole = Role::query()->where('role', \App\Constants\Role::ADMIN)->first();
-            $userRole = Role::query()->where('role', \App\Constants\Role::USER)->first();
-            $admin->roles()->attach($adminRole->id);
-            $user->roles()->attach($userRole->id);
+            if (!User::where('email', 'admin@mail.ru')->exists()) {
+                $admin = User::query()->create([
+                    'email' => 'admin@mail.ru',
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('password'),
+                    'remember_token' => Str::random(10),
+                ]);
+                $admin->roles()->attach(Role::query()->where('role', RoleConstants::ADMIN)->first());
 
-            User::factory()
-                ->count(10)
-                ->create();
+            }
+            if (!User::where('email', 'user@mail.ru')->exists()) {
+                $user = User::query()->create([
+                    'email' => 'user@mail.ru',
+                    'email_verified_at' => now(),
+                    'password' => bcrypt('password'),
+                    'remember_token' => Str::random(10),
+                ]);
+                $user->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+
+            }
+
+            User::factory()->count(10)->hasAttached(Role::where('role', RoleConstants::USER)->first())->create();
+
         });
     }
 }

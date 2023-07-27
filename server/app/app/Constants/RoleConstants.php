@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Constants;
-class Role
+enum RoleConstants
 {
     const ADMIN = 'Administrator';
     const USER = 'User';
+    const USER_BLOCKED = 'User_blocked';
 }

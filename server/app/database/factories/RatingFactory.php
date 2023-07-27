@@ -19,9 +19,9 @@ class RatingFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::query()->inRandomOrder()->pluck('id')->first(),
-            'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
-            'rating' => rand(0, 5),
+            'user_id' => User::all()->random()->id,
+            'relax_place_id' => RelaxPlace::all()->random()->id,
+            'rating' => rand(1, 5),
             'comment' => $this->faker->paragraph(),
         ];
     }

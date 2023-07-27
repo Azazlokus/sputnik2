@@ -17,9 +17,10 @@ class UserPhotoSeeder extends Seeder
      */
     public function run(): void
     {
-
-        UserPhoto::factory()
-            ->count(10)
-            ->create();
+        UserPhoto::withoutEvents(function () {
+            UserPhoto::factory()
+                ->count(10)
+                ->create();
+        });
     }
 }

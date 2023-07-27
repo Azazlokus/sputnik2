@@ -13,5 +13,6 @@ class UserNotification extends Model
         'user_id',
         'type',
         'content',
+        'viewed'
     ];
 }

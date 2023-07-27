@@ -18,7 +18,7 @@ class RelaxPlaceImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'relax_place_id' => RelaxPlace::query()->inRandomOrder()->pluck('id')->first(),
+            'relax_place_id' => RelaxPlace::all()->random()->id,
             'image_name' => $this->faker->name(),
             'path_to_image' => $this->faker->filePath()
         ];

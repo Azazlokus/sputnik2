@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RelaxPlaceCategory extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+    ];
 }

@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Events\UserCreatedEvent;
+use App\Constants\NotificationTypeConstants;
+use App\Constants\RoleConstants;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -19,42 +18,54 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $keyType = 'string';
-
-    protected $dispatchesEvents = [
-        'created' => UserCreatedEvent::class,
-    ];
-
     protected $fillable = [
         'id',
         'name',
         'email',
         'password',
+        'first_name',
+        'last_name'
     ];
 
+    public static function boot(): void
+    {
+        parent::boot();
+        static::created(function (self $model) {
+            $model->sendNotificationsToAdmins();
+            $model->attachDefaultRole();
+        });
+    }
 
+    private function attachDefaultRole()
+    {
+        $this->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+    }
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    public function sendNotificationsToAdmins()
+    {
+        $adminRoleId = Role::query()->where('role', RoleConstants::ADMIN)->value('id');
+
+        $admins = User::query()->whereHas('roles', function ($query) use ($adminRoleId) {
+            $query->where('role_id', $adminRoleId);
+        })->get();
+
+        foreach ($admins as $admin) {
+            UserNotification::query()->create([
+                'user_id' => $admin->getKey(),
+                'type' => NotificationTypeConstants::PUSH,
+                'content' => 'User with id: ' . $this->id . ' has been registered',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+    }
+
     protected $hidden = [
         'password',
         'remember_token',
 
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
@@ -62,7 +73,17 @@ class User extends Authenticatable implements JWTSubject
 
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'role_users');
+    }
+
+    public function wishlists(): HasMany
+    {
+        return $this->hasMany(UserWishlist::class);
+    }
+
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
     }
 
     protected static function newFactory(): Factory
@@ -79,4 +100,27 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function hasRole($roleName) : bool
+    {
+        return $this->roles->contains('role', $roleName);
+    }
+
+    public function isUser(): bool
+    {
+        return $this->hasRole(RoleConstants::USER);
+    }
+    public function isAdmin(): bool
+    {
+        return $this->hasRole(RoleConstants::ADMIN);
+    }
+    public function isBlocked(): bool
+    {
+        return $this->hasRole(RoleConstants::USER_BLOCKED);
+    }
+    public  function hasWishlist($wishList)
+    {
+        return $this->wishlists->contains('id', $wishList->id);
+    }
+
 }

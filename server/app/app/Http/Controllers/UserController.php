@@ -2,52 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\LoginUserRequest;
-use App\Http\Resources\LoginResource;
-use App\Http\Resources\LogoutResource;
+use App\Constants\RoleConstants;
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Policies\UserPolicy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Mockery\Exception;
+use Orion\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function create(CreateUserRequest $request)
+    protected $model = User::class;
+    protected $request = UserRequest::class;
+    protected $resource = UserResource::class;
+    protected $policy = UserPolicy::class;
+    protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
     {
-        $user = new User();
-        $user->fill($request->only(['email', 'password']));
-        $user->save();
-
-        return new UserResource($user);
+        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $this->ifUserChangeQuery($query);
+        return $query;
     }
-
-    public function login(LoginUserRequest $request)
+    protected function buildShowFetchQuery( $request, array $requestedRelations): Builder
     {
-        $credentials = $request->only('email', 'password');
-        if ($token = auth()->attempt($credentials)) {
-            return new LoginResource($token);
+        $query = parent::buildShowFetchQuery($request, $requestedRelations);
+        $this->ifUserChangeQuery($query);
+        return $query;
+    }
+    protected function buildUpdateFetchQuery( $request, array $requestedRelations): Builder
+    {
+        $query = parent::buildUpdateFetchQuery($request, $requestedRelations);
+        $this->ifUserChangeQuery($query);
+        return $query;
+    }
+    protected  function ifUserChangeQuery($query): void
+    {
+        $user = User::query()->find($this->getUserID());
+        if($user->isUser()) {
+            $query->where('id', $user->id);
         }
-        throw new Exception();
     }
-
-    public function logout()
+    protected function getUserID()
     {
-        $user = Auth::guard('api')->user();
-        Auth::guard('api')->logout();
-        return new LogoutResource($user);
+        return Auth::user()->getAuthIdentifier();
     }
-
-    public function index()
-    {
-        $user = Auth::guard('api')->user();
-        if ($user) {
-            return new UserResource($user);
-        }
-        throw new Exception();
-    }
-
-
 }

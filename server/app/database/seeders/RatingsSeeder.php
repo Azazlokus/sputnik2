@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class RatingsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
     public function run(): void
     {
-        Rating::factory()
-            ->count(50)
-            ->create();
+        Rating::withoutEvents(function () {
+            Rating::factory()
+                ->count(50)
+                ->create();
+        });
     }
 }
