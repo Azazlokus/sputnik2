@@ -26,7 +26,7 @@ class RatingPolicy
     {
         return $this->allow();
     }
-    public function view(User $user, Rating $rating)
+    public function view(User $user, Rating $rating): Response
     {
         return $this->allow();
     }
