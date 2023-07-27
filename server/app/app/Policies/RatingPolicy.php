@@ -37,7 +37,7 @@ class RatingPolicy
     }
 
     public function update(User $user, Rating $rating): Response {
-        return $this->allow();
+        return $this->deny();
     }
 
     public function delete(User $user, Rating $rating): Response
