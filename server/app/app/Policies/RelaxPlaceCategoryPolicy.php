@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
 use App\Constants\RoleConstants;
 use App\Models\RelaxPlaceCategory;
@@ -22,13 +22,13 @@ class RelaxPlaceCategoryPolicy
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response
     {
         return $this->allow();
     }
 
 
-    public function view(User $user, RelaxPlaceCategory $placeCategory)
+    public function view(User $user, RelaxPlaceCategory $placeCategory): Response
     {
         return $this->allow();
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use App\Http\Requests\RelaxPlaceCategoryRequest;
 use App\Http\Resources\RelaxPlaceCategoryResource;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\Constants\RoleConstants;
+
 use App\Models\User;
 use App\Models\UserPhoto;
 use Illuminate\Auth\Access\HandlesAuthorization;

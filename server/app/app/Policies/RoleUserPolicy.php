@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace app\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\RoleUser;
 use App\Models\User;
-use App\Models\UserNotification;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -15,22 +13,22 @@ class RoleUserPolicy
 
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->hasRole(RoleConstants::ADMIN)) {
+        if ($user->isAdmin()) {
             return true;
         }
-        if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
+        if ($user->isBlocked()) {
             return false;
         }
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response
     {
         return $this->allow();
     }
 
 
-    public function view(User $user, RoleUser $roleUser)
+    public function view(User $user, RoleUser $roleUser): Response
     {
         return $this->deny();
     }

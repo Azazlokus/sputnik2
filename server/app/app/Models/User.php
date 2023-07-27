@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use App\Constants\NotificationTypeConstants;
 use App\Constants\RoleConstants;
@@ -36,12 +36,12 @@ class User extends Authenticatable implements JWTSubject
         });
     }
 
-    private function attachDefaultRole()
+    private function attachDefaultRole(): void
     {
         $this->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
     }
 
-    public function sendNotificationsToAdmins()
+    public function sendNotificationsToAdmins(): void
     {
         $adminRoleId = Role::query()->where('role', RoleConstants::ADMIN)->value('id');
 
@@ -96,7 +96,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
@@ -119,8 +119,21 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasRole(RoleConstants::USER_BLOCKED);
     }
     public  function hasWishlist($wishList)
+
     {
-        return $this->wishlists->contains('id', $wishList->id);
+        if($this->hasRole(RoleConstants::ADMIN)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function isBlocked(): bool
+    {
+        if($this->hasRole(RoleConstants::USER_BLOCKED)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -59,5 +59,4 @@ class Rating extends Model
             $this->user_id = $user->id;
         }
     }
-
 }

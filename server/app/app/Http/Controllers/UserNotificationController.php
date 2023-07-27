@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use App\Http\Requests\UserNotificationRequest;
 use App\Http\Resources\UserNotificationResource;
@@ -17,6 +17,7 @@ class UserNotificationController extends Controller
     protected $request = UserNotificationRequest::class;
     protected $resource = UserNotificationResource::class;
     protected $policy = UserNotificationPolicy::class;
+  
     protected function buildFetchQuery( $request, array $requestedRelations): Builder
     {
         $query = parent::buildFetchQuery($request, $requestedRelations);
@@ -33,5 +34,6 @@ class UserNotificationController extends Controller
     protected function getUserID()
     {
         return Auth::user()->getAuthIdentifier();
+
     }
 }

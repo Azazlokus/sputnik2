@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace app\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -8,13 +8,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UserNotificationResource extends JsonResource
 {
-    /**
-     * Преобразовать ресурс в массив.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
