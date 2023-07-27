@@ -35,16 +35,16 @@ class UserPhotoPolicy
 
     public function create(User $user): Response
     {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function update(User $user, UserPhoto $userPhoto): Response {
-        return $this->deny();
+        return $this->allow();
     }
 
     public function delete(User $user, UserPhoto $userPhoto): Response
     {
-        return $this->deny();
+        return $this->allow();
     }
     public function restore(User $user, UserPhoto $userPhoto): Response
     {

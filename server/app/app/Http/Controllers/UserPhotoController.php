@@ -18,9 +18,9 @@ class UserPhotoController extends Controller
     protected $resource = UserPhotoResource::class;
     protected $policy = UserPhotoPolicy::class;
 
-    protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
+    protected function buildFetchQuery($request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $query = parent::buildFetchQuery($request, $requestedRelations);
         $this->ifUserChangeQuery($query);
         return $query;
     }
