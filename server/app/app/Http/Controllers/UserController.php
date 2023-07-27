@@ -17,9 +17,27 @@ class UserController extends Controller
     protected $request = UserRequest::class;
     protected $resource = UserResource::class;
     protected $policy = UserPolicy::class;
-    protected function buildFetchQuery( $request, array $requestedRelations): Builder
+    protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
     {
-        $query = parent::buildFetchQuery($request, $requestedRelations);
+        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $user = User::query()->find(Auth::user()->getAuthIdentifier());
+        if($user->isUser()) {
+            $query->where('id', $user->id);
+        }
+        return $query;
+    }
+    protected function buildShowFetchQuery( $request, array $requestedRelations): Builder
+    {
+        $query = parent::buildShowFetchQuery($request, $requestedRelations);
+        $user = User::query()->find(Auth::user()->getAuthIdentifier());
+        if($user->isUser()) {
+            $query->where('id', $user->id);
+        }
+        return $query;
+    }
+    protected function buildUpdateFetchQuery( $request, array $requestedRelations): Builder
+    {
+        $query = parent::buildUpdateFetchQuery($request, $requestedRelations);
         $user = User::query()->find(Auth::user()->getAuthIdentifier());
         if($user->isUser()) {
             $query->where('id', $user->id);

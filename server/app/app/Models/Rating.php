@@ -27,8 +27,8 @@ class Rating extends Model
     {
         parent::boot();
         static::creating(function (self $model) {
-            $model->cancelIfWasntFavorite();
-            $model->cancelIfAlreadyExist();
+           // $model->cancelIfWasntFavorite();
+            $model->cancelIfAlreadyExist($model);
         });
     }
 
@@ -46,9 +46,9 @@ class Rating extends Model
             throw new Exception('Error', 500);
         }
     }
-    public function cancelIfAlreadyExist(){
+    public function cancelIfAlreadyExist($relax_place_id){
         $user = auth()->user();
-        if ($user && $user->ratings()->where('relax_place_id', $this->relax_place_id)->exists()) {
+        if ($user && $user->ratings()->where('relax_place_id', $relax_place_id)->exists()) {
             throw new Exception('This rating is already exist.', 409);
         }
         if ($user) {

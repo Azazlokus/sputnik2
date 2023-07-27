@@ -23,6 +23,8 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'first_name',
+        'last_name'
     ];
 
     public static function boot(): void
