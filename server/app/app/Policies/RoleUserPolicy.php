@@ -18,10 +18,6 @@ class RoleUserPolicy
         if ($user->hasRole(RoleConstants::ADMIN)) {
             return true;
         }
-        if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
-            return false;
-        }
-
         return null;
     }
     public function viewAny(User $user)
