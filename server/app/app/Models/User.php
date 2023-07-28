@@ -100,7 +100,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
+    //hasRole как будто бы ставит под сомнение надобность методов isUser/isAdmin/isBlocked
     public function hasRole($roleName) : bool
     {
         return $this->roles->contains('role', $roleName);

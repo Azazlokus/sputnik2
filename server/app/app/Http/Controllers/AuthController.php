@@ -20,8 +20,9 @@ class AuthController extends Controller
         if ($token = auth()->attempt($credentials)) {
             return new LoginResource($token);
         }
-        throw new Exception('Login error', 401);
-    }
+        throw new Exception('Login error', 401); //Я бы рекомендовал использовать константы, есть такая проблема
+    }                                                         // как "магические числа", ладно, здесь мне IDE подсвечивает,
+                                                             //что 401 - это код ответа, но все же лучше через Response::HTTP_UNAUTHORIZED
 
     public function logout()
     {

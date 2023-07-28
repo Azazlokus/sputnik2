@@ -41,11 +41,11 @@ class UserWishlist extends Model
 
     private function checkIfWishlistAlreadyExist(): void
     {
-        $user = auth()->user();
+        $user = auth()->user(); //Если тут будет null/false, то упадёт с ошибкой 'This place is already in the user\'s wishlist.', хотя дело не совсем в этом)
         if ($user && $user->wishlists()->where('relax_place_id', $this->relaxPlace()->pluck('id'))->exists()) {
             throw new Exception('This place is already in the user\'s wishlist.', 409);
         }
-        if ($user) {
+        if ($user) { // а если null/false? Шо делать?) Тем более такую проверку мы уже выполнили чуть выше
             $this->user_id = $user->id;
         }
     }

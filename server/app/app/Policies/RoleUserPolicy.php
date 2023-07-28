@@ -15,8 +15,8 @@ class RoleUserPolicy
 
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->hasRole(RoleConstants::ADMIN)) {
-            return true;
+        if ($user->hasRole(RoleConstants::ADMIN)) { //В остальных policy это делалось через ->isAdmin|->isBlocked
+            return true;                                     //Ну так, чисто ради единообразия
         }
         if ($user->hasRole(RoleConstants::USER_BLOCKED)) {
             return false;

@@ -28,8 +28,8 @@ class LoginUserRequest extends FormRequest
     {
         return [
             'email' => 'required|string|min:1|max:255|email',
-            'password' => 'required|string|min:1|max:255|min:6',
-        ];
+            'password' => 'required|string|min:1|max:255|min:6', //А кст в ТЗ не было минимальной длины пароля
+        ];                                                       //min:1 max:255 min:6, а по итогу какой min?)
     }
 
     public function messages(): array

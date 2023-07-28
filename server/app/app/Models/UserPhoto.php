@@ -19,7 +19,7 @@ class UserPhoto extends Model
 
         static::creating(function ($userPhoto) {
             $user = auth()->user();
-            if ($user) {
+            if ($user) { // А если null/false?
                 $userPhoto->user_id = $user->id;
             }
         });
