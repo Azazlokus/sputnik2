@@ -18,7 +18,8 @@ return new class extends Migration
             $table->float('latitude');
             $table->float('longitude');
             $table->float('average_rating');
-            $table->string('country');
+            $table->string('country');        //country - отдельная сущность,
+                                              // по правилам нормализации БД, для них отдельную таблицу, а здесь только country_id
             $table->foreignId('category')->constrained('relax_place_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

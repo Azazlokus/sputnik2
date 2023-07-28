@@ -16,8 +16,8 @@ class RatingPolicy
         if ($user->isAdmin()) {
             return true;
         }
-        if ($user->isBlocked()) {
-            return false;
+        if ($user->isBlocked()) { //Мб такую проверку вынести в middleware? 1 middleware vs 10 вот таких одинаковых проверок в каждом Policy
+            return false;         // если он заблокирован, с ним разговор короткий, пусть отвалится на уровне middleware, не доходя до Policy
         }
 
         return null;
