@@ -29,7 +29,7 @@ class UserNotificationPolicy
 
     public function view(User $user, UserNotification $userNotification)
     {
-        return $this->allow();
+        return $user->id === $userNotification->user_id ? $this->allow() : $this->deny();
     }
 
     public function create(User $user): Response

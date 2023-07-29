@@ -11,6 +11,7 @@ use Illuminate\Auth\Access\Response;
 class RatingPolicy
 {
     use HandlesAuthorization;
+
     public function before(User $user, string $ability): bool|null
     {
         if ($user->isAdmin()) {
@@ -22,11 +23,13 @@ class RatingPolicy
 
         return null;
     }
-    public function viewAny(User $user)
+
+    public function viewAny(?User $user)
     {
         return $this->allow();
     }
-    public function view(User $user, Rating $rating)
+
+    public function view(?User $user, Rating $rating)
     {
         return $this->allow();
     }
@@ -36,20 +39,23 @@ class RatingPolicy
         return $this->allow();
     }
 
-    public function update(User $user, Rating $rating): Response {
-        return $this->deny();
+    public function update(User $user, Rating $rating): Response
+    {
+        return $user->id === $rating->user_id ? $this->allow() : $this->deny();
     }
 
     public function delete(User $user, Rating $rating): Response
     {
-        return $this->allow();
+        return $user->id === $rating->user_id ? $this->allow() : $this->deny();
     }
+
     public function restore(User $user, Rating $rating): Response
     {
         return $this->allow();
     }
 
-    public function forceDelete(User $user, Rating $rating): Response {
+    public function forceDelete(User $user, Rating $rating): Response
+    {
         return $this->allow();
     }
 }

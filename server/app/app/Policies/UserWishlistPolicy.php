@@ -32,7 +32,7 @@ class UserWishlistPolicy
 
     public function view(User $user, UserWishlist $userWishlist)
     {
-            return $this->allow();
+        return $user->id === $userWishlist->user_id ? $this->allow() : $this->deny();
     }
 
     public function create(User $user): Response
@@ -42,7 +42,7 @@ class UserWishlistPolicy
 
     public function update(User $user, UserWishlist $userWishlist): Response
     {
-        return $this->allow();
+        return $user->id === $userWishlist->user_id ? $this->allow() : $this->deny();
     }
 
     public function delete(User $user, UserWishlist $userWishlist): Response

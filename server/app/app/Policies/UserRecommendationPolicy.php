@@ -23,7 +23,7 @@ class UserRecommendationPolicy
     }
     public function view(User $user, UserRecommendation $userRecommendation)
     {
-        return $this->allow();
+        return $user->id === $userRecommendation->user_id ? $this->allow() : $this->deny();
     }
 
     public function create(User $user): Response

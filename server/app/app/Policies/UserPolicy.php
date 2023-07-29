@@ -10,6 +10,7 @@ use Illuminate\Auth\Access\Response;
 class UserPolicy
 {
     use HandlesAuthorization;
+
     public function before(User $user, string $ability): bool|null
     {
         if ($user->isAdmin()) {
@@ -29,7 +30,7 @@ class UserPolicy
 
     public function view(User $user, User $profileUser)
     {
-        return $this->allow();
+        return $user->id === $profileUser->id ? $this->allow() : $this->deny();
     }
 
     public function create(?User $user): Response
@@ -37,20 +38,23 @@ class UserPolicy
         return $this->allow();
     }
 
-    public function update(User $user, User $model): Response {
-        return $this->allow();
+    public function update(User $user, User $profileUser): Response
+    {
+        return $user->id === $profileUser->id ? $this->allow() : $this->deny();
     }
 
     public function delete(User $user, User $model): Response
     {
         return $this->deny();
     }
+
     public function restore(User $user, User $model): Response
     {
         return $this->deny();
     }
 
-    public function forceDelete(User $user, User $model): Response {
+    public function forceDelete(User $user, User $model): Response
+    {
         return $this->deny();
     }
 

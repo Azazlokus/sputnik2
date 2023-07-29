@@ -30,7 +30,7 @@ class UserPhotoPolicy
 
     public function view(User $user, UserPhoto $userPhoto)
     {
-        return $this->allow();
+        return $user->id === $userPhoto->user_id ? $this->allow() : $this->deny();
     }
 
     public function create(User $user): Response

@@ -7,6 +7,7 @@ use App\Http\Resources\LoginResource;
 use App\Http\Resources\LogoutResource;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
@@ -20,7 +21,7 @@ class AuthController extends Controller
         if ($token = auth()->attempt($credentials)) {
             return new LoginResource($token);
         }
-        throw new Exception('Login error', 401);
+        throw new Exception('Login error', Response::HTTP_UNAUTHORIZED);
     }
 
     public function logout()

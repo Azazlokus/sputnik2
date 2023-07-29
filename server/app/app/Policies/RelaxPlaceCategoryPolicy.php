@@ -22,13 +22,13 @@ class RelaxPlaceCategoryPolicy
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return $this->allow();
     }
 
 
-    public function view(User $user, RelaxPlaceCategory $placeCategory)
+    public function view(?User $user, RelaxPlaceCategory $placeCategory)
     {
         return $this->allow();
     }

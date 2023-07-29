@@ -8,29 +8,22 @@ use App\Http\Resources\UserWishlistResource;
 use App\Models\User;
 use App\Models\UserWishlist;
 use App\Policies\UserWishlistPolicy;
+use App\Traits\IfUserThenSelectsQuery;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
 
 class UserWishlistController extends Controller
 {
+    use IfUserThenSelectsQuery;
     protected $resource = UserWishlistResource::class;
     protected $request = UserWishlistRequest::class;
     protected $model = UserWishlist::class;
     protected $policy = UserWishlistPolicy::class;
-    protected function buildFetchQuery( $request, array $requestedRelations): Builder
+    protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
     {
-        $query = parent::buildFetchQuery($request, $requestedRelations);
-        $this->ifUserCnangeQuery($query);
+        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $this->ifUserChangeQuery($query);
         return $query;
-    }
-    protected  function ifUserCnangeQuery($query){
-        $user = User::query()->find($this->getUserId());
-        if($user->isUser()) {
-            $query->where('user_id', $user->id);
-        }
-    }
-    protected function getUserId(){
-        return Auth::user()->getAuthIdentifier();
     }
 }
