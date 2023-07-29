@@ -5,6 +5,7 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Symfony\Component\HttpFoundation\Response;
 
 class Rating extends Model
@@ -18,12 +19,12 @@ class Rating extends Model
         'comment'
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function relaxPlace()
+    public function relaxPlace(): BelongsTo
     {
         return $this->belongsTo(RelaxPlace::class);
     }
@@ -35,6 +36,18 @@ class Rating extends Model
             $model->cancelIfAlreadyExist();
             $model->setUserId();
             $model->cancelIfWasntFavorite();
+
+            self::created(function (self $model) {
+                $model->calculateAverageRating();
+            });
+
+            self::updated(function (self $model) {
+                $model->calculateAverageRating();
+            });
+
+            self::deleted(function (self $model) {
+                $model->calculateAverageRating();
+            });
 
         });
     }
@@ -65,6 +78,13 @@ class Rating extends Model
         if ($user) {
             $this->user_id = $user->id;
         }
+    }
+
+    private function calculateAverageRating()
+    {
+        $relaxPlace = $this->relaxPlace;
+        $relaxPlace->average_rating = self::where('relax_place_id', $this->relax_place_id)->avg('rating');
+        $relaxPlace->save();
     }
 
 }

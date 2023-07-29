@@ -23,7 +23,6 @@ class RelaxPlaceFactory extends Factory
             'description' => $this->faker->paragraph,
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
-            'average_rating' => $this->faker->randomFloat(2, 0, 5),
             'country' => $this->faker->randomElement([CountryEnum::England,
                 CountryEnum::Russia,
                 CountryEnum::USA]),

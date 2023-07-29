@@ -19,17 +19,19 @@ class RelaxPlace extends Model
         'longitude',
         'average_rating',
         'country',
-        'category'
+        'category_id'
     ];
 
     public function wishlists(): HasMany
     {
         return $this->hasMany(UserWishlist::class);
     }
+
     public function ratings()
     {
         return $this->hasMany(Rating::class);
     }
+
     protected static function boot()
     {
         parent::boot();
@@ -39,6 +41,7 @@ class RelaxPlace extends Model
         });
 
     }
+
     public function sendNotifications(): void
     {
         $usersId = $this->wishlists->pluck('user_id');
