@@ -6,13 +6,13 @@ use App\Http\Requests\UserRecommendationRequest;
 use App\Http\Resources\UserRecommendationResource;
 use App\Models\UserRecommendation;
 use App\Policies\UserRecommendationPolicy;
-use App\Traits\IfUserThenSelectsQuery;
+use App\Traits\AggregateQueryForUserRole;
 use Illuminate\Database\Eloquent\Builder;
 use Orion\Http\Controllers\Controller;
 
 class UserRecommendationController extends Controller
 {
-    use IfUserThenSelectsQuery;
+    use AggregateQueryForUserRole;
 
     protected $model = UserRecommendation::class;
     protected $request = UserRecommendationRequest::class;
@@ -21,7 +21,7 @@ class UserRecommendationController extends Controller
     protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $this->ifUserChangeQuery($query);
+        $this->changeQueryForUser($query);
         return $query;
     }
 

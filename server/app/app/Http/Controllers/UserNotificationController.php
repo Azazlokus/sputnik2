@@ -6,13 +6,13 @@ use App\Http\Requests\UserNotificationRequest;
 use App\Http\Resources\UserNotificationResource;
 use App\Models\UserNotification;
 use App\Policies\UserNotificationPolicy;
-use App\Traits\IfUserThenSelectsQuery;
+use App\Traits\AggregateQueryForUserRole;
 use Illuminate\Database\Eloquent\Builder;
 use Orion\Http\Controllers\Controller;
 
 class UserNotificationController extends Controller
 {
-    use IfUserThenSelectsQuery;
+    use AggregateQueryForUserRole;
 
     protected $model = UserNotification::class;
     protected $request = UserNotificationRequest::class;
@@ -22,7 +22,7 @@ class UserNotificationController extends Controller
     protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $this->ifUserChangeQuery($query);
+        $this->changeQueryForUser($query);
         return $query;
     }
 }

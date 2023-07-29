@@ -435,12 +435,6 @@
 											"type": "text"
 										},
 										{
-											"key": "average_rating",
-											"value": "4.78",
-											"type": "text",
-											"disabled": true
-										},
-										{
 											"key": "country",
 											"value": "Japan",
 											"type": "text"
@@ -2981,17 +2975,12 @@
 											"type": "text"
 										},
 										{
-											"key": "average_rating",
-											"value": "3.4",
-											"type": "text"
-										},
-										{
 											"key": "country",
 											"value": "Spain",
 											"type": "text"
 										},
 										{
-											"key": "category",
+											"key": "category_id",
 											"value": "2",
 											"type": "text"
 										},
@@ -3245,14 +3234,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/relax-places/2",
+									"raw": "{{host}}/api/relax-places/4",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"relax-places",
-										"2"
+										"4"
 									]
 								},
 								"description": "StartFragment\n\nМожет администратор\n\nEndFragment"
@@ -3622,7 +3611,7 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "4",
+											"value": "3",
 											"type": "text"
 										},
 										{
@@ -3957,14 +3946,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/wishlists/10",
+									"raw": "{{host}}/api/wishlists/12",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"wishlists",
-										"10"
+										"12"
 									]
 								},
 								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
@@ -4936,12 +4925,12 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "rating",
-											"value": "2",
+											"value": "3",
 											"type": "text"
 										},
 										{
@@ -7498,14 +7487,14 @@
 									]
 								},
 								"url": {
-									"raw": "{{host}}/api/role-users/9",
+									"raw": "{{host}}/api/role-users/14",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"role-users",
-										"9"
+										"14"
 									],
 									"query": [
 										{

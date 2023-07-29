@@ -8,7 +8,7 @@ use App\Http\Resources\UserWishlistResource;
 use App\Models\User;
 use App\Models\UserWishlist;
 use App\Policies\UserWishlistPolicy;
-use App\Traits\IfUserThenSelectsQuery;
+use App\Traits\AggregateQueryForUserRole;
 use Exception;
 use http\Env\Response;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +17,7 @@ use Orion\Http\Controllers\Controller;
 
 class UserWishlistController extends Controller
 {
-    use IfUserThenSelectsQuery;
+    use AggregateQueryForUserRole;
 
     protected $resource = UserWishlistResource::class;
     protected $request = UserWishlistRequest::class;
@@ -27,7 +27,7 @@ class UserWishlistController extends Controller
     protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $this->ifUserChangeQuery($query);
+        $this->changeQueryForUser($query);
         return $query;
     }
 

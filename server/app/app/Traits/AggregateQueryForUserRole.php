@@ -5,9 +5,9 @@ namespace App\Traits;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-trait IfUserThenSelectsQuery
+trait AggregateQueryForUserRole
 {
-    protected  function ifUserChangeQuery($query): void
+    protected  function changeQueryForUser($query): void
     {
         $user = User::query()->find($this->getUserID());
         if ($user->isUser()) {

@@ -6,13 +6,13 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Policies\UserPolicy;
-use App\Traits\IfUserThenSelectsQuery;
+use App\Traits\AggregateQueryForUserRole;
 use Illuminate\Database\Eloquent\Builder;
 use Orion\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    use IfUserThenSelectsQuery;
+    use AggregateQueryForUserRole;
 
     protected $model = User::class;
     protected $request = UserRequest::class;

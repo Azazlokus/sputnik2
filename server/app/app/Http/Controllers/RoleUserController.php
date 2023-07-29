@@ -9,13 +9,13 @@ use App\Http\Resources\RoleUserResource;
 use App\Models\RoleUser;
 use App\Models\UserNotification;
 use App\Policies\RoleUserPolicy;
-use App\Traits\IfUserThenSelectsQuery;
+use App\Traits\AggregateQueryForUserRole;
 use Illuminate\Database\Eloquent\Builder;
 use Orion\Http\Controllers\Controller;
 
 class RoleUserController extends Controller
 {
-    use IfUserThenSelectsQuery;
+    use AggregateQueryForUserRole;
 
     protected $model = RoleUser::class;
     protected $request = RoleUserRequest::class;
@@ -25,7 +25,7 @@ class RoleUserController extends Controller
     protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
     {
         $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $this->ifUserChangeQuery($query);
+        $this->changeQueryForUser($query);
         return $query;
     }
 

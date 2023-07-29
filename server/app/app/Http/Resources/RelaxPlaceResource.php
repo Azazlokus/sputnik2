@@ -21,7 +21,7 @@ class RelaxPlaceResource extends JsonResource
             'latitude' => $this->latitude,
             'average_rating' => $this->average_rating,
             'country' => $this->country,
-            'category' => $this->category,
+            'category_id' => $this->category,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
