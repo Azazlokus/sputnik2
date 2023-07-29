@@ -437,7 +437,8 @@
 										{
 											"key": "average_rating",
 											"value": "4.78",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "country",
@@ -445,7 +446,7 @@
 											"type": "text"
 										},
 										{
-											"key": "category",
+											"key": "category_id",
 											"value": "{{relax_place_category_id}}",
 											"type": "text"
 										}
@@ -2143,13 +2144,14 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"pm.test(\"Checking the status of code 200\", function() {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
 											"var jsonResponse = JSON.parse(responseBody);\r",
 											"var token = jsonResponse.data.token;\r",
 											"pm.environment.set(\"token\", token);\r",
-											"\r",
-											"pm.test(\"Checking the status of code 200\", function() {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -3620,7 +3622,7 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "3",
+											"value": "4",
 											"type": "text"
 										},
 										{
@@ -3749,14 +3751,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/wishlists/11",
+									"raw": "{{host}}/api/wishlists/13",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"wishlists",
-										"11"
+										"13"
 									]
 								},
 								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
@@ -4428,14 +4430,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/notifications/1",
+									"raw": "{{host}}/api/notifications/2",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"notifications",
-										"1"
+										"2"
 									]
 								},
 								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
@@ -4934,7 +4936,7 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "3",
+											"value": "1",
 											"type": "text"
 										},
 										{
@@ -6887,7 +6889,7 @@
 									"formdata": [
 										{
 											"key": "image_name",
-											"value": "PostmanAva",
+											"value": "PostmanAvaw",
 											"type": "text"
 										},
 										{
@@ -7127,14 +7129,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/user-photos/5",
+									"raw": "{{host}}/api/user-photos/3",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"user-photos",
-										"5"
+										"3"
 									]
 								}
 							},
@@ -7229,7 +7231,7 @@
 								"method": "PATCH",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/user-photos/13?image_name=Postman name",
+									"raw": "{{host}}/api/user-photos/13?image_name=Postman name&user_id=1",
 									"host": [
 										"{{host}}"
 									],
@@ -7242,6 +7244,10 @@
 										{
 											"key": "image_name",
 											"value": "Postman name"
+										},
+										{
+											"key": "user_id",
+											"value": "1"
 										}
 									]
 								}
@@ -8145,19 +8151,19 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/user-recommendations/3?relax_place_id=2",
+									"raw": "{{host}}/api/user-recommendations/1?relax_place_id=6",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"user-recommendations",
-										"3"
+										"1"
 									],
 									"query": [
 										{
 											"key": "relax_place_id",
-											"value": "2"
+											"value": "6"
 										}
 									]
 								}

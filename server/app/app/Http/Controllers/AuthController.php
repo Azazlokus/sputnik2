@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\LogoutResource;
+use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Mockery\Exception;
 
 
 class AuthController extends Controller
