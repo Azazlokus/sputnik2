@@ -8,7 +8,7 @@ class RatingRequest extends Request
     public function storeRules(): array
     {
         return [
-            'relax_place_id' => 'required|exists:relax_places,id',
+            'relax_place_id' => 'exists:relax_places,id',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|min:1|max:1000',
         ];

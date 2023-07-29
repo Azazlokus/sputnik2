@@ -2,12 +2,10 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\User;
 use App\Models\UserWishlist;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Database\Eloquent\Model;
 
 class UserWishlistPolicy
 {

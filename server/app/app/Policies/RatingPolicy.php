@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;

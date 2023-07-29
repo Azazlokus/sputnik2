@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRecommendationRequest;
 use App\Http\Resources\UserRecommendationResource;
-use App\Models\User;
 use App\Models\UserRecommendation;
 use App\Policies\UserRecommendationPolicy;
 use App\Traits\IfUserThenSelectsQuery;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
 
 class UserRecommendationController extends Controller

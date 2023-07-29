@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserWishlist extends Model
 {
@@ -34,7 +35,9 @@ class UserWishlist extends Model
         parent::boot();
         static::creating(function (self $model) {
             $model->checkIfWishlistAlreadyExist();
+            $model->setUserId();
             $model->addRecommendationByCountry();
+
         });
 
     }
@@ -42,12 +45,15 @@ class UserWishlist extends Model
     private function checkIfWishlistAlreadyExist(): void
     {
         $user = auth()->user();
-        if ($user && $user->wishlists()->where('relax_place_id', $this->relaxPlace()->pluck('id'))->exists()) {
-            throw new Exception('This place is already in the user\'s wishlist.', 409);
+        if ($user->wishlists()->where('relax_place_id', $this->relaxPlace()->pluck('id'))->exists()) {
+            throw new Exception('This place is already in the user\'s wishlist.', Response::HTTP_CONFLICT);
         }
-        if ($user) {
-            $this->user_id = $user->id;
-        }
+    }
+
+    private function setUserId()
+    {
+        $user = auth()->user();
+        $this->user_id = $user->id;
     }
 
     private function addRecommendationByCountry()

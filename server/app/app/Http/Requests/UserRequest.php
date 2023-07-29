@@ -20,5 +20,14 @@ class UserRequest extends Request
             'password' => 'required|string|max:255|min:6|confirmed',
         ];
     }
+    public function updateRules(): array
+    {
+        return [
+            'email' => 'prohibited',
+            'password' => 'prohibited',
+            'first_name' => 'nullable|string|min:1|max:255',
+            'last_name' => 'nullable|string|min:1|max:255',
+        ];
+    }
 
 }

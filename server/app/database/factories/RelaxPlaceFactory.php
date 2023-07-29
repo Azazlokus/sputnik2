@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Constants\CountryConstants;
+use App\Enums\CountryEnum;
 use App\Models\RelaxPlaceCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,10 +24,10 @@ class RelaxPlaceFactory extends Factory
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
             'average_rating' => $this->faker->randomFloat(2, 0, 5),
-            'country' => $this->faker->randomElement([CountryConstants::ENGLAND,
-                CountryConstants::RUSSIA,
-                CountryConstants::USA]),
-            'category' => RelaxPlaceCategory::all()->random()->id,
+            'country' => $this->faker->randomElement([CountryEnum::England,
+                CountryEnum::Russia,
+                CountryEnum::USA]),
+            'category_id' => RelaxPlaceCategory::all()->random()->id,
 
         ];
     }

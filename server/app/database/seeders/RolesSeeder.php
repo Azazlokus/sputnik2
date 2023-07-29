@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Constants\RoleConstants;
+use App\Enums\RoleEnum;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+
 
 class RolesSeeder extends Seeder
 {
@@ -15,20 +15,20 @@ class RolesSeeder extends Seeder
     public function run()
     {
         Role::withoutEvents(function () {
-            if (!Role::query()->where('role', RoleConstants::ADMIN)->exists()) {
+            if (!Role::query()->where('role', RoleEnum::Admin)->exists()) {
                 Role::query()->create([
-                    'role' => RoleConstants::ADMIN
+                    'role' => RoleEnum::Admin
                 ]);
 
             }
-            if (!Role::query()->where('role', RoleConstants::USER)->exists()) {
+            if (!Role::query()->where('role', RoleEnum::User)->exists()) {
                 Role::query()->create([
-                    'role' => RoleConstants::USER
+                    'role' => RoleEnum::User
                 ]);
             }
-            if (!Role::query()->where('role', RoleConstants::USER_BLOCKED)->exists()) {
+            if (!Role::query()->where('role', RoleEnum::UserBlocked)->exists()) {
                 Role::query()->create([
-                    'role' => RoleConstants::USER_BLOCKED
+                    'role' => RoleEnum::UserBlocked
                 ]);
 
             }

@@ -2,10 +2,8 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\RoleUser;
 use App\Models\User;
-use App\Models\UserNotification;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 

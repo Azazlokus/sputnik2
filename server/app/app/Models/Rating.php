@@ -33,7 +33,9 @@ class Rating extends Model
         parent::boot();
         static::creating(function (self $model) {
             $model->cancelIfAlreadyExist();
+            $model->setUserId();
             $model->cancelIfWasntFavorite();
+
         });
     }
 
@@ -50,12 +52,16 @@ class Rating extends Model
         }
     }
 
-    public function cancelIfAlreadyExist()
+    protected function cancelIfAlreadyExist()
     {
         $user = auth()->user();
         if ($user && $user->ratings()->where('relax_place_id', $this->relaxPlace()->pluck('id'))->exists()) {
             throw new Exception('This rating is already exist.', Response::HTTP_BAD_GATEWAY);
         }
+    }
+    protected function setUserId()
+    {
+        $user = auth()->user();
         if ($user) {
             $this->user_id = $user->id;
         }

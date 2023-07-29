@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\LogoutResource;
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 
 

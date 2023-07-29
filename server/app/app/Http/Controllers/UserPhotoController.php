@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPhotoRequest;
 use App\Http\Resources\UserPhotoResource;
-use App\Models\User;
 use App\Models\UserPhoto;
 use App\Policies\UserPhotoPolicy;
 use App\Traits\IfUserThenSelectsQuery;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
 
 class UserPhotoController extends Controller

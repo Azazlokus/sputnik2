@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
+use App\Enums\RoleEnum;
 use App\Models\RelaxPlace;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;

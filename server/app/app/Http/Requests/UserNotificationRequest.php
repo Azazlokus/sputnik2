@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Constants\NotificationTypeConstants;
+use App\Enums\NotificationTypeEnum;
+use Illuminate\Validation\Rule;
 use Orion\Http\Requests\Request;
 
 class UserNotificationRequest extends Request
@@ -16,7 +17,8 @@ class UserNotificationRequest extends Request
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'type' => 'required|string|min:1|max:255|in:' . NotificationTypeConstants::PUSH . ',' . NotificationTypeConstants::MAIL,
+            'type' => ['required', 'string', 'min:1', 'max:255',
+                Rule::in([NotificationTypeEnum::Push, NotificationTypeEnum::Mail])],
             'content' => 'nullable|string|min:1|max:1000',
             'viewed' => 'prohibited',
         ];

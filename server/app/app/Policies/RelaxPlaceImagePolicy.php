@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
+use App\Enums\RoleEnum;
 use App\Models\Rating;
 use App\Models\RelaxPlaceImage;
 use App\Models\User;

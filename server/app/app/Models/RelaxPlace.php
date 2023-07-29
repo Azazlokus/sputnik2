@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\NotificationTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -44,8 +45,8 @@ class RelaxPlace extends Model
         foreach ($usersId as $userId) {
             UserNotification::query()->create([
                 'user_id' => $userId,
-                'type' => 'push',
-                'content' => 'User with id: '. $userId . ' your place from wishlist has been deleted'
+                'type' => NotificationTypeEnum::Push,
+                'content' => "User with id: $userId your place from wishlist has been deleted"
             ]);
         }
     }

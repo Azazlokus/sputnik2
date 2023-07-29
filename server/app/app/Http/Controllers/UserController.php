@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\RoleConstants;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Policies\UserPolicy;
 use App\Traits\IfUserThenSelectsQuery;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
 
 class UserController extends Controller

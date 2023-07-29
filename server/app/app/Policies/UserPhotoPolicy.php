@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\User;
 use App\Models\UserPhoto;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -39,12 +38,12 @@ class UserPhotoPolicy
     }
 
     public function update(User $user, UserPhoto $userPhoto): Response {
-        return $this->allow();
+        return $user->id === $userPhoto->user_id ? $this->allow() : $this->deny();
     }
 
     public function delete(User $user, UserPhoto $userPhoto): Response
     {
-        return $this->allow();
+        return $user->id === $userPhoto->user_id ? $this->allow() : $this->deny();
     }
     public function restore(User $user, UserPhoto $userPhoto): Response
     {
