@@ -15,6 +15,11 @@ return new class extends Migration
             $table->renameColumn('category', 'category_id');
         });
     }
-
+    public function down(): void
+    {
+        Schema::table('relax_places', function (Blueprint $table) {
+            $table->renameColumn( 'category_id', 'category');
+        });
+    }
 
 };

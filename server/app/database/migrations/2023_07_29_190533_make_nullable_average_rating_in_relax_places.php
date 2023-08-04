@@ -15,5 +15,10 @@ return new class extends Migration
             $table->string('average_rating')->nullable()->change();
         });
     }
-
+    public function down()
+    {
+        Schema::table('relax_places', function (Blueprint $table) {
+            $table->string('average_rating')->change();
+        });
+    }
 };

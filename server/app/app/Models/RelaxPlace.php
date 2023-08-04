@@ -49,7 +49,7 @@ class RelaxPlace extends Model
             UserNotification::query()->create([
                 'user_id' => $userId,
                 'type' => NotificationTypeEnum::Push,
-                'content' => "User with id: $userId your place from wishlist has been deleted"
+                'content' => "User, your place from wishlist has been deleted."
             ]);
         }
     }

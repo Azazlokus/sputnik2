@@ -7,18 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 trait AggregateQueryForUserRole
 {
-    protected  function changeQueryForUser($query): void
+    protected function changeQueryForUser($query): void
     {
         $user = User::query()->find($this->getUserID());
         if ($user->isUser()) {
             $query->where('user_id', $user->id);
-        }
-    }
-    protected  function ifUserShowYourself($query): void
-    {
-        $user = User::query()->find($this->getUserID());
-        if ($user->isUser()) {
-            $query->where('id', $user->id);
         }
     }
 

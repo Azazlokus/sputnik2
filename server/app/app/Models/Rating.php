@@ -36,19 +36,17 @@ class Rating extends Model
             $model->cancelIfAlreadyExist();
             $model->setUserId();
             $model->cancelIfWasntFavorite();
+        });
+        self::created(function (self $model) {
+            $model->calculateAverageRating();
+        });
 
-            self::created(function (self $model) {
-                $model->calculateAverageRating();
-            });
+        self::updated(function (self $model) {
+            $model->calculateAverageRating();
+        });
 
-            self::updated(function (self $model) {
-                $model->calculateAverageRating();
-            });
-
-            self::deleted(function (self $model) {
-                $model->calculateAverageRating();
-            });
-
+        self::deleted(function (self $model) {
+            $model->calculateAverageRating();
         });
     }
 

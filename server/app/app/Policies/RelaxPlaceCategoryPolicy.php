@@ -27,7 +27,7 @@ class RelaxPlaceCategoryPolicy
     }
 
 
-    public function view(?User $user, RelaxPlaceCategory $placeCategory)
+    public function view(User $user, RelaxPlaceCategory $placeCategory)
     {
         return $this->allow();
     }

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 
-use App\Enums\NotificationTypeEnum;
 use App\Http\Requests\RoleUserRequest;
 use App\Http\Resources\RoleUserResource;
 use App\Models\RoleUser;
-use App\Models\UserNotification;
+use App\Models\User;
 use App\Policies\RoleUserPolicy;
 use App\Traits\AggregateQueryForUserRole;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
 
 class RoleUserController extends Controller
@@ -22,11 +22,12 @@ class RoleUserController extends Controller
     protected $resource = RoleUserResource::class;
     protected $policy = RoleUserPolicy::class;
 
-    protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
+    protected function buildFetchQuery($request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $query = parent::buildFetchQuery($request, $requestedRelations);
         $this->changeQueryForUser($query);
         return $query;
     }
+
 
 }

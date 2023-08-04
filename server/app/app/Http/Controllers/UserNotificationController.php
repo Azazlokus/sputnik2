@@ -19,9 +19,9 @@ class UserNotificationController extends Controller
     protected $resource = UserNotificationResource::class;
     protected $policy = UserNotificationPolicy::class;
 
-    protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
+    protected function buildFetchQuery($request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $query = parent::buildFetchQuery($request, $requestedRelations);
         $this->changeQueryForUser($query);
         return $query;
     }

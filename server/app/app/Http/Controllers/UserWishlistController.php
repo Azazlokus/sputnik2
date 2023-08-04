@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\RoleEnum;
 use App\Http\Requests\UserWishlistRequest;
 use App\Http\Resources\UserWishlistResource;
-use App\Models\User;
 use App\Models\UserWishlist;
 use App\Policies\UserWishlistPolicy;
 use App\Traits\AggregateQueryForUserRole;
-use Exception;
-use http\Env\Response;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Orion\Http\Controllers\Controller;
 
 class UserWishlistController extends Controller
@@ -24,9 +19,9 @@ class UserWishlistController extends Controller
     protected $model = UserWishlist::class;
     protected $policy = UserWishlistPolicy::class;
 
-    protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
+    protected function buildFetchQuery($request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $query = parent::buildFetchQuery($request, $requestedRelations);
         $this->changeQueryForUser($query);
         return $query;
     }

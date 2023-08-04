@@ -436,7 +436,7 @@
 										},
 										{
 											"key": "country",
-											"value": "Japan",
+											"value": "USA",
 											"type": "text"
 										},
 										{
@@ -2976,7 +2976,7 @@
 										},
 										{
 											"key": "country",
-											"value": "Spain",
+											"value": "Russia",
 											"type": "text"
 										},
 										{
@@ -3740,14 +3740,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/wishlists/13",
+									"raw": "{{host}}/api/wishlists/2",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"wishlists",
-										"13"
+										"2"
 									]
 								},
 								"description": "StartFragment\n\nМожет пользователь и администратор\n\nEndFragment"
@@ -4053,14 +4053,14 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{host}}/api/wishlists/11?visit_time=2023-08-12",
+									"raw": "{{host}}/api/wishlists/2?visit_time=2023-08-12",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"api",
 										"wishlists",
-										"11"
+										"2"
 									],
 									"query": [
 										{
@@ -4925,12 +4925,12 @@
 									"formdata": [
 										{
 											"key": "relax_place_id",
-											"value": "2",
+											"value": "3",
 											"type": "text"
 										},
 										{
 											"key": "rating",
-											"value": "3",
+											"value": "4",
 											"type": "text"
 										},
 										{

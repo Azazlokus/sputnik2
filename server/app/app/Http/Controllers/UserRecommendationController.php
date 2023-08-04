@@ -18,9 +18,9 @@ class UserRecommendationController extends Controller
     protected $request = UserRecommendationRequest::class;
     protected $resource = UserRecommendationResource::class;
     protected $policy = UserRecommendationPolicy::class;
-    protected function buildIndexFetchQuery($request, array $requestedRelations): Builder
+    protected function buildFetchQuery($request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
+        $query = parent::buildFetchQuery($request, $requestedRelations);
         $this->changeQueryForUser($query);
         return $query;
     }

@@ -23,9 +23,7 @@ class RelaxPlaceFactory extends Factory
             'description' => $this->faker->paragraph,
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
-            'country' => $this->faker->randomElement([CountryEnum::England,
-                CountryEnum::Russia,
-                CountryEnum::USA]),
+            'country' => $this->faker->randomElement(CountryEnum::getEnumValues(CountryEnum::class)),
             'category_id' => RelaxPlaceCategory::all()->random()->id,
 
         ];
