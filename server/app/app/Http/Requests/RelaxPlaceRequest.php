@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 
 
+use App\Enums\CountryEnum;
+use App\Enums\NotificationTypeEnum;
+use Illuminate\Validation\Rule;
 use Orion\Http\Requests\Request;
 
 class RelaxPlaceRequest extends Request
@@ -15,9 +18,9 @@ class RelaxPlaceRequest extends Request
             'description' => 'nullable|string|min:1|max:1000|',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-            'average_rating' => 'required|numeric|min:1|max:5',
-            'country' => 'required|string|min:1|max:255',
-            'category' => 'required|exists:relax_place_categories,id',
+            'average_rating' => 'prohibited',
+            'country' => ['required','string', Rule::in(CountryEnum::getEnumValues(CountryEnum::class))],
+            'category_id' => 'required|exists:relax_place_categories,id',
         ];
     }
 }

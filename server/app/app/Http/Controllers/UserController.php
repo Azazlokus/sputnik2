@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\RoleConstants;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -17,33 +16,19 @@ class UserController extends Controller
     protected $request = UserRequest::class;
     protected $resource = UserResource::class;
     protected $policy = UserPolicy::class;
-    protected function buildIndexFetchQuery( $request, array $requestedRelations): Builder
+
+    protected function buildFetchQuery($request, array $requestedRelations): Builder
     {
-        $query = parent::buildIndexFetchQuery($request, $requestedRelations);
-        $this->ifUserChangeQuery($query);
+        $query = parent::buildFetchQuery($request, $requestedRelations);
+        $this->ifUserShowYourself($query);
         return $query;
     }
-    protected function buildShowFetchQuery( $request, array $requestedRelations): Builder
+
+    protected function ifUserShowYourself($query): void
     {
-        $query = parent::buildShowFetchQuery($request, $requestedRelations);
-        $this->ifUserChangeQuery($query);
-        return $query;
-    }
-    protected function buildUpdateFetchQuery( $request, array $requestedRelations): Builder
-    {
-        $query = parent::buildUpdateFetchQuery($request, $requestedRelations);
-        $this->ifUserChangeQuery($query);
-        return $query;
-    }
-    protected  function ifUserChangeQuery($query): void
-    {
-        $user = User::query()->find($this->getUserID());
-        if($user->isUser()) {
+        $user = User::query()->find(Auth::user()->getAuthIdentifier());
+        if ($user->isUser()) {
             $query->where('id', $user->id);
         }
-    }
-    protected function getUserID()
-    {
-        return Auth::user()->getAuthIdentifier();
     }
 }

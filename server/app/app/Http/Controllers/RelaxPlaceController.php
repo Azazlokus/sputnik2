@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RelaxPlaceImageRequest;
 use App\Http\Requests\RelaxPlaceRequest;
 use App\Http\Resources\RelaxPlaceResource;
 use App\Models\RelaxPlace;

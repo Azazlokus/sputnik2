@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Constants\RoleConstants;
+use App\Enums\RoleEnum;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -23,7 +23,7 @@ class UsersSeeder extends Seeder
                     'password' => bcrypt('password'),
                     'remember_token' => Str::random(10),
                 ]);
-                $admin->roles()->attach(Role::query()->where('role', RoleConstants::ADMIN)->first());
+                $admin->roles()->attach(Role::query()->where('role', RoleEnum::Admin)->first());
 
             }
             if (!User::where('email', 'user@mail.ru')->exists()) {
@@ -33,11 +33,11 @@ class UsersSeeder extends Seeder
                     'password' => bcrypt('password'),
                     'remember_token' => Str::random(10),
                 ]);
-                $user->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+                $user->roles()->attach(Role::query()->where('role', RoleEnum::User)->first());
 
             }
 
-            User::factory()->count(10)->hasAttached(Role::where('role', RoleConstants::USER)->first())->create();
+            User::factory()->count(10)->hasAttached(Role::where('role', RoleEnum::User)->first())->create();
 
         });
     }

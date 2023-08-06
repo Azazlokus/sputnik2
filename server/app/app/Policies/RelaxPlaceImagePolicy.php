@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
+use App\Enums\RoleEnum;
 use App\Models\Rating;
 use App\Models\RelaxPlaceImage;
 use App\Models\User;
@@ -23,13 +23,13 @@ class RelaxPlaceImagePolicy
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return $this->allow();
     }
 
 
-    public function view(User $user, RelaxPlaceImage $relaxPlaceImage)
+    public function view(?User $user, RelaxPlaceImage $relaxPlaceImage)
     {
         return $this->allow();
     }

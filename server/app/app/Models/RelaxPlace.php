@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\NotificationTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,17 +19,19 @@ class RelaxPlace extends Model
         'longitude',
         'average_rating',
         'country',
-        'category'
+        'category_id'
     ];
 
     public function wishlists(): HasMany
     {
         return $this->hasMany(UserWishlist::class);
     }
+
     public function ratings()
     {
         return $this->hasMany(Rating::class);
     }
+
     protected static function boot()
     {
         parent::boot();
@@ -38,14 +41,15 @@ class RelaxPlace extends Model
         });
 
     }
+
     public function sendNotifications(): void
     {
         $usersId = $this->wishlists->pluck('user_id');
         foreach ($usersId as $userId) {
             UserNotification::query()->create([
                 'user_id' => $userId,
-                'type' => 'push',
-                'content' => 'User with id: '. $userId . ' your place from wishlist has been deleted'
+                'type' => NotificationTypeEnum::Push,
+                'content' => "User, your place from wishlist has been deleted."
             ]);
         }
     }

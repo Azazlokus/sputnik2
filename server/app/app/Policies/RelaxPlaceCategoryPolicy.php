@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\RelaxPlaceCategory;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -22,7 +21,7 @@ class RelaxPlaceCategoryPolicy
 
         return null;
     }
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return $this->allow();
     }

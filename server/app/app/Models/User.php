@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Constants\NotificationTypeConstants;
-use App\Constants\RoleConstants;
+use App\Enums\NotificationTypeEnum;
+use App\Enums\RoleEnum;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,12 +38,12 @@ class User extends Authenticatable implements JWTSubject
 
     private function attachDefaultRole()
     {
-        $this->roles()->attach(Role::query()->where('role', RoleConstants::USER)->first());
+        $this->roles()->attach(Role::query()->where('role', RoleEnum::User)->first());
     }
 
     public function sendNotificationsToAdmins()
     {
-        $adminRoleId = Role::query()->where('role', RoleConstants::ADMIN)->value('id');
+        $adminRoleId = Role::query()->where('role', RoleEnum::Admin)->value('id');
 
         $admins = User::query()->whereHas('roles', function ($query) use ($adminRoleId) {
             $query->where('role_id', $adminRoleId);
@@ -52,7 +52,7 @@ class User extends Authenticatable implements JWTSubject
         foreach ($admins as $admin) {
             UserNotification::query()->create([
                 'user_id' => $admin->getKey(),
-                'type' => NotificationTypeConstants::PUSH,
+                'type' => NotificationTypeEnum::Push,
                 'content' => 'User with id: ' . $this->id . ' has been registered',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -91,12 +91,12 @@ class User extends Authenticatable implements JWTSubject
         return UserFactory::new();
     }
 
-    public function getJWTIdentifier()
+    public function getJWTIdentifier(): mixed
     {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
@@ -108,19 +108,14 @@ class User extends Authenticatable implements JWTSubject
 
     public function isUser(): bool
     {
-        return $this->hasRole(RoleConstants::USER);
+        return $this->hasRole(RoleEnum::User);
     }
     public function isAdmin(): bool
     {
-        return $this->hasRole(RoleConstants::ADMIN);
+        return $this->hasRole(RoleEnum::Admin);
     }
     public function isBlocked(): bool
     {
-        return $this->hasRole(RoleConstants::USER_BLOCKED);
+        return $this->hasRole(RoleEnum::UserBlocked);
     }
-    public  function hasWishlist($wishList)
-    {
-        return $this->wishlists->contains('id', $wishList->id);
-    }
-
 }

@@ -2,10 +2,8 @@
 
 namespace App\Policies;
 
-use App\Constants\RoleConstants;
 use App\Models\User;
 use App\Models\UserNotification;
-use App\Models\UserWishlist;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -18,9 +16,6 @@ class UserNotificationPolicy
         if ($user->isAdmin()) {
             return true;
         }
-        if ($user->isBlocked()) {
-            return false;
-        }
 
         return null;
     }
@@ -32,7 +27,7 @@ class UserNotificationPolicy
 
     public function view(User $user, UserNotification $userNotification)
     {
-        return $this->allow();
+        return $user->id === $userNotification->user_id ? $this->allow() : $this->deny();
     }
 
     public function create(User $user): Response
